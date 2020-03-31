@@ -3,7 +3,7 @@
  */
 package corpusLoader;
 
-import java.io.FileInputStream;  
+import java.io.FileInputStream;   
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -82,6 +82,7 @@ public class MyCorpus{
 					review.pos_tagger(tagger);
 					ArrayList<String> terms_in_review = review.get_adj_verb_noun();
 					allTerms.addAll(terms_in_review);
+					System.out.println(allTerms.size());
 					// System.out.println(sentences_list);
 					// System.out.println(verbs);					
 				}
