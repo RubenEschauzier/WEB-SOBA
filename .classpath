@@ -26,5 +26,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/Ruben/git/Heracles/stanford-postagger-2018-10-16/stanford-postagger-3.9.2.jar"/>
 	<classpathentry kind="lib" path="E:/stanford-corenlp-full-2018-10-05/stanford-corenlp-full-2018-10-05/stanford-corenlp-3.9.2.jar"/>
+	<classpathentry kind="lib" path="E:/stanford-corenlp-full-2018-10-05/stanford-corenlp-full-2018-10-05/stanford-corenlp-3.9.2-models.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
