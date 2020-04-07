@@ -40,9 +40,32 @@
 	<groupId>edu.stanford.nlp</groupId>
   	<artifactId>stanford-corenlp</artifactId>
   	<version>3.9.2</version>
-    </dependency>	
+    </dependency>
+    <dependency>
+	<groupId>edu.stanford.nlp</groupId>
+  	<artifactId>stanford-corenlp</artifactId>
+  	<version>3.9.2</version>
+  	<classifier>models</classifier>
+    </dependency>
+	  <dependency>
+      <groupId>org.nd4j</groupId>
+      <artifactId>nd4j-native-platform</artifactId>
+      <version>1.0.0-beta6</version>
+ 	 </dependency>
+    <dependency>
+    	<groupId>org.deeplearning4j</groupId>
+    	<artifactId>deeplearning4j-nlp</artifactId>
+    	<version>1.0.0-beta6</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.deeplearning4j/deeplearning4j-core -->
+	<dependency>
+    	<groupId>org.deeplearning4j</groupId>
+    	<artifactId>deeplearning4j-core</artifactId>
+    	<version>1.0.0-beta6</version>
+	</dependency>
+    
+  </dependencies>	
 
-  </dependencies>
 
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->

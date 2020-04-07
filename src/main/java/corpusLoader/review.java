@@ -4,9 +4,11 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.text.BreakIterator; 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -33,7 +35,7 @@ public class Review {
 	private int stars;
 	private ArrayList<String> listOfSentences = new ArrayList<String>();
 	private ArrayList<String> pos_tags = new ArrayList<String>();
-	private HashSet<String> all_terms = new HashSet<String>();
+	private Map<String, String> all_terms = new HashMap<String, String>(); // change to hashmap
 	private ArrayList<TaggedWord> tagged = new ArrayList<TaggedWord>();
 	// private ArrayList<ArrayList<String>> listOfSentences = new ArrayList<ArrayList<String>>();
 	
@@ -41,28 +43,23 @@ public class Review {
 	}
 	
 
-	
-	public void get_pos_tags(MaxentTagger tagger) {
-		Reader reader = new StringReader(text);
-		DocumentPreprocessor dp = new DocumentPreprocessor(reader);
-	      for (List<HasWord> sentence : dp) {
-	    	  tagged.addAll(tagger.tagSentence(sentence));
-	        }   
-	}
-	
-	
-	public HashSet<String >get_adj_noun_verb_new(ArrayList<String> needed_tags){
-		for(int i = 0; i < tagged.size(); i ++) {
-			if (needed_tags.contains(tagged.get(i).tag())) {
-				all_terms.add(tagged.get(i).word().toLowerCase());
-				
-			}
-		}
-		return all_terms;
-	}
+	/*
+	 * public void get_pos_tags(MaxentTagger tagger) { Reader reader = new
+	 * StringReader(text); DocumentPreprocessor dp = new
+	 * DocumentPreprocessor(reader); for (List<HasWord> sentence : dp) {
+	 * tagged.addAll(tagger.tagSentence(sentence)); } }
+	 * 
+	 * 
+	 * public HashSet<String >get_adj_noun_verb_new(ArrayList<String> needed_tags){
+	 * for(int i = 0; i < tagged.size(); i ++) { if
+	 * (needed_tags.contains(tagged.get(i).tag())) {
+	 * all_terms.add(tagged.get(i).word().toLowerCase());
+	 * 
+	 * } } return all_terms; }
+	 */
 	
 	
-	public HashSet<String> stanford_pipeline_tagger(StanfordCoreNLP pipeline, String pattern) {
+	public Map<String, String> stanford_pipeline_tagger(StanfordCoreNLP pipeline, String pattern) {
     CoreDocument doc = new CoreDocument(text);
     pipeline.annotate(doc);
     for(int f = 0; f <doc.sentences().size(); f++) {
@@ -74,10 +71,8 @@ public class Review {
         	    Pattern r = Pattern.compile(pattern, Pattern.CASE_INSENSITIVE);
         	    // Now create matcher object.
         	    Matcher m = r.matcher(word.lemma());
-        	    if (m.find() || word.originalText() == "") {
-        	    	
-        	    } else {
-        	       all_terms.add(word.lemma().toLowerCase());
+        	    if (!m.find() && !word.originalText().equals("")) {
+         	       all_terms.put(word.lemma().toLowerCase(), tag);
         	    }
         	}
     		
