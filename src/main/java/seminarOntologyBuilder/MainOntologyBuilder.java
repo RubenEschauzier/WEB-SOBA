@@ -23,7 +23,7 @@ public class MainOntologyBuilder {
 		/* RESTAURANT DOMAIN */
 
 		/* Start with the skeletal ontology. */
-		SkeletalOntology base = new SkeletalOntology(Framework.EXTERNALDATA_PATH + "RestaurantOntologyThesisBase2018.owl"); // hier moeten we een soort base file voor hebben?
+		SkeletalOntology base = new SkeletalOntology(Framework.EXTERNALDATA_PATH + "RestaurantOntologySeminar6Base2020.owl"); // hier moeten we een soort base file voor hebben?
 		//ThesisOntology base = new ThesisOntology(Framework.EXTERNALDATA_PATH + "RestaurantOntologyThesisBase.owl");		
 		HashMap<String, HashSet<String>> aspectCategories = new HashMap<String, HashSet<String>>();
 		
