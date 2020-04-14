@@ -1,6 +1,6 @@
 package seminarOntologyBuilder;
 
-// Taken from the seminarOntology file from Lisa
+// Taken from the seminarOntology file from Lisa and adapted
 
 import java.io.File;
 import edu.eur.absa.external.*;
@@ -41,20 +41,20 @@ import edu.eur.absa.model.Word;
  * @author Karoliina Ranta
  *
  */
-public class SeminarOntology implements IOntology {
+public class SkeletalOntology implements IOntology {
 
-	public final String NS = "http://www.semanticweb.org/lisa.zhuang/ontologies/2018/5/RestaurantOntologyBase";
-	//public final String NS = "http://www.semanticweb.org/lisa.zhuang/ontologies/2018/5/LaptopOntologyBase";
-	//public final String URI_AspectMention = NS + "#AspectMention";
-	//public final String URI_SentimentMention = NS + "#SentimentMention";
-	public final String URI_Mention= NS +"#Mention";
-	public final String URI_Sentiment = NS + "#Sentiment";
+	public final String NS = "http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase";
+	//public final String NS = "http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/LaptopOntologyBase";
+	public final String URI_AspectMention = NS + "#AspectMention";
+	public final String URI_SentimentMention = NS + "#SentimentMention";
+	//public final String URI_Mention= NS +"#Mention";
+	//public final String URI_Sentiment = NS + "#Sentiment";
 	//public final String URI_ContextDependent = NS + "#ContextDependentSentimentMention";
-	//public final String URI_GenericPositive = NS + "#GenericPositiveSentiment";
-	//public final String URI_GenericNegative = NS + "#GenericNegativeSentiment";
-	public final String URI_EntityMention = NS +"#EntityMention";
-	public final String URI_PropertyMention = NS + "#PropertyMention";
-	public final String URI_ActionMention = NS + "#ActionMention";
+	public final String URI_GenericPositive = NS + "#GenericPositiveSentiment";
+	public final String URI_GenericNegative = NS + "#GenericNegativeSentiment";
+	//public final String URI_EntityMention = NS +"#EntityMention";
+	//public final String URI_PropertyMention = NS + "#PropertyMention";
+	//public final String URI_ActionMention = NS + "#ActionMention";
 	public final String URI_Positive = NS + "#Positive";
 	public final String URI_Negative = NS + "#Negative";
 	public final String URI_GenericPositiveAction = NS +"#GenericPositiveAction";
@@ -70,11 +70,11 @@ public class SeminarOntology implements IOntology {
 	private HashMap<String, HashSet<String>> superclasses = new HashMap<>();
 
 	/**
-	 * A constructor for the ontology of seminar 2017 B.
+	 * A constructor for the ontology of Bsc seminar 2020 group 6.
 	 * 
 	 * @param ontologyFile, the .owl file containing the (basic) ontology
 	 */
-	public SeminarOntology(String ontologyFile) {
+	public SkeletalOntology(String ontologyFile) {
 		/* Use the FileManager to find the input file */
 		InputStream in = FileManager.get().open(ontologyFile);
 		if (in == null) {
