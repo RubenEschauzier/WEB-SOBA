@@ -27,10 +27,10 @@ import org.apache.jena.rdf.model.Statement;
 import org.apache.jena.rdf.model.StmtIterator;
 import org.apache.jena.util.FileManager;
 import org.apache.jena.util.iterator.ExtendedIterator;
-import edu.eur.absa.seminarhelper.WordSenseDisambiguation; // Hier naar kijken of we dit willen gebruiken!
+//import edu.eur.absa.seminarhelper.WordSenseDisambiguation; // Hier naar kijken of we dit willen gebruiken!
 import edu.smu.tspell.wordnet.Synset;
 import edu.eur.absa.Framework;
-import edu.eur.absa.external.ontology.IOntology;
+import edu.eur.absa.external.IOntology;  // was eerst import edu.eur.absa.external.ontology.IOntology; 
 import edu.eur.absa.model.Dataset;
 import edu.eur.absa.model.Span;
 import edu.eur.absa.model.Word;
