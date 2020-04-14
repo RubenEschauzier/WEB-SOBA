@@ -47,9 +47,9 @@ public class SkeletalOntology implements IOntology {
 	//public final String NS = "http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/LaptopOntologyBase";
 	public final String URI_AspectMention = NS + "#AspectMention";
 	public final String URI_SentimentMention = NS + "#SentimentMention";
-	//public final String URI_Mention= NS +"#Mention";
-	//public final String URI_Sentiment = NS + "#Sentiment";
-	//public final String URI_ContextDependent = NS + "#ContextDependentSentimentMention";
+	public final String URI_Mention= NS +"#Mention";
+	public final String URI_Sentiment = NS + "#Sentiment";
+	public final String URI_ContextDependent = NS + "#ContextDependentSentiment";
 	public final String URI_GenericPositive = NS + "#GenericPositiveSentiment";
 	public final String URI_GenericNegative = NS + "#GenericNegativeSentiment";
 	//public final String URI_EntityMention = NS +"#EntityMention";
@@ -57,12 +57,12 @@ public class SkeletalOntology implements IOntology {
 	//public final String URI_ActionMention = NS + "#ActionMention";
 	public final String URI_Positive = NS + "#Positive";
 	public final String URI_Negative = NS + "#Negative";
-	public final String URI_GenericPositiveAction = NS +"#GenericPositiveAction";
-	public final String URI_GenericNegativeAction = NS +"#GenericNegativeAction";
-	public final String URI_GenericPositiveProperty = NS + "#GenericPositiveProperty";
-	public final String URI_GenericNegativeProperty = NS + "#GenericNegativeProperty";
-	public final String URI_GenericPositiveEntity = NS + "#GenericPositiveEntity";
-	public final String URI_GenericNegativeEntity = NS + "#GenericNegativeEntity";
+	//public final String URI_GenericPositiveAction = NS +"#GenericPositiveAction";
+	//public final String URI_GenericNegativeAction = NS +"#GenericNegativeAction";
+	//public final String URI_GenericPositiveProperty = NS + "#GenericPositiveProperty";
+	//public final String URI_GenericNegativeProperty = NS + "#GenericNegativeProperty";
+	//public final String URI_GenericPositiveEntity = NS + "#GenericPositiveEntity";
+	//public final String URI_GenericNegativeEntity = NS + "#GenericNegativeEntity";
 	
 
 	private OntModel ontology = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_RULE_INF);
