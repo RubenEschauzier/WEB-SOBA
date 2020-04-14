@@ -47,12 +47,12 @@ public class TermSelectionAlgo {
 	private Map<String, String> allTerms = new HashMap<String, String>();
 	private Map<String,double[]> word_term_score = new HashMap<String, double[]>();
 	private Map<Double, String> term_scores_test = new TreeMap<Double, String>(new DescOrder());
-	private Map<String,Integer> aspect_mentions = new HashMap<String, Integer>();
+	private Map<String,String> aspect_mentions = new HashMap<String, String>();
 	private Map<String,Integer> sentiment_mentions = new HashMap<String, Integer>();
 
 	private Set<double[]> mention_classes_vec = new HashSet<double[]>();
 	private List<Double> term_scores= new ArrayList<Double>();
-	private Set<String> acceptedTerms = new HashSet<String>();
+	private Map<String, String> acceptedTerms = new HashMap<String, String>();
 	
 	private List<String> mention_words;
 	
@@ -227,18 +227,18 @@ public class TermSelectionAlgo {
 		int accepted_adj = 0;
 		
 		for (Map.Entry<Double,String> entry : term_scores_test.entrySet() ) {
-			if (!mention_words.contains(entry.getValue()) && !acceptedTerms.contains(entry.getValue())) {
+			if (!mention_words.contains(entry.getValue()) && !acceptedTerms.containsKey(entry.getValue())) {
 				List<RuleMatch> matches = langTool.check(entry.getValue());
 				if (matches.size() == 0) {
 				
 				if (allTerms.get(entry.getValue()).contains("NN") && entry.getKey() > threshold_noun && accepted_noun <= max_noun) {
-					ask_input(entry, scan, accepted_noun, "noun", w2vModel_yelp, langTool);
+					accepted_noun = ask_input(entry, scan, accepted_noun, "noun", w2vModel_yelp, langTool);
 				}
 				else if (allTerms.get(entry.getValue()).contains("VB") && entry.getKey() > threshold_verb && accepted_verb <= max_verb) {
-					ask_input(entry, scan, accepted_verb, "verb", w2vModel_yelp, langTool);
+					accepted_verb = ask_input(entry, scan, accepted_verb, "verb", w2vModel_yelp, langTool);
 				}
 				else if (allTerms.get(entry.getValue()).contains("JJ") && entry.getKey() > threshold_adj && accepted_adj <= max_adj) {
-					ask_input(entry, scan, accepted_adj, "adj", w2vModel_yelp, langTool);
+					accepted_adj = ask_input(entry, scan, accepted_adj, "adj", w2vModel_yelp, langTool);
 				}
 				}
 				else
@@ -269,7 +269,7 @@ public class TermSelectionAlgo {
 			if (input.equals("y")) {
 				
 				error0 = false;
-				acceptedTerms.add(entry.getValue());
+				acceptedTerms.put(entry.getValue(), type_word);
 				System.out.println("accepted!");
 				to_increase += 1;
 				
@@ -285,7 +285,7 @@ public class TermSelectionAlgo {
 						// If is aspectMention do this
 						if (input2.equals("a")){
 							System.out.println("Added to AspectMentionClass");
-							aspect_mentions.put(entry.getValue(), null);
+							aspect_mentions.put(entry.getValue(), type_word);
 							
 							error = false;
 						}
@@ -328,31 +328,31 @@ public class TermSelectionAlgo {
 					if (type_word.contentEquals("noun")) {
 						Collection<String> similarity_list = word2vec_yelp.wordsNearest(entry.getValue(), 10);
 						for (String similarity: similarity_list) {	
-							if (!mention_words.contains(similarity) && !acceptedTerms.contains(similarity)) {
+							if (!mention_words.contains(similarity) && !acceptedTerms.containsKey(similarity)) {
 								List<RuleMatch> matches = langTool.check(similarity);
 								if (word2vec_yelp.similarity(entry.getValue(), similarity) > 0.7 && matches.size() == 0) {
 									if(input2.equals("a") && aspect_mentions.containsKey(similarity)==false) {
 										System.out.println("Also added {"+similarity+"}");
 										aspect_mentions.put(similarity, null);	
-										acceptedTerms.add(similarity);
+										acceptedTerms.put(similarity, type_word);
 
 									}
 									if(input2.equals("s") && sentiment_mentions.containsKey(similarity) == false) {
 										if (input3.equals("1")) {
 											System.out.println("Also added {"+similarity+"}");
 											sentiment_mentions.put(similarity, 1);
-											acceptedTerms.add(similarity);
+											acceptedTerms.put(similarity, type_word);
 										}
 										else if (input3.equals("2")) {
 											System.out.println("Also added {"+similarity+"}");
 											sentiment_mentions.put(similarity, 2);
-											acceptedTerms.add(similarity);
+											acceptedTerms.put(similarity, type_word);
 
 										}
 										else if (input3.equals("3")) {
 											System.out.println("Also added {"+similarity+"}");
-											sentiment_mentions.put(similarity, 2);
-											acceptedTerms.add(similarity);
+											sentiment_mentions.put(similarity, 3);
+											acceptedTerms.put(similarity, type_word);
 
 									}		
 								}
@@ -362,7 +362,30 @@ public class TermSelectionAlgo {
 						}
 					}
 				}
-				
+				if (type_word.equals("adj"))	{
+					boolean loop = true;
+					while(loop) {
+						System.out.println("Is this a type 1,2 or 3 Sentiment Mention? Press (1) for type 1, (2) for type 2, (3) for type3");
+						input3 = scan.nextLine();
+						if (input3.equals("1")) {
+							sentiment_mentions.put(entry.getValue(), 1);
+							
+							loop = false;
+						}
+						else if (input3.equals("2")) {
+							sentiment_mentions.put(entry.getValue(), 2);
+
+							loop = false;
+						}
+						else if (input3.equals("3")) {
+							sentiment_mentions.put(entry.getValue(), 3);
+							loop = false;
+						}
+						else {
+							System.out.println("Please input a valid key");
+						}
+					}
+				}
 			}
 			// Decline the term
 			else if (input.equals("n")) {
@@ -391,52 +414,55 @@ public class TermSelectionAlgo {
 	    } catch(Exception e) {}
 	}
 	
-	public void save_to_file_set(Set<String> acceptedTerms, String path) throws Exception {
-	    PrintWriter pw = null;
+	public void save_to_file_map_string(Map<String,String> terms, String filelocation) {
+		System.out.println("saving file..");
 	    try {
-	        pw = new PrintWriter(
-	            new OutputStreamWriter(new FileOutputStream(path), "UTF-8"));
-	        for (String s : acceptedTerms) {
-	            pw.println(s);
-	        }
-	        pw.flush();
-	    } finally {
-	        pw.close();
-	    }
+	        File fileOne=new File(filelocation);
+	        FileOutputStream fos=new FileOutputStream(fileOne);
+	        ObjectOutputStream oos=new ObjectOutputStream(fos);
+
+	        oos.writeObject(terms);
+	        oos.flush();
+	        oos.close();
+	        fos.close();
+	    } catch(Exception e) {}
 	}
 	
-	public void load_file() throws IOException {
-		Set<String> allAcceptedTerms = new HashSet<String>();
-		
-		//CHANGE TO YOUR FILE LOCATION
-	    File fileDir = new File("E:\\Output_selected_terms\\all_terms");
-
-	    BufferedReader in = new BufferedReader(
-	    new InputStreamReader(new FileInputStream(fileDir), "UTF-8"));
-
-	        String str;
-
-	        while ((str = in.readLine()) != null) {
-	            allAcceptedTerms.add(str);
-	        }
-
-	    in.close();
-	    System.out.println(allAcceptedTerms);
-	}
+	
+	/*
+	 * public void save_to_file_set(Set<String> acceptedTerms, String path) throws
+	 * Exception { PrintWriter pw = null; try { pw = new PrintWriter( new
+	 * OutputStreamWriter(new FileOutputStream(path), "UTF-8")); for (String s :
+	 * acceptedTerms) { pw.println(s); } pw.flush(); } finally { pw.close(); } }
+	 * 
+	 * public void load_file() throws IOException { Set<String> allAcceptedTerms =
+	 * new HashSet<String>();
+	 * 
+	 * //CHANGE TO YOUR FILE LOCATION File fileDir = new
+	 * File("E:\\Output_selected_terms\\all_terms");
+	 * 
+	 * BufferedReader in = new BufferedReader( new InputStreamReader(new
+	 * FileInputStream(fileDir), "UTF-8"));
+	 * 
+	 * String str;
+	 * 
+	 * while ((str = in.readLine()) != null) { allAcceptedTerms.add(str); }
+	 * 
+	 * in.close(); System.out.println(allAcceptedTerms); }
+	 */
 	
 	public static void main(String args[]) throws Exception {
 		TermSelectionAlgo term_select = new TermSelectionAlgo( "E://google_wordvec", "E://yelp_wordvec", "E:\\OutputTerms\\Output_stanford_hashmap");
-		term_select.load_file();
 		term_select.create_word_term_score();
 		System.out.println("doing thresholds");
 		//double threshold_noun = term_select.create_threshold(100, "NN");
-		double threshold_verb = term_select.create_threshold(15, "VB");
-		double threshold_adj = term_select.create_threshold(80, "JJ");
-		term_select.create_term_list(0.84, threshold_verb, threshold_adj, 100, 80, 80);
-		//term_select.create_term_list(1, 1, 1, 30, 30, 30);
-		term_select.save_to_file_map(term_select.aspect_mentions, "E:\\Output_selected_terms\\aspect_mentions");
+		//double threshold_verb = term_select.create_threshold(15, "VB");
+		//double threshold_adj = term_select.create_threshold(80, "JJ");
+		//term_select.create_term_list(0.84, threshold_verb, threshold_adj, 100, 80, 80);
+		term_select.create_term_list(0.84, 0.8, 0.915, 100, 20, 80);
+		term_select.save_to_file_map_string(term_select.aspect_mentions, "E:\\Output_selected_terms\\aspect_mentions");
 		term_select.save_to_file_map(term_select.sentiment_mentions, "E:\\Output_selected_terms\\sentiment_mentions");
-		term_select.save_to_file_set(term_select.acceptedTerms, "E:\\Output_selected_terms\\all_terms");
+		term_select.save_to_file_map_string(term_select.acceptedTerms, "E:\\Output_selected_terms\\all_accepted_terms");
 	}
 	
 	static class DescOrder implements Comparator<Double>{
