@@ -44,7 +44,7 @@ import edu.eur.absa.model.Word;
 public class SkeletalOntology implements IOntology {
 
 	public final String NS = "http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase";
-	//public final String NS = "http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/LaptopOntologyBase";
+	
 	public final String URI_AspectMention = NS + "#AspectMention";
 	public final String URI_SentimentMention = NS + "#SentimentMention";
 	public final String URI_Mention= NS +"#Mention";
@@ -52,17 +52,20 @@ public class SkeletalOntology implements IOntology {
 	public final String URI_ContextDependent = NS + "#ContextDependentSentiment";
 	public final String URI_GenericPositive = NS + "#GenericPositiveSentiment";
 	public final String URI_GenericNegative = NS + "#GenericNegativeSentiment";
-	//public final String URI_EntityMention = NS +"#EntityMention";
-	//public final String URI_PropertyMention = NS + "#PropertyMention";
-	//public final String URI_ActionMention = NS + "#ActionMention";
 	public final String URI_Positive = NS + "#Positive";
 	public final String URI_Negative = NS + "#Negative";
-	//public final String URI_GenericPositiveAction = NS +"#GenericPositiveAction";
-	//public final String URI_GenericNegativeAction = NS +"#GenericNegativeAction";
-	//public final String URI_GenericPositiveProperty = NS + "#GenericPositiveProperty";
-	//public final String URI_GenericNegativeProperty = NS + "#GenericNegativeProperty";
-	//public final String URI_GenericPositiveEntity = NS + "#GenericPositiveEntity";
-	//public final String URI_GenericNegativeEntity = NS + "#GenericNegativeEntity";
+	
+	
+	//deze zijn als we met action,entity,property distinction willen werken:
+	public final String URI_EntityMention = NS +"#EntityMention";
+	public final String URI_PropertyMention = NS + "#PropertyMention";
+	public final String URI_ActionMention = NS + "#ActionMention";
+	public final String URI_GenericPositiveAction = NS +"#GenericPositiveAction";
+	public final String URI_GenericNegativeAction = NS +"#GenericNegativeAction";
+	public final String URI_GenericPositiveProperty = NS + "#GenericPositiveProperty";
+	public final String URI_GenericNegativeProperty = NS + "#GenericNegativeProperty";
+	public final String URI_GenericPositiveEntity = NS + "#GenericPositiveEntity";
+	public final String URI_GenericNegativeEntity = NS + "#GenericNegativeEntity";
 	
 
 	private OntModel ontology = ModelFactory.createOntologyModel(OntModelSpec.OWL_DL_MEM_RULE_INF);
@@ -91,7 +94,7 @@ public class SkeletalOntology implements IOntology {
 	 */
 	public void save(String ontologyFile) {
 		try {
-			ontology.write(new FileOutputStream(new File(Framework.EXTERNALDATA_PATH + ontologyFile)), "RDF/XML", null);
+			ontology.write(new FileOutputStream(new File(Framework.OUTPUT_PATH + ontologyFile)), "RDF/XML", null);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
@@ -203,11 +206,13 @@ public class SkeletalOntology implements IOntology {
 		return newClass.getURI();
 	}
 
+	/**
+//Deze is ook met word sense disambiguation
 	public String addClass(String pos, HashMap<String, String> context, String lemmaURI, boolean lex, String lexName, HashSet<String> aspectProperties, String... classURIs) { //pos = "noun" or "verb"
 		String URI = NS + "#" + lemmaURI.replaceAll(" ", "");
 		OntClass newClass = ontology.createClass(URI);
 
-		/* Add the lex property. */
+		// Add the lex property.
 		if (lex) {
 			newClass.addProperty(ontology.getProperty(NS + "#lex"), lexName.toLowerCase());
 		}
@@ -226,7 +231,7 @@ public class SkeletalOntology implements IOntology {
 		int sense = WordSenseDisambiguation.Sense(contextWords, lexName, pos);
 				newClass.addProperty(ontology.getProperty(NS + "#sense"), lexName+"#"+pos+"#"+sense);
 		
-		/* Add the given aspect properties. */
+		// Add the given aspect properties.
 		for (String aspectCategory : aspectProperties) {
 			newClass.addProperty(ontology.getProperty(NS + "#aspect"), aspectCategory.toUpperCase());
 		}
@@ -236,6 +241,7 @@ public class SkeletalOntology implements IOntology {
 
 		return newClass.getURI();
 	}
+*/
 
 	/**
 	 * A method that adds a new intersection class of two classes to the ontology.
@@ -558,5 +564,11 @@ public class SkeletalOntology implements IOntology {
 			}
 		}
 		return foundTargets;
+	}
+
+	@Override
+	public HashSet<String> test(String literal) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -1,0 +1,110 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#"
+     xml:base="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#AspectMention -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#AspectMention">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Mention"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#SentimentMention -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#SentimentMention">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Mention"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#GenericNegativeSentiment -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#GenericNegativeSentiment">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#SentimentMention"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Negative"/>
+    </owl:Class>
+    
+
+    <!-- http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#GenericPositiveSentiment -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#GenericPositiveSentiment">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Positive"/>
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#SentimentMention"/>
+    </owl:Class>
+
+
+    <!-- http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ContextDependentSentiment -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ContextDependentSentiment">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#SentimentMention"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Mention -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Mention"/>
+    
+
+
+    <!-- http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Negative -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Negative">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Sentiment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Neutral -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Neutral">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Sentiment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Positive -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Positive">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Sentiment"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PropertyMention -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PropertyMention">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Mention"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Sentiment -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Sentiment"/>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.1) https://github.com/owlcs/owlapi -->
+

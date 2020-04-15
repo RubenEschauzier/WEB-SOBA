@@ -2,9 +2,9 @@
 <classpath>
 	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
 		<attributes>
+			<attribute name="test" value="true"/>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" output="target/classes" path="src/main/java">
@@ -16,8 +16,9 @@
 	<classpathentry kind="var" path="M2_REPO/javax/xml/bind/jaxb-api/2.4.0-b180830.0359/jaxb-api-2.4.0-b180830.0359.jar" sourcepath="M2_REPO/javax/xml/bind/jaxb-api/2.4.0-b180830.0359/jaxb-api-2.4.0-b180830.0359-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/javax/servlet/javax.servlet-api/3.0.1/javax.servlet-api-3.0.1.jar" sourcepath="M2_REPO/javax/servlet/javax.servlet-api/3.0.1/javax.servlet-api-3.0.1-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/javax/activation/javax.activation-api/1.2.0/javax.activation-api-1.2.0.jar" sourcepath="M2_REPO/javax/activation/javax.activation-api/1.2.0/javax.activation-api-1.2.0-sources.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
+			<attribute name="module" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
@@ -108,10 +109,6 @@
 	<classpathentry kind="var" path="M2_REPO/org/bytedeco/flandmark/1.07-1.5.2/flandmark-1.07-1.5.2.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/bytedeco/leptonica/1.78.0-1.5.2/leptonica-1.78.0-1.5.2.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/bytedeco/tesseract/4.1.0-1.5.2/tesseract-4.1.0-1.5.2.jar"/>
-	<classpathentry kind="var" path="M2_REPO/org/openjfx/javafx-graphics/13/javafx-graphics-13.jar"/>
-	<classpathentry kind="var" path="M2_REPO/org/openjfx/javafx-graphics/13/javafx-graphics-13-win.jar"/>
-	<classpathentry kind="var" path="M2_REPO/org/openjfx/javafx-base/13/javafx-base-13.jar"/>
-	<classpathentry kind="var" path="M2_REPO/org/openjfx/javafx-base/13/javafx-base-13-win.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/bytedeco/opencv-platform/4.1.2-1.5.2/opencv-platform-4.1.2-1.5.2.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/bytedeco/openblas-platform/0.3.7-1.5.2/openblas-platform-0.3.7-1.5.2.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/bytedeco/openblas/0.3.7-1.5.2/openblas-0.3.7-1.5.2-android-arm.jar"/>
@@ -193,5 +190,13 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/apache-jena"/>
+	<classpathentry kind="lib" path="/jaws"/>
+	<classpathentry kind="lib" path="/jena-core"/>
+	<classpathentry kind="lib" path="C:/Users/fenna/git/java-json.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fenna/git/jawjaw-0.1.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fenna/git/jsoup-1.13.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fenna/git/sqlite-jdbc-3.8.11.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fenna/git/ws4j-0.1.0.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

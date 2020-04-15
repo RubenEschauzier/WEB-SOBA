@@ -7,7 +7,6 @@ import java.util.HashSet;
 import org.json.JSONException;
 import edu.eur.absa.Framework;
 import edu.eur.absa.model.exceptions.IllegalSpanException;
-import seminarOntologyBuilder.SkeletalOntology;
 
 /**
  * The main for the semi-automatic ontology builder.
@@ -18,13 +17,16 @@ import seminarOntologyBuilder.SkeletalOntology;
  * Adapted by Fenna ten Haaf
  */
 public class MainOntologyBuilder {
+	
+
 	public static void main(String[] args) throws ClassNotFoundException, JSONException, IllegalSpanException, IOException {
+
+		final int fuckthisfuckthis = 3;
 
 		/* RESTAURANT DOMAIN */
 
 		/* Start with the skeletal ontology. */
-		SkeletalOntology base = new SkeletalOntology(Framework.EXTERNALDATA_PATH + "RestaurantOntologySeminar6Base2020.owl"); // hier moeten we een soort base file voor aanpassen!
-		//ThesisOntology base = new ThesisOntology(Framework.EXTERNALDATA_PATH + "RestaurantOntologyThesisBase.owl");		
+		SkeletalOntology base = new SkeletalOntology(Framework.EXTERNALDATA_PATH + "RestaurantOntologyThesisBase2018.owl"); // Onze is: RestaurantOntologySeminar6Base2020.owl	
 		HashMap<String, HashSet<String>> aspectCategories = new HashMap<String, HashSet<String>>();
 		
 		/*create HashMap aspectCategories that maps each aspect to its relevant categories */
@@ -55,6 +57,8 @@ public class MainOntologyBuilder {
 		/* Set the domain. */
 		String domain = "restaurant";
 
+		
+		// de volgende twee paragrafen zijn denk ik niet nodig
 		// set the fractions
 		double[] fraction = new double[3];	
 		fraction[0]=0.16;	//fraction nouns
@@ -67,13 +71,16 @@ public class MainOntologyBuilder {
 		/* Initialise the semi-automatic ontology builder. *///
 		OntologyBuilder build = new OntologyBuilder(base, aspectCategories, domain, threshold, 1.0, fraction, true);
 
-		build.save("TestSkeletalOntology.owl");
-
-		/* Load the contrasting text. */
+		build.save("TestSkeletalOntology2020.owl");
+		}
+}
+	
+/**		
+		
+		// Load the contrasting text. 
 		build.loadContrast();
 
-		/* Load the reviews to
-		 *  be used to build the ontology. */
+		// Load the reviews to be used to build the ontology.
 		try {
 			build.loadReviews();
 		} catch (Exception e) {
@@ -84,18 +91,20 @@ public class MainOntologyBuilder {
 		double alpha=0.3; double beta=0.7;
 		boolean verbs=true; boolean nouns=true; boolean adj=true;
 
-		/* Find important terms and add them to the ontology. */
+		// Find important terms and add them to the ontology.
 		build.findTerms(nouns, adj, verbs, alpha, beta);
 
-		/* Get the stats. */
+		// Get the stats. 
 		int[] stats = build.getStats();
 		System.out.println("Number accepted: " + stats[0]);
 		System.out.println("Number rejected: " + stats[1]);
 		System.out.println("Ratio accepted: " + (double) stats[0] / ( (double) stats[0] + (double) stats[1] ));
 
-		/* Save the built ontology. */
+		// Save the built ontology.
 		build.save("FinalOntologyRestaurantAutomatic.owl");
 	}
+	
+*/
 
 	/* LAPTOP DOMAIN */
 
@@ -169,4 +178,4 @@ public class MainOntologyBuilder {
 	/* Save the built ontology. */
 	//		build.save("FinalOntologyLaptopAutomatic.owl");
 	//	}
-}
+//}
