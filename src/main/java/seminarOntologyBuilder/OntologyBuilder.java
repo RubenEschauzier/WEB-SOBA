@@ -1,5 +1,7 @@
 package seminarOntologyBuilder;
 
+// Deze hele class moet aangepast worden naar onze eigen methods
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -31,13 +33,14 @@ import seminarOntologyBuilder.Synonyms;
 import seminarOntologyBuilder.SkeletalOntology;
 //import edu.eur.absa.seminarhelper.WordSenseDisambiguation;
 //import edu.eur.absa.seminarhelper.Wu_Palmer;
-import edu.eur.absa.seminarhelper.readJSON;
+import seminarOntologyBuilder.readJSON;
 import edu.eur.absa.nlp.*;
 import edu.eur.absa.Framework;
 import edu.smu.tspell.wordnet.Synset;
 import edu.smu.tspell.wordnet.SynsetType;
 import edu.smu.tspell.wordnet.WordNetDatabase.*;
-import edu.cmu.lti.ws4j.*;
+
+// import edu.cmu.lti.ws4j.*;
 
 /**
  * A method that builds an ontology semi-automatically.
@@ -49,7 +52,7 @@ import edu.cmu.lti.ws4j.*;
 public class OntologyBuilder {
 
 	/* The base ontology. */
-	private SeminarOntology base;
+	private SkeletalOntology base;
 	private HashMap<String, HashSet<String>> aspectCategories;
 	private String domain;
 	private Dataset reviewData;
@@ -71,6 +74,7 @@ public class OntologyBuilder {
 	private HashMap<String, HashSet<String>> nounsWithSynset;
 	private HashSet<String> synonymsAccepted;
 
+	
 	/**
 	 * A constructor for the OntologyBuilder class.
 	 * @param baseOnt, the base ontology from which the final ontology is further constructed
@@ -79,7 +83,7 @@ public class OntologyBuilder {
 	 * @param thres, the threshold to use for the subsumption method
 	 * @param frac, the top fraction of terms to suggest
 	 */
-	public OntologyBuilder(SeminarOntology baseOnt, HashMap<String, HashSet<String>> aspectCat, String dom, double thres, double[] frac, boolean r) {
+	public OntologyBuilder(SkeletalOntology baseOnt, HashMap<String, HashSet<String>> aspectCat, String dom, double thres, double[] frac, boolean r) {
 		this(baseOnt, aspectCat, dom, thres, thres, frac, r );
 	}
 
@@ -92,7 +96,7 @@ public class OntologyBuilder {
 	 * @param invThres, the second threshold for the subsumption method
 	 * @param frac, the top fraction of terms to suggest
 	 */
-	public OntologyBuilder(SeminarOntology baseOnt, HashMap<String, HashSet<String>> aspectCat, String dom, double thres, double invThres, double[] frac, boolean r) {
+	public OntologyBuilder(SkeletalOntology baseOnt, HashMap<String, HashSet<String>> aspectCat, String dom, double thres, double invThres, double[] frac, boolean r) {
 
 		/* Initialise the base ontology, aspect categories, and domain name. */
 		base = baseOnt;
@@ -125,14 +129,15 @@ public class OntologyBuilder {
 		HashSet<String> doneAspects = new HashSet<String>();
 
 		//add synonyms of verbs hating and enjoy in the the general positive and general negative aspect categories
-		//String negativeActionURI1 = base.addClass("dislike#verb#1", "Dislike", true, "dislike", new HashSet<String>(), base.URI_GenericNegativeAction);
-		//this.suggestSynonyms("dislike", negativeActionURI1);
-		//String negativeActionURI2 = base.addClass("loathe#verb#1", "Loathe", true, "loathe", new HashSet<String>(), base.URI_GenericNegativeAction);
-		//this.suggestSynonyms("loathe", negativeActionURI2);
-		//String positiveActionURI1 = base.addClass("enjoy#verb#1", "Enjoy", true, "enjoy", new HashSet<String>(), base.URI_GenericPositiveAction);
-		//this.suggestSynonyms("enjoy", positiveActionURI1);
-		//String positiveActionURI2 = base.addClass("appreciate#verb#1", "Appreciate", true, "appreciate", new HashSet<String>(), base.URI_GenericPositiveAction);
-		//this.suggestSynonyms("appreciate", positiveActionURI2);
+		
+		String negativeActionURI1 = base.addClass("dislike#verb#1", "Dislike", true, "dislike", new HashSet<String>(), base.URI_GenericNegative); //Dit was eerst GenericNegativeAction
+		this.suggestSynonyms("dislike", negativeActionURI1);
+		String negativeActionURI2 = base.addClass("loathe#verb#1", "Loathe", true, "loathe", new HashSet<String>(), base.URI_GenericNegative);
+		this.suggestSynonyms("loathe", negativeActionURI2);
+		String positiveActionURI1 = base.addClass("enjoy#verb#1", "Enjoy", true, "enjoy", new HashSet<String>(), base.URI_GenericPositive); //was eerst genericpositiveaction
+		this.suggestSynonyms("enjoy", positiveActionURI1); 
+		String positiveActionURI2 = base.addClass("appreciate#verb#1", "Appreciate", true, "appreciate", new HashSet<String>(), base.URI_GenericPositive);
+		this.suggestSynonyms("appreciate", positiveActionURI2);
 	
 		/* Loop over the aspect category entities. */
 
