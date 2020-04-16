@@ -7,6 +7,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -43,7 +45,7 @@ public class Word2Vec {
 		readFile(textFile);
 		read_word2vec(word2vecFile);
 		//read_word2vec_google(word2vecGoogle);
-		create_wordvec_yelp();
+		//create_wordvec_yelp();
 		//create_wordvec_google();
 		
 	}
@@ -130,9 +132,12 @@ public class Word2Vec {
 	
 	// replace filelocation when done running
 	public static void main(String args[]) throws IOException, ClassNotFoundException{
-		Word2Vec w2v_model = new Word2Vec("E:\\OutputTerms\\Output_stanford_hashmap.txt", "C:\\Users\\Ruben\\PycharmProjects\\Word2Vec(2.0)\\w2v_yelp.bin", "C:\\Users\\Ruben\\gensim-data\\word2vec-google-news-300\\word2vec-google-news-300.gz");
+		Word2Vec w2v_model = new Word2Vec("E:\\OutputTerms\\Output_stanford_hashmap", "C:\\Users\\Ruben\\PycharmProjects\\Word2Vec(2.0)\\w2v_yelp.bin", "C:\\Users\\Ruben\\gensim-data\\word2vec-google-news-300\\word2vec-google-news-300.gz");
 		//w2v_model.save_to_file(w2v_model.get_vec_yelp(), "E:\\yelp_wordvec");
 		//w2v_model.save_to_file(w2v_model.get_vec_google(), "E:\\google_wordvec");
+		Path path = Paths.get("/OntologyBuilding/src/main/resources/data");
+		System.out.println(path);
+		
 	
 	}
 	
