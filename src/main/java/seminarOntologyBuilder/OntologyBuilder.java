@@ -131,7 +131,7 @@ public class OntologyBuilder {
 		//add synonyms of verbs hating and enjoy in the the general positive and general negative aspect categories
 		
 		String negativeActionURI1 = base.addClass("dislike#verb#1", "Dislike", true, "dislike", new HashSet<String>(), base.URI_GenericNegative); //Dit was eerst GenericNegativeAction
-		this.suggestSynonyms("dislike", negativeActionURI1);
+		this.suggestSynonyms("terrible", negativeActionURI1);
 		String negativeActionURI2 = base.addClass("loathe#verb#1", "Loathe", true, "loathe", new HashSet<String>(), base.URI_GenericNegative);
 		this.suggestSynonyms("loathe", negativeActionURI2);
 		String positiveActionURI1 = base.addClass("enjoy#verb#1", "Enjoy", true, "enjoy", new HashSet<String>(), base.URI_GenericPositive); //was eerst genericpositiveaction
