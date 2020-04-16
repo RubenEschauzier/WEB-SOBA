@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
+	<classpathentry kind="src" output="target/classes" path="src/main/java">
 		<attributes>
-			<attribute name="test" value="true"/>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" output="target/classes" path="src/main/java">
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
 		<attributes>
+			<attribute name="test" value="true"/>
 			<attribute name="optional" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
@@ -18,7 +18,6 @@
 	<classpathentry kind="var" path="M2_REPO/javax/activation/javax.activation-api/1.2.0/javax.activation-api-1.2.0.jar" sourcepath="M2_REPO/javax/activation/javax.activation-api/1.2.0/javax.activation-api-1.2.0-sources.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8">
 		<attributes>
-			<attribute name="module" value="true"/>
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
@@ -190,13 +189,13 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="/apache-jena"/>
-	<classpathentry kind="lib" path="/jaws"/>
-	<classpathentry kind="lib" path="/jena-core"/>
-	<classpathentry kind="lib" path="C:/Users/fenna/git/java-json.jar"/>
-	<classpathentry kind="lib" path="C:/Users/fenna/git/jawjaw-0.1.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/fenna/git/jsoup-1.13.1.jar"/>
-	<classpathentry kind="lib" path="C:/Users/fenna/git/sqlite-jdbc-3.8.11.2.jar"/>
-	<classpathentry kind="lib" path="C:/Users/fenna/git/ws4j-0.1.0.jar"/>
+	<classpathentry excluding="**" kind="src" output="target/classes" path="src/main/resources">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/fenna/git/Ontology-Builder-2.0/lib/jsoup-1.13.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fenna/git/Ontology-Builder-2.0/lib/ws4j-1.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/fenna/git/Ontology-Builder-2.0/lib/jawjaw-1.0.2.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

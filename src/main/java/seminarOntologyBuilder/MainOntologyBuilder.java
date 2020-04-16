@@ -7,6 +7,7 @@ import java.util.HashSet;
 import org.json.JSONException;
 import edu.eur.absa.Framework;
 import edu.eur.absa.model.exceptions.IllegalSpanException;
+import seminarOntologyBuilder.MainOntologyBuilder;
 
 /**
  * The main for the semi-automatic ontology builder.
@@ -18,10 +19,11 @@ import edu.eur.absa.model.exceptions.IllegalSpanException;
  */
 public class MainOntologyBuilder {
 	
-
 	public static void main(String[] args) throws ClassNotFoundException, JSONException, IllegalSpanException, IOException {
 
-		final int fuckthisfuckthis = 3;
+		final int fuckthisfuckthat = 6;
+		
+		int HELLOOO = 13786;
 
 		/* RESTAURANT DOMAIN */
 

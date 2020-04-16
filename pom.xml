@@ -14,8 +14,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 	
 	<repositories>
@@ -52,29 +52,28 @@
 	</dependency>
   	
   	
-  	  <!-- https://mvnrepository.com/artifact/edu.cmu.lti/ws4j -->
+  <!-- https://mvnrepository.com/artifact/edu.cmu.lti/ws4j -->
 
-<!-- 
 	<dependency>
     <groupId>edu.cmu.lti</groupId>
-    <artifactId>jawjaw</artifactId>
-    <version>1.0.1</version>
+    <artifactId>jawjaw-1.0.2</artifactId>
+    <version>1.0.2</version>
     <scope>system</scope> 
-    <systemPath>${basedir}/lib/jawjaw.jar</systemPath>
+    <systemPath>${basedir}/lib/jawjaw-1.0.2.jar</systemPath>
     </dependency>
 	<dependency>
     <groupId>edu.cmu.lti</groupId>
-    <artifactId>ws4j</artifactId>
+    <artifactId>ws4j-1.0.1</artifactId>
     <version>1.0.1</version>
 	</dependency>
     <dependency>
     <groupId>edu.cmu.lti</groupId>
-    <artifactId>ws4j</artifactId>
+    <artifactId>ws4j-1.0.1</artifactId>
     <version>1.0.1</version>
     <scope>system</scope> 
-    <systemPath>${basedir}/lib/ws4j.jar</systemPath>
+    <systemPath>${basedir}/lib/ws4j-1.0.1.jar</systemPath>
     </dependency>
- -->
+ 
  
   	<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -211,6 +210,22 @@
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
+        
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <!-- Attach the shade goal into the package phase -->
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.1.0</version>
