@@ -25,8 +25,60 @@
             <url>https://jitpack.io</url>
         </repository>
     </repositories>
+    
+    
+    <dependencies>
+<!-- These ones added by Fenna, remove if something gets fucked up -->    
+    
+	<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-math3</artifactId>
+			<version>3.0</version>
+	</dependency>
+	<dependency>
+			<groupId>org.apache.opennlp</groupId>
+			<artifactId>opennlp-tools</artifactId>
+			<version>1.6.0</version>
+		</dependency>
+	<dependency>
+			<groupId>org.apache.jena</groupId>
+			<artifactId>apache-jena</artifactId>
+			<version>3.0.1</version>
+			<type>pom</type>
+	</dependency>
+	<dependency>
+			<groupId>org.apache.opennlp</groupId>
+			<artifactId>opennlp</artifactId>
+			<version>1.6.0</version>
+			<type>pom</type>
+	</dependency>
+	
+	<dependency>
+			<groupId>org.json</groupId>
+			<artifactId>json</artifactId>
+			<version>20150729</version>
+	</dependency>
+	
+	<dependency>
+   		<groupId>org.clulab</groupId>
+   		<artifactId>processors_2.11</artifactId>
+   		<version>5.7.1</version>
+   		<exclusions>
+        <exclusion>
+          <groupId>ch.qos.logback</groupId>
+          <artifactId>logback-classic</artifactId>
+        </exclusion>
+      </exclusions>
+	</dependency>
+	<dependency>
+   		<groupId>org.clulab</groupId>
+   		<artifactId>processors_2.11</artifactId>
+   		<version>5.7.1</version>
+   		<classifier>models</classifier>
+	</dependency>
+<!--  these were there originally -->    
 
-  <dependencies>
+  
   	<dependency>
       <groupId>com.github.jaytaylor</groupId>
 	  <artifactId>jaws</artifactId>
@@ -81,7 +133,15 @@
 		<artifactId>language-en</artifactId>
 		<version>4.9</version>
 	</dependency>
-  </dependencies>	
+
+<!--  		
+	 <dependency>
+		<groupId>com.github.kschouten</groupId>
+		<artifactId>heracles</artifactId>
+		<version>1.0.0</version>
+	</dependency> 
+-->
+    </dependencies>	
 
 
   <build>
