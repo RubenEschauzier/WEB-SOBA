@@ -38,6 +38,7 @@ import org.languagetool.Language;
 import org.languagetool.language.AmericanEnglish;
 import org.languagetool.rules.RuleMatch;
 
+import edu.eur.absa.Framework;
 import edu.smu.tspell.wordnet.Synset;
 import edu.smu.tspell.wordnet.WordNetDatabase;
 
@@ -452,7 +453,8 @@ public class TermSelectionAlgo {
 	 */
 	
 	public static void main(String args[]) throws Exception {
-		TermSelectionAlgo term_select = new TermSelectionAlgo( "E://google_wordvec", "E://yelp_wordvec", "E:\\OutputTerms\\Output_stanford_hashmap");
+		// can file location also be the one in repository?
+		TermSelectionAlgo term_select = new TermSelectionAlgo( Framework.DATA_PATH+"google_wordvec", Framework.DATA_PATH +"yelp_wordvec", Framework.OUTPUT_PATH+"Output_stanford_hashmap");
 		term_select.create_word_term_score();
 		System.out.println("doing thresholds");
 		//double threshold_noun = term_select.create_threshold(100, "NN");

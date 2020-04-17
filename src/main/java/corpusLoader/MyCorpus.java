@@ -24,6 +24,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonStreamParser;
 
+import edu.eur.absa.Framework;
 import edu.stanford.nlp.pipeline.StanfordCoreNLP;
 
 
@@ -34,15 +35,13 @@ public class MyCorpus{
 
 	private String filelocation_review;
 	private String filelocation_business;
-	private String filelocation_pos;
 	private List<String> restaurants = new ArrayList<String>();
 	private Map<String, String> allTerms = new HashMap<String, String>();
 	
 	
-	public MyCorpus(String filelocation_review, String filelocation_business, String filelocation_pos) {
+	public MyCorpus(String filelocation_review, String filelocation_business) {
 		this.filelocation_review = filelocation_review;
 		this.filelocation_business = filelocation_business;
-		this.filelocation_pos = filelocation_pos;
 		
 	}
 	
@@ -132,8 +131,9 @@ public class MyCorpus{
 		
 	
 	public static void main(String args[]) throws IOException {
-		// WHEN YOU RUN THE FILE CHANGE THE 3 FILELOCATIONS OF THE MYCORPUS CLASS!
-		MyCorpus yelp_dataset = new MyCorpus("E:\\review.json", "E:\\business.json", "C:\\Users\\Ruben\\git\\Heracles\\stanford-postagger-2018-10-16\\models\\english-left3words-distsim.tagger");
+		// WHEN YOU RUN THE FILE you need to add review.json and business.json to the external data directory!
+		Framework framework = new Framework();
+		MyCorpus yelp_dataset = new MyCorpus("E:\\review.json", "E:\\business.json");
 		List<String> restaurants = yelp_dataset.business_identifier();
 		yelp_dataset.review_loader();
 		yelp_dataset.write_to_file();

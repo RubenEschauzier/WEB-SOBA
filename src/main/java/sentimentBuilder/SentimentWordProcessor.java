@@ -24,6 +24,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import edu.eur.absa.Framework;
 import it.unimi.dsi.fastutil.doubles.DoubleList;
 import it.unimi.dsi.fastutil.doubles.DoubleLists;
 
@@ -288,7 +289,7 @@ public class SentimentWordProcessor {
 	 
 	
 	public static void main(String args[]) throws IOException, ClassNotFoundException {
-	SentimentWordProcessor sent_calc = new SentimentWordProcessor("E:\\Projects\\Eclipse Workspaces\\OntologyBuilding\\src\\main\\resources\\data\\yelp_wordvec", "E:\\Projects\\Eclipse Workspaces\\OntologyBuilding\\src\\main\\resources\\output\\sentiment_mentions");
+	SentimentWordProcessor sent_calc = new SentimentWordProcessor(Framework.DATA_PATH + "yelp_wordvec", Framework.OUTPUT_PATH + "sentiment_mentions");
 	//sent_calc.generate_sentiment_scores();
 	sent_calc.create_sentiment_links();
 	}
