@@ -4,9 +4,11 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -95,6 +97,7 @@ public class SentimentScoreCalculator {
 	public double generate_sentiment_scores() {
 		String[] negative_sentiment_seeds = {"bad", "awful", "horrible", "terrible", "poor", "lousy", "shitty", "horrid"};
 		String[] positive_sentiment_seeds = {"good", "decent", "great", "tasty", "fantastic", "solid", "yummy", "terrific"};
+
 		for (Map.Entry<String, Integer> sentiment_word : sentiment_mentions.entrySet()) {
 			double[] wordembedding = word_vec_refined.get(sentiment_word.getKey());
 			double max_sim_pos = 0;
@@ -124,10 +127,27 @@ public class SentimentScoreCalculator {
 		
 		return 0;
 	}
+	
+	public void save_to_file(Map<String,double[]> word_vec, String filelocation) {
+		System.out.println("saving file..");
+	    try {
+	        File fileOne=new File(filelocation);
+	        FileOutputStream fos=new FileOutputStream(fileOne);
+	        ObjectOutputStream oos=new ObjectOutputStream(fos);
+
+	        oos.writeObject(word_vec);
+	        oos.flush();
+	        oos.close();
+	        fos.close();
+	    } catch(Exception e) {}
+	}
+	
+	
 	public static void main(String args[]) throws IOException, ClassNotFoundException {
 	SentimentScoreCalculator sent_calc = new SentimentScoreCalculator("E:\\Projects\\Eclipse Workspaces\\OntologyBuilding\\src\\main\\resources\\data\\yelp_wordvec", "E:\\Projects\\Eclipse Workspaces\\OntologyBuilding\\src\\main\\resources\\output\\sentiment_mentions");
 	sent_calc.read_word2vec_file();
 	sent_calc.generate_sentiment_scores();
+	sent_calc.save_to_file(sent_calc.word_vec_refined, "E:\\refined_vector");
 	}
 	
 	
