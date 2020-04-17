@@ -6,7 +6,7 @@ import java.util.HashSet;
 
 import org.json.JSONException;
 import edu.eur.absa.Framework;
-//import edu.eur.absa.model.exceptions.IllegalSpanException;
+import edu.eur.absa.model.exceptions.IllegalSpanException;
 import seminarOntologyBuilder.MainOntologyBuilder;
 
 /**
@@ -15,16 +15,16 @@ import seminarOntologyBuilder.MainOntologyBuilder;
  * @author Karoliina Ranta
  * Adapted by Suzanne Veltman
  * Adapted by Lisa Zhuang
- * Adapted by Fenna ten Haaf  , IllegalSpanException
+ * Adapted by Fenna ten Haaf  
  */
 public class MainOntologyBuilder {
 	
-	public static void main(String[] args) throws ClassNotFoundException, JSONException, IOException {
+	public static void main(String[] args) throws ClassNotFoundException, IllegalSpanException, JSONException, IOException {
 
 		/* RESTAURANT DOMAIN */
 
 		/* Start with the skeletal ontology. */
-		SkeletalOntology base = new SkeletalOntology(Framework.EXTERNALDATA_PATH + "RestaurantOntologyThesisBase2018.owl"); // Onze is: RestaurantOntologySeminar6Base2020.owl	
+		SkeletalOntology base = new SkeletalOntology(Framework.EXTERNALDATA_PATH + "RestaurantOntologySeminar6Base_version2_2020.owl"); // Onze is: RestaurantOntologySeminar6Base2020.owl	
 		HashMap<String, HashSet<String>> aspectCategories = new HashMap<String, HashSet<String>>();
 		
 		/*create HashMap aspectCategories that maps each aspect to its relevant categories */
@@ -71,6 +71,12 @@ public class MainOntologyBuilder {
 
 		build.save("TestSkeletalOntology2020.owl");
 		}
+	
+	//Nu willen we de termen in de ontologie laden:
+	//als eerste moeten we build.methodenaam doen om de termselector aan te roepen - het beste zou de termselector methode in OntologyBuilder kunnen komen?
+	//en dan moet er een soort output file komen met geselecteerde terms
+	
+	
 }
 	
 /**		

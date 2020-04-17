@@ -130,14 +130,14 @@ public class OntologyBuilder {
 
 		//add synonyms of verbs hating and enjoy in the the general positive and general negative aspect categories
 		
-		String negativeActionURI1 = base.addClass("dislike#verb#1", "Dislike", true, "dislike", new HashSet<String>(), base.URI_GenericNegative); //Dit was eerst GenericNegativeAction
-		this.suggestSynonyms("terrible", negativeActionURI1);
-		String negativeActionURI2 = base.addClass("loathe#verb#1", "Loathe", true, "loathe", new HashSet<String>(), base.URI_GenericNegative);
-		this.suggestSynonyms("loathe", negativeActionURI2);
-		String positiveActionURI1 = base.addClass("enjoy#verb#1", "Enjoy", true, "enjoy", new HashSet<String>(), base.URI_GenericPositive); //was eerst genericpositiveaction
-		this.suggestSynonyms("enjoy", positiveActionURI1); 
-		String positiveActionURI2 = base.addClass("appreciate#verb#1", "Appreciate", true, "appreciate", new HashSet<String>(), base.URI_GenericPositive);
-		this.suggestSynonyms("appreciate", positiveActionURI2);
+		String negativePropertyURI1 = base.addClass("terrible#ajective#1", "Terrible", true, "terrible", new HashSet<String>(), base.URI_GenericNegativeProperty); //Dit was eerst GenericNegativeAction
+		this.suggestSynonyms("terrible", negativePropertyURI1);
+		String negativeActionURI2 = base.addClass("hate#verb#1", "Hate", true, "hate", new HashSet<String>(), base.URI_GenericNegativeAction);
+		this.suggestSynonyms("hate", negativeActionURI2);
+		String positivePropertyURI1 = base.addClass("great#adjective#1", "Great", true, "great", new HashSet<String>(), base.URI_GenericPositiveProperty); //was eerst genericpositiveaction
+		this.suggestSynonyms("great", positivePropertyURI1); 
+		String positiveActionURI1 = base.addClass("love#verb#1", "Love", true, "love", new HashSet<String>(), base.URI_GenericPositiveAction);
+		this.suggestSynonyms("love", positiveActionURI1);
 	
 		/* Loop over the aspect category entities. */
 
@@ -327,6 +327,11 @@ public class OntologyBuilder {
 		return aspectTypes;
 	}
 
+	
+
+//DE METHODES HIERONDER KUNNEN WAARSCHIJNLIJK WORDEN WEGGEHAALD!
+	
+	
 	/**
 	 * A method that loads the external reviews in order to be handled.
 	 */
@@ -799,13 +804,6 @@ public class OntologyBuilder {
 
 
 
-				DCs.put(lemma, DC);
-
-				/* Find the maximum domain consensus score. */
-				if (DC > maxDC) {
-					maxDC = DC;
-				}
-				/* If DC DP are not both 0.0 add it to nouns/adjectives. */
 				if (!(DP == 0.0 && DC == 0.0)) {
 					if (adj && (pos.equals("JJ") || pos.equals("JJR") || pos.equals("JJS"))) {
 						adjectives.put(lemma, 0.0);

@@ -14,7 +14,7 @@ import ch.qos.logback.classic.Logger;
  * throughout the framework
  * @author Kim Schouten
  *
- *adjusted by Fenna ten Haaf
+ * adapted by Fenna ten Haaf for Ontology-Builder-2.0
  */
 public class Framework {
 
@@ -23,9 +23,9 @@ public class Framework {
 	 */
 	public static final String PATH = System.getProperty("user.dir")+"/";
 	public static final String RESOURCES_PATH = PATH+"src/main/resources/";
-	//public static final String OUTPUT_PATH = PATH + "output/";
 	public static final String DATA_PATH = RESOURCES_PATH + "data/";
 	public static final String EXTERNALDATA_PATH = RESOURCES_PATH + "externalData/";
+	public static final String LARGEDATA_PATH = RESOURCES_PATH + "largeData/";
 	public static final String RAWDATA_PATH = RESOURCES_PATH + "data/raw/";
 	public static final String LIB_PATH = RESOURCES_PATH + "lib/";
 	public static final String OUTPUT_PATH = RESOURCES_PATH + "output/";
