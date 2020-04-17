@@ -48,6 +48,7 @@ import edu.smu.tspell.wordnet.WordNetDatabase.*;
  * @author Karoliina Ranta
  * Adapted by Suzanne Veltman
  * Adapted by Lisa Zhuang
+ * Adapted by Fenna ten Haaf
  */
 public class OntologyBuilder {
 
@@ -128,16 +129,30 @@ public class OntologyBuilder {
 		synonymsAccepted = new HashSet<String>();
 		HashSet<String> doneAspects = new HashSet<String>();
 
-		//add synonyms of verbs hating and enjoy in the the general positive and general negative aspect categories
+		/**
+		We want to add synonyms of particular words to the Generic Positive and Negative classes:
+		Generic Positive verbs in Kim's ontology: love, enjoy, respect, recommend
+		Generic positive adjectives: decent, enjoyable, excellent, exceptional, 
+		   	fabulous, fantastic, favourite, fine, fun, good, great, happy,
+		   	impressive, interesting, nice, unique, wonderful, pleasant, 
+		   	Authentic, Awesome, Beautiful, Best, Charming, Creative
+		Generic Negative verbs: Disappoint, lack, limit, rush, skip, spill
+		Generic negative adjectives: Hideous, Horrible, inexpertly, mediocre, overhyped, overrated,
+			poor, uncomfortable, awful, bad, bland, difficult
 		
-		String negativePropertyURI1 = base.addClass("terrible#ajective#1", "Terrible", true, "terrible", new HashSet<String>(), base.URI_GenericNegativeProperty); //Dit was eerst GenericNegativeAction
-		this.suggestSynonyms("terrible", negativePropertyURI1);
+		goal: to Select a few (like 4) words for each category, and use word embeddings to find the x closest words. 
+		these words will also be added to the ontology as separate classes, and then for each of those we can suggest synonyms?? Or 
+		use wordnet to determine which of them are synonyms and which should be added as separate classes
+		*/
+		
+		String negativePropertyURI1 = base.addClass("bad#ajective#1", "Bad", true, "bad", new HashSet<String>(), base.URI_GenericNegativeProperty);
+		this.suggestSynonyms("bad", negativePropertyURI1);
 		String negativeActionURI2 = base.addClass("hate#verb#1", "Hate", true, "hate", new HashSet<String>(), base.URI_GenericNegativeAction);
 		this.suggestSynonyms("hate", negativeActionURI2);
-		String positivePropertyURI1 = base.addClass("great#adjective#1", "Great", true, "great", new HashSet<String>(), base.URI_GenericPositiveProperty); //was eerst genericpositiveaction
-		this.suggestSynonyms("great", positivePropertyURI1); 
-		String positiveActionURI1 = base.addClass("love#verb#1", "Love", true, "love", new HashSet<String>(), base.URI_GenericPositiveAction);
-		this.suggestSynonyms("love", positiveActionURI1);
+		String positivePropertyURI1 = base.addClass("good#adjective#1", "Good", true, "good", new HashSet<String>(), base.URI_GenericPositiveProperty);
+		this.suggestSynonyms("good", positivePropertyURI1); 
+		String positiveActionURI1 = base.addClass("enjoy#verb#1", "Enjoy", true, "enjoy", new HashSet<String>(), base.URI_GenericPositiveAction);
+		this.suggestSynonyms("enjoy", positiveActionURI1);
 	
 		/* Loop over the aspect category entities. */
 
@@ -145,7 +160,7 @@ public class OntologyBuilder {
 		HashMap<String, String> entitySynsets = new HashMap<String, String>();
 		//add for aspects
 		entitySynsets.put("ambience", "ambience#noun#1");
-		entitySynsets.put("service", "service#noun#1"); // of #15??
+		entitySynsets.put("service", "service#noun#1");
 		entitySynsets.put("restaurant", "restaurant#noun#1");
 		entitySynsets.put("location", "location#noun#1");
 		entitySynsets.put("sustenance", "sustenance#noun#1"); //add drinks and food to sustenance
@@ -236,11 +251,11 @@ public class OntologyBuilder {
 		String FoodMentionClassURI = base.addClass("food#noun#1", "FoodMention",true, "food", aspectCat.get("sustenance"), base.NS + "#SustenanceMention");
 		String FoodMentionActionClassURI = base.addClass("food#noun#1", "FoodActionMention",true, "food", aspectCat.get("sustenance"), base.NS + "#SustenanceActionMention");
 		String FoodMentionPropertyClassURI = base.addClass("food#noun#1",  "FoodPropertyMention", true, "food", aspectCat.get("sustenance"), base.NS + "#SustenancePropertyMention");
-	//	this.suggestSynonyms("food", FoodMentionClassURI, FoodMentionActionClassURI, FoodMentionPropertyClassURI);
+		this.suggestSynonyms("food", FoodMentionClassURI, FoodMentionActionClassURI, FoodMentionPropertyClassURI);
 		String DrinksMentionClassURI = base.addClass("drinks#noun#1", "DrinksMention", true, "drinks", aspectCat.get("sustenance"), base.NS + "#SustenanceMention");
 		String DrinksMentionActionClassURI = base.addClass("drinks#noun#1", "DrinksActionMention", true, "drinks", aspectCat.get("sustenance"), base.NS + "#SustenanceActionMention");
 		String DrinksMentionPropertyClassURI = base.addClass("drinks#noun#1", "DrinksPropertyMention", true, "drinks", aspectCat.get("sustenance"), base.NS + "#SustenancePropertyMention");
-	//	this.suggestSynonyms("drinks", DrinksMentionClassURI, DrinksMentionActionClassURI, DrinksMentionPropertyClassURI);
+		//this.suggestSynonyms("drinks", DrinksMentionClassURI, DrinksMentionActionClassURI, DrinksMentionPropertyClassURI);
 
 		//add a few extra EntityMention classes
 		//ExperienceMention
@@ -249,8 +264,8 @@ public class OntologyBuilder {
 		String ExperienceMentionClassURI = base.addClass("experience#noun#3", "Experience" + "Mention", true, "experience", experienceAspects, base.URI_EntityMention);
 		String ExperienceMentionActionClassURI = base.addClass("experience#noun#3", "Experience" + "ActionMention", true, "experience", experienceAspects, base.URI_ActionMention);
 		String ExperienceMentionPropertyClassURI = base.addClass("experience#noun#3", "Experience" + "PropertyMention", true, "experience", experienceAspects, base.URI_PropertyMention);
-	//	this.suggestSynonyms("experience", ExperienceMentionClassURI, ExperienceMentionActionClassURI, ExperienceMentionPropertyClassURI);
-		
+		//this.suggestSynonyms("experience", ExperienceMentionClassURI, ExperienceMentionActionClassURI, ExperienceMentionPropertyClassURI);
+	
 		//PersonMention
 		HashSet<String> personAspects = new HashSet<String>();
 		String PersonMentionClassURI = base.addClass("person#noun#1", "Person" + "Mention", true, "person", personAspects, base.URI_EntityMention);
@@ -263,7 +278,7 @@ public class OntologyBuilder {
 		String TimeMentionClassURI = base.addClass("time#noun#2", "Time" + "Mention", true, "time", timeAspects, base.URI_EntityMention);
 		String TimeMentionActionClassURI = base.addClass("time#noun#2", "Time" + "ActionMention", true, "time", timeAspects, base.URI_ActionMention);
 		String TimeMentionPropertyClassURI = base.addClass("time#noun#2", "Time" + "PropertyMention", true, "time", timeAspects, base.URI_PropertyMention);
-	//	this.suggestSynonyms("time", TimeMentionClassURI, TimeMentionActionClassURI, TimeMentionPropertyClassURI);
+		//this.suggestSynonyms("time", TimeMentionClassURI, TimeMentionActionClassURI, TimeMentionPropertyClassURI);
 	}
 
 	/**
@@ -273,26 +288,41 @@ public class OntologyBuilder {
 	 */
 	public void suggestSynonyms(String word, String... classURI) {
 		HashSet<String> accepted = new HashSet<String>();
+		HashSet<String> rejected = new HashSet<String>();
+		Integer numAccepted = 0; 
 		Synonyms syn = new Synonyms(word);
 		System.out.println("Enter 'a' to accept and 'r' to reject the synonym: ");
 		Scanner input = new Scanner(System.in);
 		int i = 0;
 		for (String synonym : syn.synonyms()) {
 			i++;
-			if (i > 20) {
-				break;
+			if (i > 20 || numAccepted>5) { //we stop if we have suggested more than this number of synonyms or if we already have 5 synonyms
+				break; 
 			}
-			if (synonym.equals(word)) {
-				continue;
+			
+			if (synonym.equals(word) || accepted.contains(synonym) || rejected.contains(synonym))  {
+				continue; //in this case, we have already suggested the term. we won't suggest it again.
 			}
 
+			while(true) {
 			System.out.println("synonym: " + word + " --> " + synonym);
-			if (input.next().equals("a")) {
-				numAcceptOverall++;
-				accepted.add(synonym);
-				synonymsAccepted.add(synonym);
-			} else {
-				numRejectOverall++;
+			String userInput = input.next();
+				if (userInput.equals("a")) {
+					numAccepted++;
+					numAcceptOverall++;
+					accepted.add(synonym);
+					synonymsAccepted.add(synonym);
+					break;
+				
+				} 
+				else if (userInput.equals("r")) {
+					rejected.add(synonym);
+					numRejectOverall++;
+					break; 
+				}
+				else {
+					System.out.print("Please type either a or r."+'\n');
+				}
 			}
 		}
 		for (String URI : classURI) {

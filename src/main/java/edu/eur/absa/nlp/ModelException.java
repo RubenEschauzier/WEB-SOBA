@@ -1,4 +1,4 @@
-package edu.eur.absa.model.exceptions;
+package edu.eur.absa.nlp;
 
 public class ModelException extends Exception {
 
