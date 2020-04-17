@@ -137,8 +137,7 @@ public class Word2Vec {
 		Word2Vec w2v_model = new Word2Vec(Framework.OUTPUT_PATH + "Output_stanford_hashmap", Framework.DATA_PATH + "w2v_yelp.bin", Framework.EXTERNALDATA_PATH + "word2vec-google-news-300.gz");
 		//w2v_model.save_to_file(w2v_model.get_vec_yelp(), "E:\\yelp_wordvec");
 		//w2v_model.save_to_file(w2v_model.get_vec_google(), "E:\\google_wordvec");
-		Path path = Paths.get("/OntologyBuilding/src/main/resources/data");
-		System.out.println(path);
+
 		
 	
 	}
