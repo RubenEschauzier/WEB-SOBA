@@ -289,9 +289,13 @@ public class OntologyBuilder {
 	   */
 	}
 
-	public void suggestSynonymsWithEmbeddings(String word){
 	
-		double[] wordembedding = word_vec_refined.get(sentiment_word.getKey())
+	//Deze methode moet voor een woord de 10 most similar words pakken. vervolgens checkt hij of 1 van die 10 most similar words ook een synoniem is
+	public void getSynonymsWithEmbeddings(String word){
+	
+		//eerst willen we het word
+		org.deeplearning4j.models.word2vec.Word2Vec w2vModel_yelp = WordVectorSerializer.readWord2VecModel(new File("C:\\Users\\Ruben\\PycharmProjects\\Word2Vec(2.0)\\w2v_yelp.bin"));
+		
 		Map<String, double[]> word_vec_yelp = new HashMap<String, double[]>();
 		File toRead_yelp=new File(Framework.LARGEDATA_PATH+"yelp_wordvec");
 		FileInputStream fis_yelp=new FileInputStream(toRead_yelp);
@@ -300,7 +304,9 @@ public class OntologyBuilder {
 	    ois_yelp.close();
 	    fis_yelp.close();	
 	    
-	    Collection<String> similarity_list = word_vec_yelp.wordsNearest(word.getValue(), 10);
+	    double[] wordembedding = word_vec_yelp.get(word);
+	    
+	    Collection<String> similarity_list = w2vModel_yelp.wordsNearest(wordembedding, 10);
 
 	}
 	
