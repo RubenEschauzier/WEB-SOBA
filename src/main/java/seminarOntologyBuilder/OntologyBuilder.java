@@ -357,7 +357,6 @@ public class OntologyBuilder {
 		return aspectTypes;
 	}
 
-	
 
 //DE METHODES HIERONDER KUNNEN WAARSCHIJNLIJK WORDEN WEGGEHAALD!
 	

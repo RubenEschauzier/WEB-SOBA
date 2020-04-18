@@ -1,1 +1,5 @@
-/filePaths.txt
+target/classes/data/
+target/classes/externalData/
+src/main/resources/data/
+src/main/resources/externalData/
+src/main/resources/largeData/
