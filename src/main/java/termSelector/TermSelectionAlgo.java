@@ -452,6 +452,12 @@ public class TermSelectionAlgo {
 	 * in.close(); System.out.println(allAcceptedTerms); }
 	 */
 	
+	public void save_outputs(TermSelectionAlgo termSelAlgo){
+		termSelAlgo.save_to_file_map_string(termSelAlgo.aspect_mentions, Framework.OUTPUT_PATH + "aspect_mentions");
+		termSelAlgo.save_to_file_map(termSelAlgo.sentiment_mentions, Framework.OUTPUT_PATH + "sentiment_mentions");
+		termSelAlgo.save_to_file_map_string(termSelAlgo.acceptedTerms, Framework.OUTPUT_PATH + "all_accepted_terms");
+	}
+	
 	public static void main(String args[]) throws Exception {
 		// can file location also be the one in repository?
 		TermSelectionAlgo term_select = new TermSelectionAlgo( Framework.DATA_PATH+"google_wordvec", Framework.DATA_PATH +"yelp_wordvec", Framework.OUTPUT_PATH+"Output_stanford_hashmap");
@@ -462,9 +468,7 @@ public class TermSelectionAlgo {
 		//double threshold_adj = term_select.create_threshold(80, "JJ");
 		//term_select.create_term_list(0.84, threshold_verb, threshold_adj, 100, 80, 80);
 		term_select.create_term_list(0.84, 0.8, 0.915, 100, 20, 80);
-		term_select.save_to_file_map_string(term_select.aspect_mentions, "E:\\Output_selected_terms\\aspect_mentions");
-		term_select.save_to_file_map(term_select.sentiment_mentions, "E:\\Output_selected_terms\\sentiment_mentions");
-		term_select.save_to_file_map_string(term_select.acceptedTerms, "E:\\Output_selected_terms\\all_accepted_terms");
+		term_select.save_outputs(term_select);
 	}
 	
 	static class DescOrder implements Comparator<Double>{

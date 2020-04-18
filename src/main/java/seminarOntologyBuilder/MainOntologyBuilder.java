@@ -7,7 +7,10 @@ import java.util.HashSet;
 import org.json.JSONException;
 import edu.eur.absa.Framework;
 import edu.eur.absa.model.exceptions.IllegalSpanException;
+
+//our own classes
 import seminarOntologyBuilder.MainOntologyBuilder;
+import termSelector.TermSelectionAlgo;
 
 /**
  * The main for the semi-automatic ontology builder.
@@ -19,7 +22,7 @@ import seminarOntologyBuilder.MainOntologyBuilder;
  */
 public class MainOntologyBuilder {
 	
-	public static void main(String[] args) throws ClassNotFoundException, IllegalSpanException, JSONException, IOException {
+	public static void main(String[] args) throws ClassNotFoundException, IllegalSpanException, JSONException, IOException, Exception {
 
 		/* RESTAURANT DOMAIN */
 
@@ -70,6 +73,10 @@ public class MainOntologyBuilder {
 		OntologyBuilder build = new OntologyBuilder(base, aspectCategories, domain, threshold, 1.0, fraction, true);
 
 		build.save("TestSkeletalOntology2020.owl");
+		
+		// Perform the termselection
+		build.getTerms(); 
+		
 		}
 	
 	//Nu willen we de termen in de ontologie laden:
