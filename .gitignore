@@ -1,10 +1,7 @@
-target/classes/data/
-target/classes/externalData/
-src/main/resources/data/
-src/main/resources/externalData/
-src/main/resources/largeData/
+data/
+externalData/
+largeData/
 target/classes/edu/
 target/classes/hierarchicalClustering/
 target/classes/seminarOntologyBuilder/
-
-
+target/classes/termSelector/
