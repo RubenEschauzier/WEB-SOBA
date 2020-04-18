@@ -38,6 +38,7 @@ import org.languagetool.Language;
 import org.languagetool.language.AmericanEnglish;
 import org.languagetool.rules.RuleMatch;
 
+import edu.eur.absa.Framework;
 import edu.smu.tspell.wordnet.Synset;
 import edu.smu.tspell.wordnet.WordNetDatabase;
 
@@ -193,7 +194,7 @@ public class TermSelectionAlgo {
 								
 						}
 						if (n_accepted > 0) {
-							threshold_score = 2/((n_suggested/(double)n_accepted)+(max_words/(double)n_accepted));
+							threshold_score = 2/((n_suggested/(double)n_accepted)+(1/(double)n_accepted));
 							if (threshold_score > opt_treshold_score){
 								opt_treshold_score = threshold_score;
 								System.out.println("Optimal score: " + opt_treshold_score + " Number suggested: " + n_suggested + " Number accepted: " + n_accepted);
@@ -219,7 +220,7 @@ public class TermSelectionAlgo {
 	
 	
 	public void create_term_list(double threshold_noun, double threshold_verb, double threshold_adj, int max_noun, int max_verb, int max_adj) throws IOException {	
-		org.deeplearning4j.models.word2vec.Word2Vec w2vModel_yelp = WordVectorSerializer.readWord2VecModel(new File("C:\\Users\\Ruben\\PycharmProjects\\Word2Vec(2.0)\\w2v_yelp.bin"));
+		org.deeplearning4j.models.word2vec.Word2Vec w2vModel_yelp = WordVectorSerializer.readWord2VecModel(new File(Framework.EXTERNALDATA_PATH + "w2v_yelp.bin"));
 		Scanner scan = new Scanner(System.in);
 		JLanguageTool langTool = new JLanguageTool(new AmericanEnglish());
 		int accepted_noun = 0;
@@ -451,8 +452,15 @@ public class TermSelectionAlgo {
 	 * in.close(); System.out.println(allAcceptedTerms); }
 	 */
 	
+	public void save_outputs(TermSelectionAlgo termSelAlgo){
+		termSelAlgo.save_to_file_map_string(termSelAlgo.aspect_mentions, Framework.OUTPUT_PATH + "aspect_mentions");
+		termSelAlgo.save_to_file_map(termSelAlgo.sentiment_mentions, Framework.OUTPUT_PATH + "sentiment_mentions");
+		termSelAlgo.save_to_file_map_string(termSelAlgo.acceptedTerms, Framework.OUTPUT_PATH + "all_accepted_terms");
+	}
+	
 	public static void main(String args[]) throws Exception {
-		TermSelectionAlgo term_select = new TermSelectionAlgo( "E://google_wordvec", "E://yelp_wordvec", "E:\\OutputTerms\\Output_stanford_hashmap");
+		// can file location also be the one in repository?
+		TermSelectionAlgo term_select = new TermSelectionAlgo( Framework.DATA_PATH+"google_wordvec", Framework.DATA_PATH +"yelp_wordvec", Framework.OUTPUT_PATH+"Output_stanford_hashmap");
 		term_select.create_word_term_score();
 		System.out.println("doing thresholds");
 		//double threshold_noun = term_select.create_threshold(100, "NN");
@@ -460,9 +468,7 @@ public class TermSelectionAlgo {
 		//double threshold_adj = term_select.create_threshold(80, "JJ");
 		//term_select.create_term_list(0.84, threshold_verb, threshold_adj, 100, 80, 80);
 		term_select.create_term_list(0.84, 0.8, 0.915, 100, 20, 80);
-		term_select.save_to_file_map_string(term_select.aspect_mentions, "E:\\Output_selected_terms\\aspect_mentions");
-		term_select.save_to_file_map(term_select.sentiment_mentions, "E:\\Output_selected_terms\\sentiment_mentions");
-		term_select.save_to_file_map_string(term_select.acceptedTerms, "E:\\Output_selected_terms\\all_accepted_terms");
+		term_select.save_outputs(term_select);
 	}
 	
 	static class DescOrder implements Comparator<Double>{

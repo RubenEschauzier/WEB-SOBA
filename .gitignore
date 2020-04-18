@@ -2,3 +2,6 @@
 largeData/
 externalData/
 data/
+target/classes/edu/
+target/classes/hierarchicalClustering/
+target/classes/seminarOntologyBuilder/
