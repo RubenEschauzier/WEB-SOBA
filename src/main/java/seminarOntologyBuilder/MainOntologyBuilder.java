@@ -22,7 +22,7 @@ import termSelector.TermSelectionAlgo;
  */
 public class MainOntologyBuilder {
 	
-	public static void main(String[] args) throws ClassNotFoundException, IllegalSpanException, JSONException, IOException {
+	public static void main(String[] args) throws ClassNotFoundException, IllegalSpanException, JSONException, IOException, Exception {
 
 		/* RESTAURANT DOMAIN */
 
@@ -73,6 +73,10 @@ public class MainOntologyBuilder {
 		OntologyBuilder build = new OntologyBuilder(base, aspectCategories, domain, threshold, 1.0, fraction, true);
 
 		build.save("TestSkeletalOntology2020.owl");
+		
+		// Perform the termselection
+		build.getTerms(); 
+		
 		}
 	
 	//Nu willen we de termen in de ontologie laden:

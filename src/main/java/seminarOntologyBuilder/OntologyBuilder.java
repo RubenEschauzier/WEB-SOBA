@@ -289,14 +289,34 @@ public class OntologyBuilder {
 	   */
 	}
 
+	/**
+	 * A method to perform the termselection
+	 */
+	public void getTerms() throws Exception 
+	{
+		TermSelectionAlgo term_select = new TermSelectionAlgo( Framework.DATA_PATH+"google_wordvec", Framework.DATA_PATH +"yelp_wordvec", Framework.OUTPUT_PATH+"Output_stanford_hashmap");
+		term_select.create_word_term_score();
+		System.out.println("doing thresholds");
+		//double threshold_noun = term_select.create_threshold(100, "NN");
+		//double threshold_verb = term_select.create_threshold(15, "VB");
+		//double threshold_adj = term_select.create_threshold(80, "JJ");
+		//term_select.create_term_list(0.84, threshold_verb, threshold_adj, 100, 80, 80);
+		
+		// Eigenlijk zouden we het zo moeten maken dat de thresholds als input voor de constructor gemaakt worden
+		term_select.create_term_list(0.84, 0.8, 0.915, 100, 20, 80); 
+		term_select.save_outputs(term_select);
+	}
 	
 	//Deze methode moet voor een woord de 10 most similar words pakken. vervolgens checkt hij of 1 van die 10 most similar words ook een synoniem is
 	public void getSynonymsWithEmbeddings(String word){
 	
-		//eerst willen we het word
-		org.deeplearning4j.models.word2vec.Word2Vec w2vModel_yelp = WordVectorSerializer.readWord2VecModel(new File("C:\\Users\\Ruben\\PycharmProjects\\Word2Vec(2.0)\\w2v_yelp.bin"));
+		Private Map<String, double[]> word_vec_yelp = new HashMap<String, double[]>();
 		
-		Map<String, double[]> word_vec_yelp = new HashMap<String, double[]>();
+		//eerst willen we het word
+		org.deeplearning4j.models.word2vec.Word2Vec w2vModel_yelp = WordVectorSerializer.readWord2VecModel(new File(Framework.LARGEDATA_PATH+"w2v_yelp.bin"));
+		
+		
+		
 		File toRead_yelp=new File(Framework.LARGEDATA_PATH+"yelp_wordvec");
 		FileInputStream fis_yelp=new FileInputStream(toRead_yelp);
 		ObjectInputStream ois_yelp =new ObjectInputStream(fis_yelp);
