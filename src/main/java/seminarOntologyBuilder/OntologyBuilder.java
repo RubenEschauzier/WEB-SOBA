@@ -90,7 +90,7 @@ public class OntologyBuilder {
 	 * @param thres, the threshold to use for the subsumption method
 	 * @param frac, the top fraction of terms to suggest
 	 */
-	public OntologyBuilder(SkeletalOntology baseOnt, HashMap<String, HashSet<String>> aspectCat, String dom, double thres, double[] frac, boolean r) {
+	public OntologyBuilder(SkeletalOntology baseOnt, HashMap<String, HashSet<String>> aspectCat, String dom, double thres, double[] frac, boolean r) throws Exception {
 		this(baseOnt, aspectCat, dom, thres, thres, frac, r );
 	}
 
@@ -103,7 +103,7 @@ public class OntologyBuilder {
 	 * @param invThres, the second threshold for the subsumption method
 	 * @param frac, the top fraction of terms to suggest
 	 */
-	public OntologyBuilder(SkeletalOntology baseOnt, HashMap<String, HashSet<String>> aspectCat, String dom, double thres, double invThres, double[] frac, boolean r) {
+	public OntologyBuilder(SkeletalOntology baseOnt, HashMap<String, HashSet<String>> aspectCat, String dom, double thres, double invThres, double[] frac, boolean r) throws Exception {
 
 		/* Initialise the base ontology, aspect categories, and domain name. */
 		base = baseOnt;
@@ -152,14 +152,18 @@ public class OntologyBuilder {
 		*/
 		
 		String negativePropertyURI1 = base.addClass("bad#ajective#1", "Bad", true, "bad", new HashSet<String>(), base.URI_GenericNegativeProperty);
-		this.suggestSynonyms("bad", negativePropertyURI1);
+		//this.suggestSynonyms("bad", negativePropertyURI1);
+		this.getSynonymsWithEmbeddings("bad", negativePropertyURI1);
 		String negativeActionURI2 = base.addClass("hate#verb#1", "Hate", true, "hate", new HashSet<String>(), base.URI_GenericNegativeAction);
-		this.suggestSynonyms("hate", negativeActionURI2);
+		//this.suggestSynonyms("hate", negativeActionURI2);
+		this.getSynonymsWithEmbeddings("hate", negativeActionURI2);
 		String positivePropertyURI1 = base.addClass("good#adjective#1", "Good", true, "good", new HashSet<String>(), base.URI_GenericPositiveProperty);
-		this.suggestSynonyms("good", positivePropertyURI1); 
+		//this.suggestSynonyms("good", positivePropertyURI1);
+		this.getSynonymsWithEmbeddings("good", positivePropertyURI1);
 		String positiveActionURI1 = base.addClass("enjoy#verb#1", "Enjoy", true, "enjoy", new HashSet<String>(), base.URI_GenericPositiveAction);
-		this.suggestSynonyms("enjoy", positiveActionURI1);
-	
+		//this.suggestSynonyms("enjoy", positiveActionURI1);
+		this.getSynonymsWithEmbeddings("enjoy", positiveActionURI1);
+		
 		/* Loop over the aspect category entities. */
 
 		//create a hashmap with synsets as value of the entities (key), and add as synset property during loop
@@ -257,7 +261,8 @@ public class OntologyBuilder {
 		String FoodMentionClassURI = base.addClass("food#noun#1", "FoodMention",true, "food", aspectCat.get("sustenance"), base.NS + "#SustenanceMention");
 		String FoodMentionActionClassURI = base.addClass("food#noun#1", "FoodActionMention",true, "food", aspectCat.get("sustenance"), base.NS + "#SustenanceActionMention");
 		String FoodMentionPropertyClassURI = base.addClass("food#noun#1",  "FoodPropertyMention", true, "food", aspectCat.get("sustenance"), base.NS + "#SustenancePropertyMention");
-		this.suggestSynonyms("food", FoodMentionClassURI, FoodMentionActionClassURI, FoodMentionPropertyClassURI);
+		//this.suggestSynonyms("food", FoodMentionClassURI, FoodMentionActionClassURI, FoodMentionPropertyClassURI);
+		
 		String DrinksMentionClassURI = base.addClass("drinks#noun#1", "DrinksMention", true, "drinks", aspectCat.get("sustenance"), base.NS + "#SustenanceMention");
 		String DrinksMentionActionClassURI = base.addClass("drinks#noun#1", "DrinksActionMention", true, "drinks", aspectCat.get("sustenance"), base.NS + "#SustenanceActionMention");
 		String DrinksMentionPropertyClassURI = base.addClass("drinks#noun#1", "DrinksPropertyMention", true, "drinks", aspectCat.get("sustenance"), base.NS + "#SustenancePropertyMention");
@@ -294,7 +299,7 @@ public class OntologyBuilder {
 	 */
 	public void getTerms() throws Exception 
 	{
-		TermSelectionAlgo term_select = new TermSelectionAlgo( Framework.DATA_PATH+"google_wordvec", Framework.DATA_PATH +"yelp_wordvec", Framework.OUTPUT_PATH+"Output_stanford_hashmap");
+		TermSelectionAlgo term_select = new TermSelectionAlgo( Framework.LARGEDATA_PATH+"google_wordvec", Framework.LARGEDATA_PATH +"yelp_wordvec", Framework.OUTPUT_PATH+"Output_stanford_hashmap");
 		term_select.create_word_term_score();
 		System.out.println("doing thresholds");
 		//double threshold_noun = term_select.create_threshold(100, "NN");
@@ -308,25 +313,61 @@ public class OntologyBuilder {
 	}
 	
 	//Deze methode moet voor een woord de 10 most similar words pakken. vervolgens checkt hij of 1 van die 10 most similar words ook een synoniem is
-	public void getSynonymsWithEmbeddings(String word){
-	
-		Private Map<String, double[]> word_vec_yelp = new HashMap<String, double[]>();
+	/**
+	 * A method to get the 10 most similar words
+	 * @param word
+	 * @throws Exception
+	 */
+	public void getSynonymsWithEmbeddings(String word, String... classURI) throws Exception{
+		HashSet<String> accepted = new HashSet<String>();
+		HashSet<String> rejected = new HashSet<String>();
+		Integer numAccepted = 0; 
+	    Map<String, double[]> word_vec_yelp = new HashMap<String, double[]>();
+	    final int SYNONYM_NUM = 10; 
+	     
+		//TermSelectionAlgo constructor initialiseren
+		TermSelectionAlgo synonym_select = new TermSelectionAlgo(Framework.LARGEDATA_PATH +"yelp_wordvec", Framework.OUTPUT_PATH+"Output_stanford_hashmap");
 		
-		//eerst willen we het word
-		org.deeplearning4j.models.word2vec.Word2Vec w2vModel_yelp = WordVectorSerializer.readWord2VecModel(new File(Framework.LARGEDATA_PATH+"w2v_yelp.bin"));
+		Collection<String> similar_words_list = synonym_select.getNearestWords(word,SYNONYM_NUM); 
 		
-		
-		
-		File toRead_yelp=new File(Framework.LARGEDATA_PATH+"yelp_wordvec");
-		FileInputStream fis_yelp=new FileInputStream(toRead_yelp);
-		ObjectInputStream ois_yelp =new ObjectInputStream(fis_yelp);
-	    word_vec_yelp =(HashMap<String,double[]>)ois_yelp.readObject();
-	    ois_yelp.close();
-	    fis_yelp.close();	
-	    
-	    double[] wordembedding = word_vec_yelp.get(word);
-	    
-	    Collection<String> similarity_list = w2vModel_yelp.wordsNearest(wordembedding, 10);
+		System.out.println("Enter 'a' to accept and 'r' to reject the synonym: ");
+		Scanner input = new Scanner(System.in);
+				
+		int i = 0;
+		for (String nearTerm : similar_words_list) {
+			i++;
+			if (i > 20 || numAccepted>5) { //we stop if we have suggested more than this number of synonyms or if we already have 5 synonyms
+				break; 
+			}
+			
+			if (nearTerm.equals(word) || accepted.contains(nearTerm) || rejected.contains(nearTerm))  {
+				continue; //in this case, we have already suggested the term. we won't suggest it again.
+			}
+
+			while(true) {
+			System.out.println("synonym: " + word + " --> " + nearTerm);
+			String userInput = input.next();
+				if (userInput.equals("a")) {
+					numAccepted++;
+					numAcceptOverall++;
+					accepted.add(nearTerm);
+					synonymsAccepted.add(nearTerm);
+					break;
+				
+				} 
+				else if (userInput.equals("r")) {
+					rejected.add(nearTerm);
+					numRejectOverall++;
+					break; 
+				}
+				else {
+					System.out.print("Please type either a or r."+'\n');
+				}
+			}
+		}
+		for (String URI : classURI) {
+			base.addLexicalizations(URI, accepted);
+		}
 
 	}
 	

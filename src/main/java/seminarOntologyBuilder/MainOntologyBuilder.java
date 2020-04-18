@@ -6,7 +6,7 @@ import java.util.HashSet;
 
 import org.json.JSONException;
 import edu.eur.absa.Framework;
-import edu.eur.absa.model.exceptions.IllegalSpanException;
+//import edu.eur.absa.model.exceptions.IllegalSpanException;
 
 //our own classes
 import seminarOntologyBuilder.MainOntologyBuilder;
@@ -18,11 +18,11 @@ import termSelector.TermSelectionAlgo;
  * @author Karoliina Ranta
  * Adapted by Suzanne Veltman
  * Adapted by Lisa Zhuang
- * Adapted by Fenna ten Haaf  
+ * Adapted by Fenna ten Haaf  , IllegalSpanException
  */
 public class MainOntologyBuilder {
 	
-	public static void main(String[] args) throws ClassNotFoundException, IllegalSpanException, JSONException, IOException, Exception {
+	public static void main(String[] args) throws ClassNotFoundException, JSONException, IOException, Exception {
 
 		/* RESTAURANT DOMAIN */
 
