@@ -31,6 +31,8 @@ import com.apporiented.algorithm.clustering.ElbowPlotter;
 import com.apporiented.algorithm.clustering.visualization.DendrogramFrame;
 import com.apporiented.algorithm.clustering.visualization.DendrogramPanel;
 
+import edu.eur.absa.Framework;
+
 public class HierarichalClusterAlgorithm {
 	private Map<String, Integer> aspect_mentions = new HashMap<String, Integer>();
 	private List<double[]> wordvectors = new ArrayList<double[]>(); //list with only the word vectors
@@ -44,6 +46,13 @@ public class HierarichalClusterAlgorithm {
 	private List<String> terms = new ArrayList<String>();
 	private Map<String, double[]> word_vec_yelp = new HashMap<String, double[]>();
 	
+	public HierarichalClusterAlgorithm(String filelocation_yelp, String filelocation_aspects) throws ClassNotFoundException, IOException {
+		read_file_wordvec("yelp", filelocation_yelp);
+		read_file(filelocation_aspects);
+		create_aspect_wordvec();
+		create_wordvec_aspect();
+		get_terms(aspect_wordvector);
+	}
 	
 	public void read_file_wordvec(String dataset, String filelocation) throws IOException, ClassNotFoundException {
 		if (dataset == "yelp") {
@@ -318,14 +327,7 @@ public class HierarichalClusterAlgorithm {
 	
 	
 	public static void main(String[] args) throws ClassNotFoundException, IOException {
-		HierarichalClusterAlgorithm test = new HierarichalClusterAlgorithm();
-		test.read_file_wordvec("yelp", "E:\\Projects\\Eclipse Workspaces\\OntologyBuilding\\src\\main\\resources\\data\\yelp_wordvec");
-		test.read_file("E:\\Projects\\Eclipse Workspaces\\OntologyBuilding\\src\\main\\resources\\output\\aspect_mentions");
-		test.create_aspect_wordvec();
-		test.create_wordvec_aspect();
-		test.get_terms(test.aspect_wordvector);
-		
-		
+		HierarichalClusterAlgorithm test = new HierarichalClusterAlgorithm(Framework.DATA_PATH + "yelp_wordvec",  Framework.OUTPUT_PATH + "aspect_mentions");
 		ClusteringAlgorithm alg = new DefaultClusteringAlgorithm();
 		String[] terms = test.terms.toArray(new String[test.terms.size()]);
 		double[][] distances = getDistanceMatrix(test.terms.toArray(new String[test.terms.size()]), test.aspect_wordvector);
