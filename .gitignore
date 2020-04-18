@@ -3,3 +3,6 @@ target/classes/externalData/
 src/main/resources/data/
 src/main/resources/externalData/
 src/main/resources/largeData/
+target/classes/edu/
+target/classes/hierarchicalClustering/
+target/classes/seminarOntologyBuilder/
