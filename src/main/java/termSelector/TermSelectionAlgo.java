@@ -194,7 +194,7 @@ public class TermSelectionAlgo {
 								
 						}
 						if (n_accepted > 0) {
-							threshold_score = 2/((n_suggested/(double)n_accepted)+(max_words/(double)n_accepted));
+							threshold_score = 2/((n_suggested/(double)n_accepted)+(1/(double)n_accepted));
 							if (threshold_score > opt_treshold_score){
 								opt_treshold_score = threshold_score;
 								System.out.println("Optimal score: " + opt_treshold_score + " Number suggested: " + n_suggested + " Number accepted: " + n_accepted);
@@ -220,7 +220,7 @@ public class TermSelectionAlgo {
 	
 	
 	public void create_term_list(double threshold_noun, double threshold_verb, double threshold_adj, int max_noun, int max_verb, int max_adj) throws IOException {	
-		org.deeplearning4j.models.word2vec.Word2Vec w2vModel_yelp = WordVectorSerializer.readWord2VecModel(new File("C:\\Users\\Ruben\\PycharmProjects\\Word2Vec(2.0)\\w2v_yelp.bin"));
+		org.deeplearning4j.models.word2vec.Word2Vec w2vModel_yelp = WordVectorSerializer.readWord2VecModel(new File(Framework.EXTERNALDATA_PATH + "w2v_yelp.bin"));
 		Scanner scan = new Scanner(System.in);
 		JLanguageTool langTool = new JLanguageTool(new AmericanEnglish());
 		int accepted_noun = 0;
