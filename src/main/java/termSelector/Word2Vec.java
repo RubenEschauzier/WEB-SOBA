@@ -138,8 +138,6 @@ public class Word2Vec {
 		//w2v_model.save_to_file(w2v_model.get_vec_yelp(), "E:\\yelp_wordvec");
 		//w2v_model.save_to_file(w2v_model.get_vec_google(), "E:\\google_wordvec");
 
-		
-	
 	}
 	
 }

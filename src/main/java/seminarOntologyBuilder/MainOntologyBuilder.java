@@ -7,7 +7,10 @@ import java.util.HashSet;
 import org.json.JSONException;
 import edu.eur.absa.Framework;
 import edu.eur.absa.model.exceptions.IllegalSpanException;
+
+//our own classes
 import seminarOntologyBuilder.MainOntologyBuilder;
+import termSelector.TermSelectionAlgo;
 
 /**
  * The main for the semi-automatic ontology builder.
