@@ -339,14 +339,45 @@ public class OntologyBuilder {
 		term_select.save_outputs(term_select);
 	}
 	
+	
+	/**
+	 * Method to create a hierarchy within the sentiment words, and add them to the ontology
+	 * @throws IOException
+	 * @throws ClassNotFoundException
+	 */
 	public void addSentimentWords() throws IOException, ClassNotFoundException
 	{
 		Map<String, Map<String,String>> clustered_sentiment = new HashMap<String,Map<String,String>>();
 		SentimentWordProcessor sent_calc = new SentimentWordProcessor(Framework.LARGEDATA_PATH + "yelp_wordvec", Framework.OUTPUT_PATH + "sentiment_mentions");
 		//sent_calc.generate_sentiment_scores();
 		clustered_sentiment = sent_calc.create_sentiment_links();
+		
+		
+		// for each mention class, get the map containing words and sentiment polarities? And then add it to a combo
+		
+		//String[] mention_words = {"ambience", "drinks","food","service","price","location","quality", "style", "options", "experience", "restaurant"};
+		
+		for (Map.Entry<String,Map<String,String>> entry : clustered_sentiment.entrySet()) 
+		{
+			String mentionClass = entry.getKey(); // the mention class
+			Map<String,String> sentPolarities = entry.getValue();
+			
+			for (Map.Entry<String,String> entry2 : sentPolarities.entrySet()) 
+			{
+				String sentWord = entry2.getKey(); // the word to add to our ontology
+				String pol = entry2.getValue(); // the polarity class
+				
+
+			} 
+			
+		}
+		
 	}
 	
+	/**
+	 * 
+	 * @throws Exception
+	 */
 	public void getHierarchicalClusters() throws Exception {
 		String[] mentionclasses = {"restaurant","ambience","service","location","food","drinks","price","quality","style","options"};
 		int numberofclusters = mentionclasses.length;
