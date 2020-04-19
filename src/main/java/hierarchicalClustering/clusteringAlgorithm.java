@@ -71,6 +71,10 @@ public class clusteringAlgorithm{
 		return finalclusters2;
 	}
 	
+	public Map<String, double[]> getAspectWordVectors() {
+		return term_wordvector;
+	}
+	
 	/**
 	 * Read file containing the words
 	 * @param textFile: file with words
@@ -453,7 +457,7 @@ public class clusteringAlgorithm{
 	}
 	
 	/**
-	 * Show the terms in mentionclasses more clearly after kmeans implementation
+	 * Show the terms in mentionclasses more clearly afterimplementation
 	 * @param w2v_aspects
 	 * @param finalclusters2
 	 * @return
