@@ -258,7 +258,7 @@ public class TermSelectionAlgo {
 		int accepted_noun = 0;
 		int accepted_verb = 0;
 		int accepted_adj = 0;
-		HashSet <String> allAccepted = allTermsSoFar; // make sure that we register the words that have already been added through synonyms etc.
+		allAccepted = allTermsSoFar; // make sure that we register the words that have already been added through synonyms etc.
 
 		
 		for (Map.Entry<Double,String> entry : term_scores_test.entrySet() ) {
@@ -524,15 +524,16 @@ public class TermSelectionAlgo {
 
 	public static void main(String args[]) throws Exception {
 		// can file location also be the one in repository?
-		TermSelectionAlgo term_select = new TermSelectionAlgo( Framework.LARGEDATA_PATH+"google_wordvec", Framework.LARGEDATA_PATH +"yelp_wordvec", Framework.OUTPUT_PATH+"Output_stanford_hashmap");
-		term_select.create_word_term_score();
-		System.out.println("doing thresholds");
+		
+		//TermSelectionAlgo term_select = new TermSelectionAlgo( Framework.LARGEDATA_PATH+"google_wordvec", Framework.LARGEDATA_PATH +"yelp_wordvec", Framework.OUTPUT_PATH+"Output_stanford_hashmap");
+		//term_select.create_word_term_score();
+		//System.out.println("doing thresholds");
 		//double threshold_noun = term_select.create_threshold(100, "NN");
 		//double threshold_verb = term_select.create_threshold(15, "VB");
 		//double threshold_adj = term_select.create_threshold(80, "JJ");
 		//term_select.create_term_list(0.84, threshold_verb, threshold_adj, 100, 80, 80);
-		term_select.create_term_list(0.84, 0.8, 0.915, 100, 20, 80);
-		term_select.save_outputs(term_select);
+		//term_select.create_term_list(0.84, 0.8, 0.915, 100, 20, 80);
+		//term_select.save_outputs(term_select);
 	}
 
 	static class DescOrder implements Comparator<Double>{
