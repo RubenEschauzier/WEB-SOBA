@@ -455,15 +455,15 @@ public class OntologyBuilder {
 					{
 						if (pos.equals("noun"))
 						{
-							parentClassURI = NS + mentionClass+ "NegativeMention";
+							parentClassURI = NS + "#"+ mentionClass.substring(0, 1).toUpperCase() + mentionClass.substring(1).toLowerCase()+ "NegativeMention";
 						}
 						else if (pos.equals("verb"))
 						{			
-							parentClassURI = NS + mentionClass+ "NegativeAction";
+							parentClassURI = NS + mentionClass.substring(0, 1).toUpperCase() + mentionClass.substring(1).toLowerCase()+ "NegativeAction";
 						}	
 						else if (pos.equals("adjective"))
 						{
-							parentClassURI = NS + mentionClass+ "NegativeProperty";
+							parentClassURI = NS + mentionClass.substring(0, 1).toUpperCase() + mentionClass.substring(1).toLowerCase()+ "NegativeProperty";
 						}
 					}
 
@@ -484,7 +484,7 @@ public class OntologyBuilder {
 	public void getHierarchicalClusters() throws Exception {
 		Scanner scanner = new Scanner(System.in);
 
-		String[] mentionclasses = {"restaurant","ambience","service","location","food","drinks","price","quality","style","options"};
+		String[] mentionclasses = {"restaurant","ambience","service","location","food","drinks","price","quality","style","options","experience"};
 		int numberofclusters = mentionclasses.length;
 		int iterations = 100;
 		String name = "aspect_mentions";
@@ -616,7 +616,6 @@ public class OntologyBuilder {
 	 * @param classURI, the concepts to which to add the lexicalizations
 	 * @param word, the word of which to find synonyms
 	 */
-	/**
 	public void suggestSynonyms(String word, String... classURI) {
 		HashSet<String> accepted = new HashSet<String>();
 		HashSet<String> rejected = new HashSet<String>();
@@ -665,8 +664,6 @@ public class OntologyBuilder {
 			base.addLexicalizations(URI, accepted);
 		}
 	}
-	 */
-
 
 
 	/**

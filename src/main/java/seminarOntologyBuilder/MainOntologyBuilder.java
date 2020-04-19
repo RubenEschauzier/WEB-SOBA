@@ -68,8 +68,10 @@ public class MainOntologyBuilder {
 		//build.getTerms(); 
 		
 		//Now add the sentiment words in a kind of hierarchy
-		build.addSentimentWords(); 
-		build.save("ontoNaSentimentWords.owl");
+		//build.addSentimentWords(); 
+		//build.save("ontoNaSentimentWords.owl");
+		
+		build.getHierarchicalClusters();
 		
 		}
 	
