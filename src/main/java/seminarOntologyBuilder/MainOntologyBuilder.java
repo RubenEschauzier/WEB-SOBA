@@ -65,7 +65,10 @@ public class MainOntologyBuilder {
 		build.save("TestSkeletalOntology2020.owl");
 		
 		// Perform the termselection
-		build.getTerms(); 
+		//build.getTerms(); 
+		
+		//Now add the sentiment words in a kind of hierarchy
+		build.addSentimentWords(); 
 		
 		}
 	
