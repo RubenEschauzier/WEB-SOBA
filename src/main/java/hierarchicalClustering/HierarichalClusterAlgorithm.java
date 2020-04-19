@@ -10,13 +10,12 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.swing.JLabel;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
@@ -36,7 +35,6 @@ import com.apporiented.algorithm.clustering.visualization.DendrogramPanel;
 import edu.eur.absa.Framework;
 
 public class HierarichalClusterAlgorithm {
-	private Set<String> used_names = new HashSet<String>();
 	private Map<String, Integer> aspect_mentions = new HashMap<String, Integer>();
 	private List<double[]> wordvectors = new ArrayList<double[]>(); //list with only the word vectors
 	private List<String> aspects = new ArrayList<String>();
@@ -46,15 +44,16 @@ public class HierarichalClusterAlgorithm {
 	private Map<Integer,Double> elbow_data = new HashMap<Integer, Double>();
 	private Map<String,List<String>> cluster_representation = new HashMap<String,List<String>>();
 	
-	private List<String> terms = new ArrayList<String>();
+	private String[] terms;
 	private Map<String, double[]> word_vec_yelp = new HashMap<String, double[]>();
 	
-	public HierarichalClusterAlgorithm(String filelocation_yelp, String filelocation_aspects) throws ClassNotFoundException, IOException {
+	public HierarichalClusterAlgorithm(String filelocation_yelp, String filelocation_aspects, String[] terms) throws ClassNotFoundException, IOException {
+		this.terms = terms;
 		read_file_wordvec("yelp", filelocation_yelp);
 		read_file(filelocation_aspects);
 		create_aspect_wordvec();
 		create_wordvec_aspect();
-		get_terms(aspect_wordvector);
+		
 	}
 	
 	public Map<String,List<String>> getClusterRepresentation() {
@@ -83,28 +82,45 @@ public class HierarichalClusterAlgorithm {
 	}
 	
 
-	public void get_terms(Map<String,double[]>aspect_wordvector) {
-		for (Map.Entry<String, double[]> entry : aspect_wordvector.entrySet()) { 
-			terms.add(entry.getKey());
-			
-		}			
-	}
 	
 	public void create_aspect_wordvec() {
-		for (Map.Entry<String, Integer> entry: aspect_mentions.entrySet()) {
-			if (word_vec_yelp.get(entry.getKey()) != null) {
-				aspect_wordvector.put(entry.getKey(), word_vec_yelp.get(entry.getKey()));
+		for (String term : terms) {
+			if (word_vec_yelp.get(term) != null) {
+				aspect_wordvector.put(term, word_vec_yelp.get(term));
+			}
+			else {
+				terms = ArrayUtils.removeElement(terms, term);
 			}
 		}
 	}
-	
+		
+	public void create_wordvec_aspect()	{
+		for (String term: terms) {
+			if (word_vec_yelp.get(term) != null) {
+				wordvector_aspect.put(word_vec_yelp.get(term), term);
+			}
+			else {
+				terms = ArrayUtils.removeElement(terms, term);
+			}
+		}
+	}
+		
+		
+		
+		/*
+		* for (Map.Entry<String, Integer> entry: aspect_mentions.entrySet()) { if
+		* (word_vec_yelp.get(entry.getKey()) != null) {
+		* aspect_wordvector.put(entry.getKey(), word_vec_yelp.get(entry.getKey()));
+		* } }
+	    */
+	/*
 	public void create_wordvec_aspect() {
 		for (Map.Entry<String, Integer> entry: aspect_mentions.entrySet()) {
 			if (word_vec_yelp.get(entry.getKey()) != null) {
 				wordvector_aspect.put(word_vec_yelp.get(entry.getKey()), entry.getKey());
 			}
 		}
-	}
+	}*/
 
 	
 	public double get_cosine_similarity(double[] vec1, double[] vec2) {	
@@ -126,18 +142,18 @@ public class HierarichalClusterAlgorithm {
 		return 0;
 	}
 	
-	public List<double[]> get_vector_list(Cluster cluster, List<double[]> vector_list, String parent_name, Set<String> used_names){
-		if (cluster.isLeaf() && cluster.getName() != (parent_name) && !used_names.contains(cluster.getName())){
+	public List<double[]> get_vector_list(Cluster cluster, List<double[]> vector_list){
+		if (cluster.isLeaf() && aspect_wordvector.get(cluster.getName()) != null){
 			vector_list.add(aspect_wordvector.get(cluster.getName()));		
 		}
 		else {	
 			List<Cluster> child_clusters = cluster.getChildren();
 			if (child_clusters.size() == 1) {
-				get_vector_list(child_clusters.get(0), vector_list, parent_name, used_names);
+				get_vector_list(child_clusters.get(0), vector_list);
 			}
 			if (child_clusters.size() == 2) {
-				get_vector_list(child_clusters.get(0), vector_list, parent_name, used_names);
-				get_vector_list(child_clusters.get(1), vector_list, parent_name, used_names);
+				get_vector_list(child_clusters.get(0), vector_list);
+				get_vector_list(child_clusters.get(1), vector_list);
 			}
 		}
 		return vector_list;
@@ -147,7 +163,7 @@ public class HierarichalClusterAlgorithm {
 	
 	public double calculate_WSS(Cluster cluster) { 
 		List<double[]> vector_list = new ArrayList<double[]>();
-		List<double[]> vectors_list = get_vector_list(cluster, vector_list, "not needed", null);
+		List<double[]> vectors_list = get_vector_list(cluster, vector_list);
 		double [] average_vector = new double[vectors_list.get(0).length];
 		
 		for( int i = 0; i<vectors_list.size(); i++) {
@@ -208,21 +224,19 @@ public class HierarichalClusterAlgorithm {
 		double[] max_vector = vector_list.get(0);
 		double max_average_similarity = 0;
 		for (double[] base_vector: vector_list) {
-			if (base_vector != null) {
-				double average_similarity = 0;
-				int count = 0;
-				for (double[] to_compare: vector_list) {
-					if (!base_vector.equals(to_compare) && to_compare != null){
-						count += 1;
-						average_similarity += get_cosine_similarity(base_vector, to_compare);
-	
-					}
+			double average_similarity = 0;
+			int count = 0;
+			for (double[] to_compare: vector_list) {
+				if (!base_vector.equals(to_compare)){
+					count += 1;
+					average_similarity += get_cosine_similarity(base_vector, to_compare);
+
 				}
-				average_similarity = average_similarity / count;
-				if(average_similarity > max_average_similarity) {
-					max_average_similarity = average_similarity;
-					max_vector = base_vector;
-				}
+			}
+			average_similarity = average_similarity / count;
+			if(average_similarity > max_average_similarity) {
+				max_average_similarity = average_similarity;
+				max_vector = base_vector;
 			}
 		}
 		
@@ -231,23 +245,21 @@ public class HierarichalClusterAlgorithm {
 	}
 	
 	
-	public void rename_subclusters(int cut_off_depth, int current_depth, Cluster cluster, String name_parent_cluster, Set<String> used_names) {
+	public void rename_subclusters(int cut_off_depth, int current_depth, Cluster cluster) {
 		if (!cluster.isLeaf()) {
 			List<double[]> vector_list = new ArrayList<double[]>();
-			List<double[]> vectors_list = get_vector_list(cluster, vector_list, name_parent_cluster, used_names);
+			List<double[]> vectors_list = get_vector_list(cluster, vector_list);
 			String new_name = get_maximum_average_similarity(vectors_list);
 			cluster.setName(new_name);
-			used_names.add(new_name);
 		
 			if (current_depth < cut_off_depth) {
 				List<Cluster> child_clusters = cluster.getChildren();
 				if (child_clusters.size() == 1) {
-					rename_subclusters(cut_off_depth, current_depth + 1, child_clusters.get(0), cluster.getName(), used_names);
+					rename_subclusters(cut_off_depth, current_depth + 1, child_clusters.get(0));
 				}
 				if (child_clusters.size() == 2) {
-					rename_subclusters(cut_off_depth, current_depth + 1, child_clusters.get(0), cluster.getName(), used_names);
-
-					rename_subclusters(cut_off_depth, current_depth + 1, child_clusters.get(1), cluster.getName(), used_names);
+					rename_subclusters(cut_off_depth, current_depth + 1, child_clusters.get(0));
+					rename_subclusters(cut_off_depth, current_depth + 1, child_clusters.get(1));
 				}
 			}
 		}	
@@ -329,11 +341,7 @@ public class HierarichalClusterAlgorithm {
 				parent_child_printer(child_clusters.get(1) , current_depth+1, cut_off_depth);
 			}
 		}
-		else {
-			
-		}
 	}
-	
 	
 	public static double getDistance(double[] term1, double[] term2) {
 		double distance = 0;
@@ -361,24 +369,25 @@ public class HierarichalClusterAlgorithm {
 	
 	
 	public static void main(String[] args) throws ClassNotFoundException, IOException {
-		HierarichalClusterAlgorithm test = new HierarichalClusterAlgorithm(Framework.DATA_PATH + "yelp_wordvec",  Framework.OUTPUT_PATH + "aspect_mentions");
+		String[] mentionclasses = {"staff", "communication", "communications", "experiences", "interactions", "interaction", "attitude", "attitudes", "waitstaff", "services"};
+		HierarichalClusterAlgorithm test = new HierarichalClusterAlgorithm(Framework.DATA_PATH + "yelp_wordvec",  Framework.OUTPUT_PATH + "aspect_mentions", mentionclasses);
 		ClusteringAlgorithm alg = new DefaultClusteringAlgorithm();
-		String[] terms = test.terms.toArray(new String[test.terms.size()]);
-		double[][] distances = getDistanceMatrix(test.terms.toArray(new String[test.terms.size()]), test.aspect_wordvector);
+		
+		String[] terms = test.terms;
+		double[][] distances = getDistanceMatrix(test.terms, test.aspect_wordvector);
 		String[] names = new String[terms.length];
+		
 		for(int i = 0; i < terms.length; i++) {
 			names[i] = String.valueOf(i);
 		}
+		
 		Cluster cluster = alg.performClustering(distances, terms, new AverageLinkageStrategy());
 		int recursion = test.recursion_depth(cluster);
-		cluster.setName("all terms");
-		test.rename_subclusters(3, 0, cluster.getChildren().get(0), "all_terms", test.used_names);
-		test.rename_subclusters(3, 0, cluster.getChildren().get(1), "all_terms", test.used_names);
-		System.out.println(cluster.getName());
-		test.create_cluster_representation(cluster, 0, 3);
-		//System.out.println(test.cluster_representation);
+		test.rename_subclusters(14, 0, cluster);
+		test.create_cluster_representation(cluster, 0, 14);
 		test.parent_child_printer(cluster, 0, 3);
-		test.elbow_method(recursion, cluster);
+		System.out.println(test.cluster_representation);
+		test.elbow_method(recursion, cluster );
 		test.make_plot();
         Frame f1 = new DendrogramFrame(cluster);
         f1.setSize(500, 400);
