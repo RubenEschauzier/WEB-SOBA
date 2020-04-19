@@ -11,6 +11,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.List;
 import java.util.Scanner;
 import java.util.TreeMap;
 import java.util.TreeSet;
@@ -105,18 +106,6 @@ public class OntologyBuilder {
 	private boolean synonymsInitialised;
 	private TermSelectionAlgo synonym_select;
 	
-	/**
-	 * A constructor for the OntologyBuilder class.
-	 * @param baseOnt, the base ontology from which the final ontology is further constructed
-	 * @param aspectCat, the aspect categories of the domain
-	 * @param dom, the domain name
-	 * @param thres, the threshold to use for the subsumption method
-	 * @param frac, the top fraction of terms to suggest
-	 */
-	/**public OntologyBuilder(SkeletalOntology baseOnt, HashMap<String, HashSet<String>> aspectCat, String dom, boolean r) throws Exception {
-		this(baseOnt, aspectCat, dom, r);
-	} */
-
 	/**
 	 * A constructor for the OntologyBuilder class.
 	 * @param baseOnt, the base ontology from which the final ontology is further constructed
