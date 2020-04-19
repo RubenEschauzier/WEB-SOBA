@@ -6,5 +6,6 @@ src/main/resources/largeData/
 target/classes/edu/
 target/classes/hierarchicalClustering/
 target/classes/seminarOntologyBuilder/
+target/classes
 
 
