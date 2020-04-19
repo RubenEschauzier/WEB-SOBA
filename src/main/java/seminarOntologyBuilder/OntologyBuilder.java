@@ -368,6 +368,8 @@ public class OntologyBuilder {
 	 * @throws Exception
 	 */
 	public void getHierarchicalClusters() throws Exception {
+		Scanner scanner = new Scanner(System.in);
+
 		String[] mentionclasses = {"restaurant","ambience","service","location","food","drinks","price","quality","style","options"};
 		int numberofclusters = mentionclasses.length;
 		int iterations = 100;
@@ -381,20 +383,35 @@ public class OntologyBuilder {
 		Map<String, double[]> aspectWordvector = HC.getAspectWordVectors();
 		
 		for (Map.Entry<String, String[]> entry : Clusters.entrySet()) {
-			HierarichalClusterAlgorithm HCA = new HierarichalClusterAlgorithm(Framework.DATA_PATH + "yelp_wordvec",  Framework.OUTPUT_PATH + name); //if error occurs at this line, change pathfile to the wanted file (not sure which file needed)
+			HierarichalClusterAlgorithm HCA = new HierarichalClusterAlgorithm(Framework.EXTERNALDATA_PATH + "yelp_wordvec",  Framework.OUTPUT_PATH + name); //if error occurs at this line, change pathfile to the wanted file (not sure which file needed)
 			ClusteringAlgorithm clustering_algorithm = new DefaultClusteringAlgorithm();
-			
+
 			String[] terms = entry.getValue();
 			double[][] distances = HCA.getDistanceMatrix(terms, aspectWordvector);
 			Cluster cluster = clustering_algorithm.performClustering(distances, terms, new AverageLinkageStrategy());
 			int recursion = HCA.recursion_depth(cluster);
 			
+			HCA.elbow_method(recursion, cluster);
+			HCA.make_plot();
+
+			System.out.print("Please enter the most optimal depth of MentionClass "+ entry.getKey()+" under "+ recursion);
+			int depth = scanner.nextInt();
+
 			System.out.println("Hierarchy of the MentionClass: "+entry.getKey());
-			HCA.rename_subclusters(14, 0, cluster);
-			System.out.println(cluster.getName());
-			HCA.create_cluster_representation(cluster, 0, 14);
+			HCA.rename_subclusters(depth, 0, cluster);
+			HCA.create_cluster_representation(cluster, 0, depth);
 			Map<String,List<String>> clusterRepresentation = HCA.getClusterRepresentation();
 			System.out.println(clusterRepresentation);
+			
+			for (Map.Entry<String, List<String>> entry2 : clusterRepresentation.entrySet()) {
+				// parent-child relation
+				String parent = entry2.getKey();
+				List<String> children = entry2.getValue();
+				for (String child : children) {
+					System.out.println("Parent: "+parent+" and child: "+child+ " in the MentionClass: "+entry.getKey());
+					// here add the parent-child relation to the skeletal ontology
+				}
+			}
 			
 //			HCA.elbow_method(recursion, cluster );
 //			HCA.make_plot();

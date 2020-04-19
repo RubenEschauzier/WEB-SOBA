@@ -22,6 +22,12 @@ import java.util.Scanner;
 import java.util.TreeMap;
 
 import org.deeplearning4j.models.embeddings.loader.WordVectorSerializer;
+
+import com.apporiented.algorithm.clustering.AverageLinkageStrategy;
+import com.apporiented.algorithm.clustering.Cluster;
+import com.apporiented.algorithm.clustering.ClusteringAlgorithm;
+import com.apporiented.algorithm.clustering.DefaultClusteringAlgorithm;
+
 import edu.eur.absa.Framework;
 
 public class clusteringAlgorithm{
@@ -548,20 +554,64 @@ public class clusteringAlgorithm{
 	}
 
 	public static void main(String[] args)throws Exception {
-		// in one method
+		Scanner scanner = new Scanner(System.in);
+
 		String[] mentionclasses = {"restaurant","ambience","service","location","food","drinks","price","quality","style","options"};
 		String[] sentimentclasses = {"positive","negative"};
 		int numberofclusters1 = mentionclasses.length;
 		int numberofclusters2 = sentimentclasses.length;
 		int iterations = 100;
-		String name1 = "aspect_mentions";
+		String name = "aspect_mentions";
 		String name2 = "sentiment_mentions";
 		String approach1 = "similarities";
 		String approach2 = "kmeans";
 
-		clusteringAlgorithm test1 = new clusteringAlgorithm(name1, numberofclusters1, iterations, mentionclasses, approach1);
+		clusteringAlgorithm test1 = new clusteringAlgorithm(name, numberofclusters1, iterations, mentionclasses, approach1);
 		test1.clusteringsimilarities();
 
+		Map<String, String[]> Clusters = test1.getFinalClusters();
+		Map<String, double[]> aspectWordvector = test1.getAspectWordVectors();
+
+		for (Map.Entry<String, String[]> entry : Clusters.entrySet()) {
+			HierarichalClusterAlgorithm HCA = new HierarichalClusterAlgorithm(Framework.EXTERNALDATA_PATH + "yelp_wordvec",  Framework.OUTPUT_PATH + name); //if error occurs at this line, change pathfile to the wanted file (not sure which file needed)
+			ClusteringAlgorithm clustering_algorithm = new DefaultClusteringAlgorithm();
+
+			String[] terms = entry.getValue();
+			double[][] distances = HCA.getDistanceMatrix(terms, aspectWordvector);
+			Cluster cluster = clustering_algorithm.performClustering(distances, terms, new AverageLinkageStrategy());
+			int recursion = HCA.recursion_depth(cluster);
+			
+			HCA.elbow_method(recursion, cluster);
+			HCA.make_plot();
+
+			System.out.print("Please enter the most optimal depth of MentionClass "+ entry.getKey()+" under "+ recursion);
+			int depth = scanner.nextInt();
+
+			System.out.println("Hierarchy of the MentionClass: "+entry.getKey());
+			HCA.rename_subclusters(depth, 0, cluster);
+			HCA.create_cluster_representation(cluster, 0, depth);
+			Map<String,List<String>> clusterRepresentation = HCA.getClusterRepresentation();
+			System.out.println(clusterRepresentation);
+
+			for (Map.Entry<String, List<String>> entry2 : clusterRepresentation.entrySet()) {
+				// parent-child relation
+				String parent = entry2.getKey();
+				List<String> children = entry2.getValue();
+				for (String child : children) {
+					System.out.println("Parent: "+parent+" and child: "+child+ " in the MentionClass: "+entry.getKey());
+					// here add the parent-child relation to the skeletal ontology
+				}
+			}
+
+			//			Frame f1 = new DendrogramFrame(cluster);
+			//			f1.setSize(500, 400);
+			//			f1.setLocation(100, 200);
+			//			HCA.make_plot();
+
+			// Missing how to add hierarchy to the skeleton/ontologybuilder
+
+		}
+		// K means implementation test 
 		//		clusteringAlgorithm test2 = new clusteringAlgorithm(name2, numberofclusters2, iterations, sentimentclasses, approach);
 		//		test2.clusteringKMeans();
 	}
