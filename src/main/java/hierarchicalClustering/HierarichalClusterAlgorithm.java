@@ -54,6 +54,10 @@ public class HierarichalClusterAlgorithm {
 		get_terms(aspect_wordvector);
 	}
 	
+	public Map<String,List<String>> getClusterRepresentation() {
+		return cluster_representation;
+	}
+	
 	public void read_file_wordvec(String dataset, String filelocation) throws IOException, ClassNotFoundException {
 		if (dataset == "yelp") {
 			File toRead_yelp=new File(filelocation);
