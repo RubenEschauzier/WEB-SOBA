@@ -58,19 +58,9 @@ public class MainOntologyBuilder {
 		/* Set the domain. */
 		String domain = "restaurant";
 
-		
-		// de volgende twee paragrafen zijn denk ik niet nodig
-		// set the fractions
-		double[] fraction = new double[3];	
-		fraction[0]=0.16;	//fraction nouns
-		fraction[1]=0.20; 	// fraction adjectives  
-		fraction[2]=0.16;   //fraction verbs
-
-		//set the threshold 
-		double threshold = 0.2;
 
 		/* Initialise the semi-automatic ontology builder. *///
-		OntologyBuilder build = new OntologyBuilder(base, aspectCategories, domain, threshold, 1.0, fraction, true);
+		OntologyBuilder build = new OntologyBuilder(base, aspectCategories, domain, true);
 
 		build.save("TestSkeletalOntology2020.owl");
 		
