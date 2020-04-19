@@ -35,7 +35,7 @@ public class SentimentWordProcessor {
 	private Map<String, Integer> sentiment_mentions = new HashMap<String, Integer>();
 	private Map<String, double[]> word_vec_refined = new HashMap<String, double[]>();
 	private Map<String, Map<String,String>> clustered_sentiment = new HashMap<String,Map<String,String>>();
-
+	
 
 	public SentimentWordProcessor(String fileloc_yelp, String fileloc_sent) throws ClassNotFoundException, IOException{
 		read_file("yelp", fileloc_yelp);
@@ -59,7 +59,8 @@ public class SentimentWordProcessor {
 	 */
 	public void read_word2vec_file() throws IOException {
 		File test = new File(Framework.LARGEDATA_PATH + "refined_model.json");
-		HashMap<String,List> result = new ObjectMapper().readValue(test, HashMap.class);
+        boolean testbool = test.exists(); 
+		Map<String,List> result = new ObjectMapper().readValue(test, Map.class);
 		//double[] test2 = result.get("bad");
 		List<Double> test2 = new ArrayList<Double>(result.get("good"));
 		List<Double> test3 = new ArrayList<Double>(result.get("amazing"));
