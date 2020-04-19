@@ -187,14 +187,16 @@ public class SentimentWordProcessor {
 		return ranked_similarities;
 	}
 	
-	public void create_sentiment_links() {
+	public Map<String, Map<String,String>> create_sentiment_links() {
 		Scanner scan = new Scanner(System.in);
 		String[] mention_words = {"ambience", "drinks","food","service","price","location","quality", "style", "options", "experience", "restaurant"};
 		
 		for (Map.Entry<String, Integer> sentiment_word : sentiment_mentions.entrySet()) {
 			
 			
-			String polarity = generate_sentiment_score(sentiment_word.getKey());
+			String polarity = generate_sentiment_score(sentiment_word.getKey()); // returns positive or negative
+			
+			// now we get a ranked list of mentionclasses based on closeness
 			Map<Double,String> similarities = get_closeness_mentionclasses(mention_words, sentiment_word.getKey());
 			
 			System.out.println(sentiment_word.getKey() +" "+ polarity + similarities);
@@ -267,6 +269,7 @@ public class SentimentWordProcessor {
 			}
 					
 		}
+		return clustered_sentiment;
 	}
 	
 

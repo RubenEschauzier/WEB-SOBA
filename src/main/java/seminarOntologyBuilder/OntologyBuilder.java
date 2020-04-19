@@ -46,6 +46,25 @@ import edu.smu.tspell.wordnet.WordNetDatabase.*;
 //our own classes
 import sentimentBuilder.SentimentWordProcessor;
 import termSelector.TermSelectionAlgo;
+import hierarchicalClustering.clusteringAlgorithm;
+import hierarchicalClustering.HierarichalClusterAlgorithm;
+
+//for the clustering things
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.ui.ApplicationFrame;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
+
+import com.apporiented.algorithm.clustering.AverageLinkageStrategy;
+import com.apporiented.algorithm.clustering.Cluster;
+import com.apporiented.algorithm.clustering.ClusteringAlgorithm;
+import com.apporiented.algorithm.clustering.DefaultClusteringAlgorithm;
+import com.apporiented.algorithm.clustering.ElbowPlotter;
+import com.apporiented.algorithm.clustering.visualization.DendrogramFrame;
+import com.apporiented.algorithm.clustering.visualization.DendrogramPanel;
 
 // import edu.cmu.lti.ws4j.*;
 
@@ -322,9 +341,10 @@ public class OntologyBuilder {
 	
 	public void addSentimentWords() throws IOException, ClassNotFoundException
 	{
+		Map<String, Map<String,String>> clustered_sentiment = new HashMap<String,Map<String,String>>();
 		SentimentWordProcessor sent_calc = new SentimentWordProcessor(Framework.LARGEDATA_PATH + "yelp_wordvec", Framework.OUTPUT_PATH + "sentiment_mentions");
 		//sent_calc.generate_sentiment_scores();
-		sent_calc.create_sentiment_links();
+		clustered_sentiment = sent_calc.create_sentiment_links();
 	}
 	
 	public void getHierarchicalClusters() throws Exception {
