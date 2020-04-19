@@ -4,4 +4,3 @@ externalData/
 data/
 target/ # The target folder gets created by the algorithm itself and do not need to exist on Github
 
-

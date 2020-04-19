@@ -35,19 +35,20 @@ public class clusteringAlgorithm{
 	private List<double[]> wordvectors = new ArrayList<>(); //list with only the word vectors
 	private List<String> terms = new ArrayList<>();
 
+	//Initialize variables for the kmeans approach
 	private Map<Integer, double[]> centroids = new HashMap<>(); 	//Hashmap to store centroids with index
-	private Map<String, double[]> centroids2 = new HashMap<>(); //Hashmap for alternative
-
 	private Map<double[], Integer> clusters = new HashMap<>(); 	//Hashmap for finding cluster indexes
-	private Map<double[], String> clusters2 = new HashMap<>(); //Hashmap for alternative
-
 	private Map<Integer, String[]> finalclusters = new HashMap<>(); //Hashmap containing terms per cluster
-	private Map<String, String[]> finalclusters2 = new HashMap<>(); //Hashmap for alternative
+
+	//Initialize variables for the similarities approach
+	private Map<String, double[]> centroids2 = new HashMap<>();
+	private Map<double[], String> clusters2 = new HashMap<>();
+	private Map<String, String[]> finalclusters2 = new HashMap<>(); 
 
 	private final int numberClusters; 
 	private final int maxIterations; 
 	private final String filename;
-	
+
 	private int[] termspercluster;
 	private final String[] classes;
 	private final String method;
@@ -61,9 +62,15 @@ public class clusteringAlgorithm{
 		this.method = method;
 		//initialize these parameters String textfile, int numberMentionClasses, int maxiterations
 	}
+	
+	/**
+	 * 
+	 * @return overview of the final clusters
+	 */
 	public Map<String, String[]> getFinalClusters() {
 		return finalclusters2;
 	}
+	
 	/**
 	 * Read file containing the words
 	 * @param textFile: file with words
@@ -80,9 +87,13 @@ public class clusteringAlgorithm{
 		ois.close();
 		fis.close();
 	}
+	
+	/**
+	 * Initialize the required variables
+	 */
 	public void initialization() {
 		//Second step
-		File Model = new File(Framework.EXTERNALDATA_PATH+ "w2v_yelp.bin");// if error occurs here, change w2v_yelp.bin to filenameof w2c model
+		File Model = new File(Framework.EXTERNALDATA_PATH+ "w2v_yelp.bin");// if error occurs here, change w2v_yelp.bin to filename of w2c model
 		org.deeplearning4j.models.word2vec.Word2Vec word2vec = WordVectorSerializer.readWord2VecModel(Model);
 
 		for (Map.Entry<String, String> entry : MentionsWords.entrySet()) { // Per aspectmention, find the closest subcluster (not sure it is already stored)
@@ -137,6 +148,7 @@ public class clusteringAlgorithm{
 			clusters = kmeans(wordvectors, centroids);
 		}
 	}
+	
 	/**
 	 * Implementation of assigning terms to the mentionclass with the highest similarity
 	 */
@@ -152,6 +164,10 @@ public class clusteringAlgorithm{
 			clusters2.put(term_wordvector.get(term), finalclass);
 		}
 	}
+	
+	/**
+	 * Return an overview of the clusters
+	 */
 	public void showfinalclusters() {
 		//fourth step
 		if (method == "kmeans") {
@@ -170,6 +186,10 @@ public class clusteringAlgorithm{
 			}
 		}
 	}
+	
+	/**
+	 * User input to check the quality of clustering
+	 */
 	public void userinput() {
 		// fifth step
 		Scanner sc = new Scanner(System.in);
@@ -301,6 +321,7 @@ public class clusteringAlgorithm{
 		System.out.println("End results of clustering after user input: ");
 		showfinalclusters();
 	}
+	
 	/**
 	 * Order of clustering using kmeans approach
 	 * @throws IOException 
@@ -313,6 +334,12 @@ public class clusteringAlgorithm{
 		showfinalclusters();
 		userinput();
 	}
+	
+	/**
+	 * Order of clustering using similarities approach
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
 	public void clusteringsimilarities() throws ClassNotFoundException, IOException {
 		readFile(filename);
 		initialization();
@@ -320,6 +347,7 @@ public class clusteringAlgorithm{
 		showfinalclusters();
 		userinput();
 	}
+	
 	/**
 	 * Calculate distance using the Euclidean distance given two words
 	 * @param term1: wordvector of first term
@@ -333,6 +361,7 @@ public class clusteringAlgorithm{
 		}
 		return Math.sqrt(distance);
 	}
+	
 	/**
 	 * Calculate the cosine similarity given two words
 	 * @param term1
@@ -350,6 +379,7 @@ public class clusteringAlgorithm{
 		}
 		return sum / (Math.sqrt(sqrt1) * Math.sqrt(sqrt2));
 	}
+	
 	/**
 	 * Calculating the centroids of a cluster
 	 * @param cluster: list of the wordvectors of the terms in one cluster
@@ -371,6 +401,7 @@ public class clusteringAlgorithm{
 
 		return Centroid;
 	}
+	
 	/**
 	 * Implementing kmeans algorithm
 	 * @param wordvectors: list of the wordvectors of each term
@@ -396,15 +427,15 @@ public class clusteringAlgorithm{
 		}
 		return cluster;
 	}
+	
 	/**
-	 * Show the terms in clusters more clearly after kmeans implementation
+	 * Show the terms in clusters more clearly after clustering
 	 * @param w2v_aspects: terms with corresponding wordvector
 	 * @param finalcluster: list of terms and in which cluster it contains
 	 * @param k: number of clusters
 	 * @param terms: list of number of terms per cluster
 	 * @return list of terms per cluster
 	 */
-
 	public Map<Integer, String[]> getClusters1(Map<double[], String> w2v_aspects,Map<double[],Integer> finalcluster1) {
 		Map<Integer, String[]> compactclusters = new HashMap<>();
 		for (int x = 0; x < numberClusters; x++) {
@@ -420,6 +451,7 @@ public class clusteringAlgorithm{
 		}
 		return compactclusters;
 	}
+	
 	/**
 	 * Show the terms in mentionclasses more clearly after kmeans implementation
 	 * @param w2v_aspects
@@ -462,6 +494,7 @@ public class clusteringAlgorithm{
 		}
 		return distancematrix;
 	}
+	
 	/**
 	 * Calculate the number of terms per cluster
 	 * @param cluster
@@ -491,6 +524,7 @@ public class clusteringAlgorithm{
 		}
 		return results;
 	}
+	
 	/**
 	 * Construct a ranking list of the most compatible mentionclasses for one term
 	 * @param term, selected term
@@ -511,7 +545,7 @@ public class clusteringAlgorithm{
 
 	public static void main(String[] args)throws Exception {
 		// in one method
-		String[] mentionclasses = {"restaurant","ambience","service","location","food","drinks","prices","quality","style","options"};
+		String[] mentionclasses = {"restaurant","ambience","service","location","food","drinks","price","quality","style","options"};
 		String[] sentimentclasses = {"positive","negative"};
 		int numberofclusters1 = mentionclasses.length;
 		int numberofclusters2 = sentimentclasses.length;
@@ -523,7 +557,7 @@ public class clusteringAlgorithm{
 
 		clusteringAlgorithm test1 = new clusteringAlgorithm(name1, numberofclusters1, iterations, mentionclasses, approach1);
 		test1.clusteringsimilarities();
-		
+
 		//		clusteringAlgorithm test2 = new clusteringAlgorithm(name2, numberofclusters2, iterations, sentimentclasses, approach);
 		//		test2.clusteringKMeans();
 	}
