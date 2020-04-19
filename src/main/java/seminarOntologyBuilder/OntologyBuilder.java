@@ -82,6 +82,8 @@ public class OntologyBuilder {
 	private HashSet<String> synonymsAccepted;
 	private HashSet<String> allAcceptedTerms; 
 
+	private boolean synonymsInitialised;
+	TermSelectionAlgo synonym_select;
 	
 	/**
 	 * A constructor for the OntologyBuilder class.
@@ -115,6 +117,7 @@ public class OntologyBuilder {
 		numRejectOverall = 0;
 		numAcceptOverall = 0;
 		relations = r;
+		synonymsInitialised = false;
 
 		remove = new HashSet<String>();
 		remove.add("http://www.w3.org/2000/01/rdf-schema#Resource");
@@ -300,7 +303,7 @@ public class OntologyBuilder {
 	 */
 	public void getTerms() throws Exception 
 	{
-		TermSelectionAlgo term_select = new TermSelectionAlgo(allAcceptedTerms, Framework.LARGEDATA_PATH+"google_wordvec", Framework.LARGEDATA_PATH +"yelp_wordvec", Framework.OUTPUT_PATH+"Output_stanford_hashmap");
+		TermSelectionAlgo term_select = new TermSelectionAlgo(Framework.LARGEDATA_PATH+"google_wordvec", Framework.LARGEDATA_PATH +"yelp_wordvec", Framework.OUTPUT_PATH+"Output_stanford_hashmap");
 		term_select.create_word_term_score();
 		System.out.println("doing thresholds");
 		//double threshold_noun = term_select.create_threshold(100, "NN");
@@ -309,9 +312,10 @@ public class OntologyBuilder {
 		//term_select.create_term_list(0.84, threshold_verb, threshold_adj, 100, 80, 80);
 		
 		// Eigenlijk zouden we het zo moeten maken dat de thresholds als input voor de constructor gemaakt worden
-		term_select.create_term_list(0.84, 0.8, 0.915, 100, 20, 80); 
+		allAcceptedTerms =  term_select.create_term_list(allAcceptedTerms, 0.84, 0.8, 0.915, 100, 20, 80); 
 		term_select.save_outputs(term_select);
 	}
+	
 	
 	
 	/**
@@ -330,8 +334,10 @@ public class OntologyBuilder {
 	    allAcceptedTerms.add(word);
 	    
 		//TermSelectionAlgo constructor initialiseren
-		TermSelectionAlgo synonym_select = new TermSelectionAlgo(allAcceptedTerms, Framework.LARGEDATA_PATH +"yelp_wordvec", Framework.OUTPUT_PATH+"Output_stanford_hashmap");
-		
+		if (!synonymsInitialised) {
+	    TermSelectionAlgo synonym_select = new TermSelectionAlgo(Framework.LARGEDATA_PATH +"yelp_wordvec", Framework.OUTPUT_PATH+"Output_stanford_hashmap");
+		}
+	    
 		Collection<String> similar_words_list = synonym_select.getNearestWords(word,SYNONYM_NUM); 
 		
 		System.out.println("Enter 'a' to accept and 'r' to reject the synonym: ");
