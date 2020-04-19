@@ -40,8 +40,6 @@ public class SentimentWordProcessor {
 		read_file("yelp", fileloc_yelp);
 		read_file("sentiment", fileloc_sent);		
 		read_word2vec_file();
-		
-		
 	}
 	
 	/*
@@ -59,7 +57,7 @@ public class SentimentWordProcessor {
 	 * counter); } } }
 	 */
 	public void read_word2vec_file() throws IOException {
-		File test = new File("C:\\Users\\Ruben\\PycharmProjects\\Word2Vec(2.0)\\refined_model.json");
+		File test = new File(Framework.LARGEDATA_PATH + "refined_model.json");
 		HashMap<String,List> result = new ObjectMapper().readValue(test, HashMap.class);
 		//double[] test2 = result.get("bad");
 		List<Double> test2 = new ArrayList<Double>(result.get("good"));
@@ -289,7 +287,7 @@ public class SentimentWordProcessor {
 	 
 	
 	public static void main(String args[]) throws IOException, ClassNotFoundException {
-	SentimentWordProcessor sent_calc = new SentimentWordProcessor(Framework.DATA_PATH + "yelp_wordvec", Framework.OUTPUT_PATH + "sentiment_mentions");
+	SentimentWordProcessor sent_calc = new SentimentWordProcessor(Framework.LARGEDATA_PATH + "yelp_wordvec", Framework.OUTPUT_PATH + "sentiment_mentions");
 	//sent_calc.generate_sentiment_scores();
 	sent_calc.create_sentiment_links();
 	}
