@@ -71,6 +71,10 @@ public class clusteringAlgorithm{
 		return finalclusters2;
 	}
 	
+	public Map<String, double[]> getAspectWordVectors() {
+		return term_wordvector;
+	}
+	
 	/**
 	 * Read file containing the words
 	 * @param textFile: file with words
