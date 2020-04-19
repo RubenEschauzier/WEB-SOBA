@@ -188,7 +188,7 @@ public class TermSelectionAlgo {
 				if (allTerms.get(entry.getValue()).contains(lexical_class) && !mention_words.contains(entry.getValue())) {
 						System.out.println("Reject or accept: " +"{"+entry.getValue()+"}" +", This is a " + "{" +allTerms.get(entry.getValue())+"}"+ ", The TermScore is: " +entry.getKey() +", Press (y) to accept and (n) to reject.");
 						String input = scan.nextLine();
-						input = input.strip();
+						input = input.trim();
 						n_suggested += 1;
 						if (input.equals("y")) {
 							n_accepted += 1;
@@ -204,7 +204,7 @@ public class TermSelectionAlgo {
 								System.out.println("Please enter a valid key");
 								System.out.println("Reject or accept: " +"(" +entry.getValue()+")" +"?" +" Press (y) to accept and (n) to reject");
 								String input_error = scan.nextLine();
-								input_error = input_error.strip();
+								input_error = input_error.trim();
 								if (input_error.equals("y")) {
 									n_accepted += 1;
 									error = false;
@@ -293,7 +293,7 @@ public class TermSelectionAlgo {
 		while(error0) {
 			System.out.println("Reject or accept: " +"{"+entry.getValue()+"}" +", This is a " + "{" +allTerms.get(entry.getValue())+"}"+ ", The TermScore is: " +entry.getKey() +", Press (y) to accept and (n) to reject.");
 			input = scan.nextLine();
-			input = input.strip();
+			input = input.trim();
 			// Accept the term
 			if (input.equals("y")) {
 				
