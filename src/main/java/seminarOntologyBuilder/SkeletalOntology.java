@@ -58,7 +58,7 @@ public class SkeletalOntology implements IOntology {
 	
 	//deze zijn als we met action,entity,property distinction willen werken:
 	public final String URI_EntityMention = NS +"#EntityMention";
-	public final String URI_PropertyMention = NS + "#PropertyMention";
+	public final String URI_PropertyMention = NS + "#PropertyMention"; 
 	public final String URI_ActionMention = NS + "#ActionMention";
 	public final String URI_GenericPositiveAction = NS +"#GenericPositiveAction";
 	public final String URI_GenericNegativeAction = NS +"#GenericNegativeAction";

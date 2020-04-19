@@ -104,7 +104,7 @@ public class clusteringAlgorithm{
 	 */
 	public void initialization() {
 		//Second step
-		File Model = new File(Framework.EXTERNALDATA_PATH+ "w2v_yelp.bin");// if error occurs here, change w2v_yelp.bin to filename of w2c model
+		File Model = new File(Framework.LARGEDATA_PATH+ "w2v_yelp.bin");// Make sure w2v_ryelp.bin is in the large data folder! if error occurs here, change w2v_yelp.bin to filename of w2c model
 		org.deeplearning4j.models.word2vec.Word2Vec word2vec = WordVectorSerializer.readWord2VecModel(Model);
 
 		for (Map.Entry<String, String> entry : MentionsWords.entrySet()) { // Per aspectmention, find the closest subcluster (not sure it is already stored)

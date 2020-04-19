@@ -482,9 +482,19 @@ public class OntologyBuilder {
 	 * @throws Exception
 	 */
 	public void getHierarchicalClusters() throws Exception {
+
+		//First get POS data
+		File toRead_terms=new File(Framework.OUTPUT_PATH+ "Output_stanford_hashmap");
+		FileInputStream fis_terms=new FileInputStream(toRead_terms);
+		ObjectInputStream ois_terms =new ObjectInputStream(fis_terms);
+		allTermsWithPOS =(HashMap<String,String>)ois_terms.readObject();
+		ois_terms.close();
+		fis_terms.close();	
+
+		//Now start the method
 		Scanner scanner = new Scanner(System.in);
 
-		String[] mentionclasses = {"restaurant","ambience","service","location","food","drinks","price","quality","style","options","experience"};
+		String[] mentionclasses = {"restaurant","ambience","service","Location","food","drinks","price","quality","style","options","experience"};
 		int numberofclusters = mentionclasses.length;
 		int iterations = 100;
 		String name = "aspect_mentions";
@@ -497,21 +507,33 @@ public class OntologyBuilder {
 		Map<String, double[]> aspectWordvector = HC.getAspectWordVectors();
 
 		for (Map.Entry<String, String[]> entry : Clusters.entrySet()) {
-			HierarichalClusterAlgorithm HCA = new HierarichalClusterAlgorithm(Framework.EXTERNALDATA_PATH + "yelp_wordvec",  Framework.OUTPUT_PATH + name); //if error occurs at this line, change pathfile to the wanted file (not sure which file needed)
-			ClusteringAlgorithm clustering_algorithm = new DefaultClusteringAlgorithm();
 
 			String[] terms = entry.getValue();
+			String mentClass = entry.getKey(); 
+
+			HierarichalClusterAlgorithm HCA = new HierarichalClusterAlgorithm(Framework.LARGEDATA_PATH + "yelp_wordvec",  Framework.OUTPUT_PATH + name, terms); //if error occurs at this line, change pathfile to the wanted file (not sure which file needed)
+			ClusteringAlgorithm clustering_algorithm = new DefaultClusteringAlgorithm();
+
 			double[][] distances = HCA.getDistanceMatrix(terms, aspectWordvector);
 			Cluster cluster = clustering_algorithm.performClustering(distances, terms, new AverageLinkageStrategy());
 			int recursion = HCA.recursion_depth(cluster);
 
-			HCA.elbow_method(recursion, cluster);
-			HCA.make_plot();
+			int depth;
 
-			System.out.print("Please enter the most optimal depth of MentionClass "+ entry.getKey()+" under "+ recursion);
-			int depth = scanner.nextInt();
+			if(terms.length > 1) // if we get something with only one word we don't need to know the depth
+			{
+				HCA.elbow_method(recursion, cluster);
+				HCA.make_plot();
 
-			System.out.println("Hierarchy of the MentionClass: "+entry.getKey());
+				System.out.print("Please enter the most optimal depth of MentionClass "+ mentClass +" under "+ recursion);
+				depth = scanner.nextInt();
+			}
+			else
+			{
+				depth = 1;
+			}
+
+			System.out.println("Hierarchy of the MentionClass: "+ mentClass);
 			HCA.rename_subclusters(depth, 0, cluster);
 			HCA.create_cluster_representation(cluster, 0, depth);
 			Map<String,List<String>> clusterRepresentation = HCA.getClusterRepresentation();
@@ -522,8 +544,55 @@ public class OntologyBuilder {
 				String parent = entry2.getKey();
 				List<String> children = entry2.getValue();
 				for (String child : children) {
-					System.out.println("Parent: "+parent+" and child: "+child+ " in the MentionClass: "+entry.getKey());
+					System.out.println("Parent: "+parent+" and child: "+child+ " in the MentionClass: "+mentClass);
 					// here add the parent-child relation to the skeletal ontology
+
+					String parentClassURI="";
+					//First we get the parts of speech
+					String pos;
+
+					if (allTermsWithPOS.get(child).contains("NN"))
+					{
+						pos = "noun";
+					}
+					else if (allTermsWithPOS.get(child).contains("VB"))
+					{
+						pos = "verb"; 
+					}	
+					else
+					{
+						pos = "adjective"; 	
+					}
+
+					if (pos.equals("noun"))
+					{
+						if (parent.equals(child)) { // in this case, we are talking about a direct subclass of mentionClass
+							parentClassURI = NS + "#"+ mentClass.substring(0, 1).toUpperCase() + mentClass.substring(1).toLowerCase()+ "Mention";
+						}
+						else {
+							parentClassURI = NS + "#"+ parent.substring(0, 1).toUpperCase() + parent.substring(1).toLowerCase()+ "Mention";
+						}
+					}
+					else if (pos.equals("verb"))
+					{			
+						if (parent.equals(child)) { // in this case, we are talking about a direct subclass of mentionClass
+							parentClassURI = NS + "#"+ mentClass.substring(0, 1).toUpperCase() + mentClass.substring(1).toLowerCase()+ "ActionMention";
+						}
+						else {
+							parentClassURI = NS + "#"+ parent.substring(0, 1).toUpperCase() + parent.substring(1).toLowerCase()+ "ActionMention";
+						}
+					}	
+					else if (pos.equals("adjective"))
+					{
+						if (parent.equals(child)) { // in this case, we are talking about a direct subclass of mentionClass
+							parentClassURI = NS + "#"+ mentClass.substring(0, 1).toUpperCase() + mentClass.substring(1).toLowerCase()+ "PropertyMention";
+						}
+						else {
+							parentClassURI = NS + "#"+ parent.substring(0, 1).toUpperCase() + parent.substring(1).toLowerCase()+ "PropertyMention";
+						}
+					}
+
+					String newConcept = base.addClass(pos, child.substring(0, 1).toUpperCase() + child.substring(1).toLowerCase(), true, child, new HashSet<String>(), parentClassURI);
 				}
 			}
 
@@ -622,8 +691,8 @@ public class OntologyBuilder {
 		Integer numAccepted = 0; 
 		Synonyms syn = new Synonyms(word);
 
-	    // Add the word that we want synonyms of to the accepted terms list as well
-	    allAcceptedTerms.add(word);
+		// Add the word that we want synonyms of to the accepted terms list as well
+		allAcceptedTerms.add(word);
 
 		System.out.println("Enter 'a' to accept and 'r' to reject the synonym: ");
 		Scanner input = new Scanner(System.in);
@@ -639,8 +708,8 @@ public class OntologyBuilder {
 			}
 
 			while(true) {
-			System.out.println("synonym: " + word + " --> " + synonym);
-			String userInput = input.next();
+				System.out.println("synonym: " + word + " --> " + synonym);
+				String userInput = input.next();
 				if (userInput.equals("a")) {
 					numAccepted++;
 					numAcceptOverall++;
