@@ -80,8 +80,11 @@ public class OntologyBuilder {
 	private boolean relations;
 	private HashMap<String, HashSet<String>> nounsWithSynset;
 	private HashSet<String> synonymsAccepted;
-	private HashSet<String> allAcceptedTerms; 
+	public HashSet<String> allAcceptedTerms; 
+	public HashSet<String> acceptedSoFar; 
 
+	private boolean synonymsInitialised;
+	private TermSelectionAlgo synonym_select;
 	
 	/**
 	 * A constructor for the OntologyBuilder class.
@@ -115,6 +118,7 @@ public class OntologyBuilder {
 		numRejectOverall = 0;
 		numAcceptOverall = 0;
 		relations = r;
+		synonymsInitialised = false;
 
 		remove = new HashSet<String>();
 		remove.add("http://www.w3.org/2000/01/rdf-schema#Resource");
@@ -128,10 +132,9 @@ public class OntologyBuilder {
 		synonymsAccepted = new HashSet<String>();
 		
 		HashSet<String> doneAspects = new HashSet<String>();
-		HashSet<String> allAcceptedTerms = new HashSet<String>();
-
-
-		 
+		//HashSet<String> 
+		allAcceptedTerms = new HashSet<String>();
+		
 		/**
 		We want to add synonyms of particular words to the Generic Positive and Negative classes:
 		Generic Positive verbs in Kim's ontology: love, enjoy, respect, recommend
@@ -148,21 +151,25 @@ public class OntologyBuilder {
 		use wordnet to determine which of them are synonyms and which should be added as separate classes
 		*/
 		
+		TermSelectionAlgo synonym_select = new TermSelectionAlgo(Framework.LARGEDATA_PATH +"yelp_wordvec", Framework.OUTPUT_PATH+"Output_stanford_hashmap");//initialise synonyms
+		
 		String negativePropertyURI1 = base.addClass("bad#ajective#1", "Bad", true, "bad", new HashSet<String>(), base.URI_GenericNegativeProperty);
 		//this.suggestSynonyms("bad", negativePropertyURI1);
-		this.getSynonymsWithEmbeddings("bad",10, negativePropertyURI1);
+		//allAcceptedTerms = this.getSynonymsWithEmbeddings(allAcceptedTerms,"bad",10, synonym_select, negativePropertyURI1);
 		
 		String negativeActionURI2 = base.addClass("hate#verb#1", "Hate", true, "hate", new HashSet<String>(), base.URI_GenericNegativeAction);
 		//this.suggestSynonyms("hate", negativeActionURI2)
-		this.getSynonymsWithEmbeddings("hate",10, negativeActionURI2);
-		
+		//allAcceptedTerms = this.getSynonymsWithEmbeddings(allAcceptedTerms,"hate",10, synonym_select,negativeActionURI2);
+
 		String positivePropertyURI1 = base.addClass("good#adjective#1", "Good", true, "good", new HashSet<String>(), base.URI_GenericPositiveProperty);
 		//this.suggestSynonyms("good", positivePropertyURI1);
-		this.getSynonymsWithEmbeddings("good",10, positivePropertyURI1);
+		//allAcceptedTerms = this.getSynonymsWithEmbeddings(allAcceptedTerms,"good", 10 , synonym_select, positivePropertyURI1);
+		//allAcceptedTerms.add("good");
 		
 		String positiveActionURI1 = base.addClass("enjoy#verb#1", "Enjoy", true, "enjoy", new HashSet<String>(), base.URI_GenericPositiveAction);
 		//this.suggestSynonyms("enjoy", positiveActionURI1);
-		this.getSynonymsWithEmbeddings("enjoy",10, positiveActionURI1);
+		//allAcceptedTerms = this.getSynonymsWithEmbeddings(allAcceptedTerms,"enjoy",10, synonym_select,  positiveActionURI1);
+
 		
 		/* Loop over the aspect category entities. */
 
@@ -300,7 +307,7 @@ public class OntologyBuilder {
 	 */
 	public void getTerms() throws Exception 
 	{
-		TermSelectionAlgo term_select = new TermSelectionAlgo(allAcceptedTerms, Framework.LARGEDATA_PATH+"google_wordvec", Framework.LARGEDATA_PATH +"yelp_wordvec", Framework.OUTPUT_PATH+"Output_stanford_hashmap");
+		TermSelectionAlgo term_select = new TermSelectionAlgo(Framework.LARGEDATA_PATH+"google_wordvec", Framework.LARGEDATA_PATH +"yelp_wordvec", Framework.OUTPUT_PATH+"Output_stanford_hashmap");
 		term_select.create_word_term_score();
 		System.out.println("doing thresholds");
 		//double threshold_noun = term_select.create_threshold(100, "NN");
@@ -309,9 +316,10 @@ public class OntologyBuilder {
 		//term_select.create_term_list(0.84, threshold_verb, threshold_adj, 100, 80, 80);
 		
 		// Eigenlijk zouden we het zo moeten maken dat de thresholds als input voor de constructor gemaakt worden
-		term_select.create_term_list(0.84, 0.8, 0.915, 100, 20, 80); 
+		allAcceptedTerms =  term_select.create_term_list(allAcceptedTerms, 0.84, 0.8, 0.915, 100, 20, 80); 
 		term_select.save_outputs(term_select);
 	}
+	
 	
 	
 	/**
@@ -319,19 +327,28 @@ public class OntologyBuilder {
 	 * @param word
 	 * @throws Exception
 	 */
-	public void getSynonymsWithEmbeddings(String word, int synonymNum, String... classURI) throws Exception{
+	public HashSet<String> getSynonymsWithEmbeddings(HashSet<String>acceptedSoFar, String word, int synonymNum, TermSelectionAlgo synsel, String... classURI) throws Exception{
+		
 		HashSet<String> accepted = new HashSet<String>();
 		HashSet<String> rejected = new HashSet<String>();
+		HashSet<String> acceptSoFar = acceptedSoFar;
+		//accepted.add("test");
+		//rejected.add("test"); 
+		acceptSoFar.add(word);
+		
 		Integer numAccepted = 0; 
 	    Map<String, double[]> word_vec_yelp = new HashMap<String, double[]>();
 	    final int SYNONYM_NUM = synonymNum; 
-	     
+	    TermSelectionAlgo synonym_select = synsel;
+	    
 	    // Add the word that we want synonyms of to the accepted terms list as well
-	    allAcceptedTerms.add(word);
 	    
 		//TermSelectionAlgo constructor initialiseren
-		TermSelectionAlgo synonym_select = new TermSelectionAlgo(allAcceptedTerms, Framework.LARGEDATA_PATH +"yelp_wordvec", Framework.OUTPUT_PATH+"Output_stanford_hashmap");
-		
+	    //if (!synonymsInitialised) {
+	    //TermSelectionAlgo synonym_select = new TermSelectionAlgo(Framework.LARGEDATA_PATH +"yelp_wordvec", Framework.OUTPUT_PATH+"Output_stanford_hashmap");
+		// synonymsInitialised = True;
+	    //}
+	    
 		Collection<String> similar_words_list = synonym_select.getNearestWords(word,SYNONYM_NUM); 
 		
 		System.out.println("Enter 'a' to accept and 'r' to reject the synonym: ");
@@ -341,7 +358,7 @@ public class OntologyBuilder {
 		for (String nearTerm : similar_words_list) {
 			i++;
 			
-			if (nearTerm.equals(word) || accepted.contains(nearTerm) || rejected.contains(nearTerm) || allAcceptedTerms.contains(nearTerm))  {
+			if (nearTerm.equals(word) || accepted.contains(nearTerm) || rejected.contains(nearTerm) || acceptSoFar.contains(nearTerm))  {
 				continue; //in this case, we have already suggested the term. we won't suggest it again.
 			}
 
@@ -353,7 +370,7 @@ public class OntologyBuilder {
 					numAcceptOverall++;
 					accepted.add(nearTerm);
 					synonymsAccepted.add(nearTerm);
-					allAcceptedTerms.add(nearTerm);
+					acceptSoFar.add(nearTerm);
 					break;
 				
 				} 
@@ -370,7 +387,7 @@ public class OntologyBuilder {
 		for (String URI : classURI) {
 			base.addLexicalizations(URI, accepted);
 		}
-
+		return acceptSoFar;
 	}
 	
 	
@@ -380,6 +397,7 @@ public class OntologyBuilder {
 	 * @param classURI, the concepts to which to add the lexicalizations
 	 * @param word, the word of which to find synonyms
 	 */
+	/**
 	public void suggestSynonyms(String word, String... classURI) {
 		HashSet<String> accepted = new HashSet<String>();
 		HashSet<String> rejected = new HashSet<String>();
@@ -428,6 +446,8 @@ public class OntologyBuilder {
 			base.addLexicalizations(URI, accepted);
 		}
 	}
+	*/
+
 
 	
 	/**
