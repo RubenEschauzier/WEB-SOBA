@@ -219,8 +219,6 @@ public class SentimentWordProcessor {
 						else if (input_2.equals("n")) {
 							addToMap("generic", sentiment_word.getKey(), "negative");
 							wrong_entry_2= false;
-							System.out.println("mirror: n");
-
 						}
 						else {
 							System.out.println("Please enter a valid character");
@@ -232,12 +230,10 @@ public class SentimentWordProcessor {
 						String input_2 = scan.nextLine();
 						if (input_2.equals("y")) {
 							addToMap("generic", sentiment_word.getKey(), "negative");
-							System.out.println("mirror: y");
 							wrong_entry_2 = false;
 						}
 						else if (input_2.equals("n")) {
 							addToMap("generic", sentiment_word.getKey(), "positive");
-							System.out.println("mirror: n");
 							wrong_entry_2= false;
 
 						}
@@ -281,7 +277,6 @@ public class SentimentWordProcessor {
 										else if (input_2.equals("n")) {
 											addToMap(mention_classes.getValue(), sentiment_word.getKey(), "negative");
 											wrong_entry_2= false;
-											System.out.println("mirror: n");
 
 										}
 										else {
@@ -294,12 +289,10 @@ public class SentimentWordProcessor {
 										String input_2 = scan.nextLine();
 										if (input_2.equals("y")) {
 											addToMap(mention_classes.getValue(), sentiment_word.getKey(), "negative");
-											System.out.println("mirror: y");
 											wrong_entry_2 = false;
 										}
 										else if (input_2.equals("n")) {
 											addToMap(mention_classes.getValue(), sentiment_word.getKey(), "positive");
-											System.out.println("mirror: n");
 											wrong_entry_2= false;
 
 										}
@@ -311,7 +304,6 @@ public class SentimentWordProcessor {
 							}
 
 							else if (input.equals("n")) {
-								System.out.println("mirror: n outer loop");
 								wrong_entry=false;
 								break go_past_mention_classes;
 							}
