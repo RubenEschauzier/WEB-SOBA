@@ -6,7 +6,7 @@ import java.util.HashSet;
 
 import org.json.JSONException;
 import edu.eur.absa.Framework;
-import edu.eur.absa.model.exceptions.IllegalSpanException;
+//import edu.eur.absa.model.exceptions.IllegalSpanException;
 
 //our own classes
 import seminarOntologyBuilder.MainOntologyBuilder;
@@ -18,11 +18,11 @@ import termSelector.TermSelectionAlgo;
  * @author Karoliina Ranta
  * Adapted by Suzanne Veltman
  * Adapted by Lisa Zhuang
- * Adapted by Fenna ten Haaf  
+ * Adapted by Fenna ten Haaf  , IllegalSpanException
  */
 public class MainOntologyBuilder {
 	
-	public static void main(String[] args) throws ClassNotFoundException, IllegalSpanException, JSONException, IOException, Exception {
+	public static void main(String[] args) throws ClassNotFoundException, JSONException, IOException, Exception {
 
 		/* RESTAURANT DOMAIN */
 
@@ -58,19 +58,9 @@ public class MainOntologyBuilder {
 		/* Set the domain. */
 		String domain = "restaurant";
 
-		
-		// de volgende twee paragrafen zijn denk ik niet nodig
-		// set the fractions
-		double[] fraction = new double[3];	
-		fraction[0]=0.16;	//fraction nouns
-		fraction[1]=0.20; 	// fraction adjectives  
-		fraction[2]=0.16;   //fraction verbs
-
-		//set the threshold 
-		double threshold = 0.2;
 
 		/* Initialise the semi-automatic ontology builder. *///
-		OntologyBuilder build = new OntologyBuilder(base, aspectCategories, domain, threshold, 1.0, fraction, true);
+		OntologyBuilder build = new OntologyBuilder(base, aspectCategories, domain, true);
 
 		build.save("TestSkeletalOntology2020.owl");
 		

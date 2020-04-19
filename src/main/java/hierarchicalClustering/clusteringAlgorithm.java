@@ -457,7 +457,7 @@ public class clusteringAlgorithm{
 	}
 	
 	/**
-	 * Show the terms in mentionclasses more clearly after kmeans implementation
+	 * Show the terms in mentionclasses more clearly afterimplementation
 	 * @param w2v_aspects
 	 * @param finalclusters2
 	 * @return

@@ -1,10 +1,5 @@
-target/classes/data/
-target/classes/externalData/
-src/main/resources/data/
-src/main/resources/externalData/
-src/main/resources/largeData/
-target/classes/edu/
-target/classes/hierarchicalClustering/
-target/classes/seminarOntologyBuilder/
-
-
+/filePaths.txt
+largeData/
+externalData/
+data/
+target/ # The target folder gets created by the algorithm itself and do not need to exist on Github

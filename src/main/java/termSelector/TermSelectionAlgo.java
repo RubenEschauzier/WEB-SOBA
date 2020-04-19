@@ -61,8 +61,30 @@ public class TermSelectionAlgo {
 	private double max_score_adj;
 	private double max_score_verb;
 	
+	/**
+	 * Constructor for TermSelectionAlgo, with contrasting google domain for term selection task
+	 * @param filelocation_google
+	 * @param filelocation_yelp
+	 * @param filelocation_terms
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
 	public TermSelectionAlgo(String filelocation_google, String filelocation_yelp, String filelocation_terms) throws ClassNotFoundException, IOException {
 		read_file("google", filelocation_google);
+		read_file("yelp", filelocation_yelp);
+		read_file("allTerms", filelocation_terms);
+		get_vectors_mention_classes();
+		
+	}
+	
+	/**
+	 * Constructor for TermSelectionAlgo, without google file
+	 * @param filelocation_yelp
+	 * @param filelocation_terms
+	 * @throws ClassNotFoundException
+	 * @throws IOException
+	 */
+	public TermSelectionAlgo(String filelocation_yelp, String filelocation_terms) throws ClassNotFoundException, IOException {
 		read_file("yelp", filelocation_yelp);
 		read_file("allTerms", filelocation_terms);
 		get_vectors_mention_classes();
@@ -145,7 +167,7 @@ public class TermSelectionAlgo {
 		System.out.println(term_scores_test);
 	}
 	
-	public double create_threshold(int max_words, String lexical_class) throws IOException {
+		public double create_threshold(int max_words, String lexical_class) throws IOException {
 		double threshold_score = 0;
 		int n_suggested = 0;
 		int n_accepted = 0;
@@ -166,7 +188,7 @@ public class TermSelectionAlgo {
 				if (allTerms.get(entry.getValue()).contains(lexical_class) && !mention_words.contains(entry.getValue())) {
 						System.out.println("Reject or accept: " +"{"+entry.getValue()+"}" +", This is a " + "{" +allTerms.get(entry.getValue())+"}"+ ", The TermScore is: " +entry.getKey() +", Press (y) to accept and (n) to reject.");
 						String input = scan.nextLine();
-						input = input.strip();
+						input = input.trim();
 						n_suggested += 1;
 						if (input.equals("y")) {
 							n_accepted += 1;
@@ -182,7 +204,7 @@ public class TermSelectionAlgo {
 								System.out.println("Please enter a valid key");
 								System.out.println("Reject or accept: " +"(" +entry.getValue()+")" +"?" +" Press (y) to accept and (n) to reject");
 								String input_error = scan.nextLine();
-								input_error = input_error.strip();
+								input_error = input_error.trim();
 								if (input_error.equals("y")) {
 									n_accepted += 1;
 									error = false;
@@ -217,10 +239,10 @@ public class TermSelectionAlgo {
 		return opt_treshold_score;
 	}
 	
-	
+		
 	
 	public void create_term_list(double threshold_noun, double threshold_verb, double threshold_adj, int max_noun, int max_verb, int max_adj) throws IOException {	
-		org.deeplearning4j.models.word2vec.Word2Vec w2vModel_yelp = WordVectorSerializer.readWord2VecModel(new File(Framework.EXTERNALDATA_PATH + "w2v_yelp.bin"));
+		org.deeplearning4j.models.word2vec.Word2Vec w2vModel_yelp = WordVectorSerializer.readWord2VecModel(new File(Framework.LARGEDATA_PATH + "w2v_yelp.bin"));
 		Scanner scan = new Scanner(System.in);
 		JLanguageTool langTool = new JLanguageTool(new AmericanEnglish());
 		int accepted_noun = 0;
@@ -251,6 +273,12 @@ public class TermSelectionAlgo {
 		System.out.println(acceptedTerms);
 		
 	}
+	
+	public Collection<String> getNearestWords(String word, int i){
+		org.deeplearning4j.models.word2vec.Word2Vec word2vec_yelp = WordVectorSerializer.readWord2VecModel(new File(Framework.LARGEDATA_PATH + "w2v_yelp.bin"));
+		Collection<String> similarity_list = word2vec_yelp.wordsNearest(word,i);
+		return similarity_list;
+	}
 
 	private int ask_input(Map.Entry<Double,String> entry, Scanner scan, int to_increase, String type_word, org.deeplearning4j.models.word2vec.Word2Vec word2vec_yelp, JLanguageTool langTool) throws IOException {
 		/*
@@ -265,7 +293,7 @@ public class TermSelectionAlgo {
 		while(error0) {
 			System.out.println("Reject or accept: " +"{"+entry.getValue()+"}" +", This is a " + "{" +allTerms.get(entry.getValue())+"}"+ ", The TermScore is: " +entry.getKey() +", Press (y) to accept and (n) to reject.");
 			input = scan.nextLine();
-			input = input.strip();
+			input = input.trim();
 			// Accept the term
 			if (input.equals("y")) {
 				
@@ -460,7 +488,7 @@ public class TermSelectionAlgo {
 	
 	public static void main(String args[]) throws Exception {
 		// can file location also be the one in repository?
-		TermSelectionAlgo term_select = new TermSelectionAlgo( Framework.DATA_PATH+"google_wordvec", Framework.DATA_PATH +"yelp_wordvec", Framework.OUTPUT_PATH+"Output_stanford_hashmap");
+		TermSelectionAlgo term_select = new TermSelectionAlgo( Framework.LARGEDATA_PATH+"google_wordvec", Framework.LARGEDATA_PATH +"yelp_wordvec", Framework.OUTPUT_PATH+"Output_stanford_hashmap");
 		term_select.create_word_term_score();
 		System.out.println("doing thresholds");
 		//double threshold_noun = term_select.create_threshold(100, "NN");
