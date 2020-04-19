@@ -78,6 +78,7 @@ import com.apporiented.algorithm.clustering.visualization.DendrogramPanel;
  */
 public class OntologyBuilder {
 
+	public final String NS = "http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase";
 	/* The base ontology. */
 	private SkeletalOntology base;
 	private HashMap<String, HashSet<String>> aspectCategories;
@@ -337,7 +338,7 @@ public class OntologyBuilder {
 	 */
 	public void addSentimentWords() throws IOException, ClassNotFoundException
 	{
-		
+
 		//First, we get the hashMap that will give us whether we have a noun or a verb (from termSelectionALgo method)
 		File toRead_terms=new File(Framework.OUTPUT_PATH+ "Output_stanford_hashmap");
 		FileInputStream fis_terms=new FileInputStream(toRead_terms);
@@ -345,7 +346,9 @@ public class OntologyBuilder {
 		allTermsWithPOS =(HashMap<String,String>)ois_terms.readObject();
 		ois_terms.close();
 		fis_terms.close();	
-		
+
+		HashSet<String> set;
+
 		//Get the clustered sentiment words
 		Map<String, Map<String,String>> clustered_sentiment = new HashMap<String,Map<String,String>>();
 		SentimentWordProcessor sent_calc = new SentimentWordProcessor(Framework.LARGEDATA_PATH + "yelp_wordvec", Framework.OUTPUT_PATH + "sentiment_mentions");
@@ -355,7 +358,7 @@ public class OntologyBuilder {
 		{
 			//mogelijke keys zijn 'generic'of een van de mention_words:
 			//{"ambience", "drinks","food","service","price","location","quality", "style", "options", "experience", "restaurant"};
-			
+
 			String mentionClass = entry.getKey(); 
 			Map<String,String> sentPolarities = entry.getValue();
 
@@ -364,61 +367,110 @@ public class OntologyBuilder {
 				String sentWord = entry2.getKey(); // the word to add to our ontology
 				String pol = entry2.getValue(); // the polarity class
 				String pos = ""; 
-				
+
 				//Define the part-of-speech
 				if (allTermsWithPOS.get(sentWord).contains("NN"))
 				{
 					pos = "noun";
+
+					set = base.getSubclasses(base.URI_EntityMention); 
+					set.remove(base.URI_EntityMention);
+					HashSet<String> temp = base.getSubclasses(base.URI_ActionMention);
+					temp.addAll(base.getSubclasses(base.URI_PropertyMention));
+					temp.addAll(base.getSubclasses(base.URI_Sentiment));
+					set.removeAll(temp);
 				}
 				else if (allTermsWithPOS.get(sentWord).contains("VB"))
 				{
 					pos = "verb"; 
+
+					set = base.getSubclasses(base.URI_ActionMention); 
+					set.remove(base.URI_ActionMention);
+					HashSet<String> temp = base.getSubclasses(base.URI_Sentiment);
+					set.removeAll(temp);
 				}	
 				else
 				{
-					pos = "adjective"; 
+					pos = "adjective"; 	
+
+					set = base.getSubclasses(base.URI_PropertyMention); 
+					set.remove(base.URI_PropertyMention);
+					HashSet<String> temp = base.getSubclasses(base.URI_Sentiment);
+					set.removeAll(temp);
 				}
 
-				
-				String parentClass = "";
-			
+				//HashSet<String> parent = base.getLexicalizations(parentURI);
+
+				String parentClassURI = "";
+
 				if(pol.equals("positive")) //positive polarity
 				{ 
 					if (mentionClass.equals("generic")) { // add to type 1 positive entity, action or property mention
 						if (pos.equals("noun"))
 						{
-							parentClass = base.URI_GenericPositiveEntity;
-							//base.addClass( "bad#ajective#1", "Bad", true, "bad", new HashSet<String>(), base.URI_GenericNegativeProperty)
+							parentClassURI = base.URI_GenericPositiveEntity;
 						}
 						else if (pos.equals("verb"))
-						{
-							
-							parentClass = base.URI_GenericPositiveAction;
+						{			
+							parentClassURI = base.URI_GenericPositiveAction;
 						}	
 						else if (pos.equals("adjective"))
 						{
-							parentClass = base.URI_GenericPositiveProperty;
+							parentClassURI = base.URI_GenericPositiveProperty;
 						}
-					
-					base.addClass(pos, sentWord.substring(0, 1).toUpperCase() + sentWord.substring(1).toLowerCase(), true, sentWord, new HashSet<String>(), parentClass);
-						
 					}
 					else // add to other type of negative entity, action or property mention
 					{
-						//parentClassName = entity naam +"PositiveAction"; etc.
+						if (pos.equals("noun"))
+						{
+							parentClassURI = NS + mentionClass+ "PositiveMention";
+						}
+						else if (pos.equals("verb"))
+						{			
+							parentClassURI = NS + mentionClass+ "PositiveAction";
+						}	
+						else if (pos.equals("adjective"))
+						{
+							parentClassURI = NS + mentionClass+ "PositiveProperty";
+						}
 					}
 				}
 				else // negative polarity
 				{  
-					if (mentionClass.equals("generic")) {
-						// add to type 1 negative	
+					if (mentionClass.equals("generic")) { // add to type 1 positive entity, action or property mention
+						if (pos.equals("noun"))
+						{
+							parentClassURI = base.URI_GenericNegativeEntity;
+						}
+						else if (pos.equals("verb"))
+						{			
+							parentClassURI = base.URI_GenericNegativeAction;
+						}	
+						else if (pos.equals("adjective"))
+						{
+							parentClassURI = base.URI_GenericNegativeProperty;
+						}
 					}
-					else
+					else // add to other type of negative entity, action or property mention
 					{
-
+						if (pos.equals("noun"))
+						{
+							parentClassURI = NS + mentionClass+ "NegativeMention";
+						}
+						else if (pos.equals("verb"))
+						{			
+							parentClassURI = NS + mentionClass+ "NegativeAction";
+						}	
+						else if (pos.equals("adjective"))
+						{
+							parentClassURI = NS + mentionClass+ "NegativeProperty";
+						}
 					}
-					
+
 				}
+
+				//Now we add the new parent URI thingy to the ontology
+				String newConcept = base.addClass(pos, sentWord.substring(0, 1).toUpperCase() + sentWord.substring(1).toLowerCase(), true, sentWord, new HashSet<String>(), parentClassURI);
 			} 
 
 		}
@@ -437,13 +489,13 @@ public class OntologyBuilder {
 		int iterations = 100;
 		String name = "aspect_mentions";
 		String approach = "similarities";
-		
+
 		clusteringAlgorithm HC = new clusteringAlgorithm(name, numberofclusters, iterations, mentionclasses, approach);
 		HC.clusteringsimilarities();
-		
+
 		Map<String, String[]> Clusters = HC.getFinalClusters();
 		Map<String, double[]> aspectWordvector = HC.getAspectWordVectors();
-		
+
 		for (Map.Entry<String, String[]> entry : Clusters.entrySet()) {
 			HierarichalClusterAlgorithm HCA = new HierarichalClusterAlgorithm(Framework.EXTERNALDATA_PATH + "yelp_wordvec",  Framework.OUTPUT_PATH + name); //if error occurs at this line, change pathfile to the wanted file (not sure which file needed)
 			ClusteringAlgorithm clustering_algorithm = new DefaultClusteringAlgorithm();
@@ -452,7 +504,7 @@ public class OntologyBuilder {
 			double[][] distances = HCA.getDistanceMatrix(terms, aspectWordvector);
 			Cluster cluster = clustering_algorithm.performClustering(distances, terms, new AverageLinkageStrategy());
 			int recursion = HCA.recursion_depth(cluster);
-			
+
 			HCA.elbow_method(recursion, cluster);
 			HCA.make_plot();
 
@@ -464,7 +516,7 @@ public class OntologyBuilder {
 			HCA.create_cluster_representation(cluster, 0, depth);
 			Map<String,List<String>> clusterRepresentation = HCA.getClusterRepresentation();
 			System.out.println(clusterRepresentation);
-			
+
 			for (Map.Entry<String, List<String>> entry2 : clusterRepresentation.entrySet()) {
 				// parent-child relation
 				String parent = entry2.getKey();
@@ -474,17 +526,17 @@ public class OntologyBuilder {
 					// here add the parent-child relation to the skeletal ontology
 				}
 			}
-			
-//			HCA.elbow_method(recursion, cluster );
-//			HCA.make_plot();
-//	        Frame f1 = new DendrogramFrame(cluster);
-//	        f1.setSize(500, 400);
-//	        f1.setLocation(100, 200);
-//	        HCA.make_plot();
-			
+
+			//			HCA.elbow_method(recursion, cluster );
+			//			HCA.make_plot();
+			//	        Frame f1 = new DendrogramFrame(cluster);
+			//	        f1.setSize(500, 400);
+			//	        f1.setLocation(100, 200);
+			//	        HCA.make_plot();
+
 			// Missing how to add hierarchy to the skeleton/ontologybuilder
 		}
-		
+
 
 	}
 
