@@ -18,11 +18,11 @@ import termSelector.TermSelectionAlgo;
  * @author Karoliina Ranta
  * Adapted by Suzanne Veltman
  * Adapted by Lisa Zhuang
- * Adapted by Fenna ten Haaf  , IllegalSpanException
+ * Adapted by Fenna ten Haaf  
  */
 public class MainOntologyBuilder {
 	
-	public static void main(String[] args) throws ClassNotFoundException, JSONException, IOException, Exception {
+	public static void main(String[] args) throws ClassNotFoundException, JSONException, IOException, Exception { //IllegalSpanException
 
 		/* RESTAURANT DOMAIN */
 
@@ -71,8 +71,10 @@ public class MainOntologyBuilder {
 		//build.addSentimentWords(); 
 		//build.save("ontoNaSentimentWords.owl");
 		
+		//Next is to add the hierarchy
 		build.getHierarchicalClusters();
-		
+		build.save("ontoTest.owl");
+		 
 		}
 	
 	//Nu willen we de termen in de ontologie laden:
