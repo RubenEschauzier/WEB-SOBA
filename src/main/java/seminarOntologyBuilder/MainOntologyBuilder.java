@@ -18,11 +18,11 @@ import termSelector.TermSelectionAlgo;
  * @author Karoliina Ranta
  * Adapted by Suzanne Veltman
  * Adapted by Lisa Zhuang
- * Adapted by Fenna ten Haaf  , IllegalSpanException
+ * Adapted by Fenna ten Haaf  
  */
 public class MainOntologyBuilder {
 	
-	public static void main(String[] args) throws ClassNotFoundException, JSONException, IOException, Exception {
+	public static void main(String[] args) throws ClassNotFoundException, JSONException, IOException, Exception { //IllegalSpanException
 
 		/* RESTAURANT DOMAIN */
 
@@ -65,50 +65,17 @@ public class MainOntologyBuilder {
 		build.save("TestSkeletalOntology2020.owl");
 		
 		// Perform the termselection
-		//build.getTerms(); 
+		build.getTerms(); 
 		
 		//Now add the sentiment words in a kind of hierarchy
 		build.addSentimentWords(); 
-		build.save("ontoNaSentimentWords.owl");
+		build.save("ontoWithSentimentWords.owl");
 		
+		//Next is to add the hierarchy
+		build.getHierarchicalClusters();
+		build.save("finalOntoWithClusters.owl");
+		 
 		}
-	
-	//Nu willen we de termen in de ontologie laden:
-	//als eerste moeten we build.methodenaam doen om de termselector aan te roepen - het beste zou de termselector methode in OntologyBuilder kunnen komen?
-	//en dan moet er een soort output file komen met geselecteerde terms
-	
 	
 }
 	
-/**		
-		
-		// Load the contrasting text. 
-		build.loadContrast();
-
-		// Load the reviews to be used to build the ontology.
-		try {
-			build.loadReviews();
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		double alpha=0.3; double beta=0.7;
-		boolean verbs=true; boolean nouns=true; boolean adj=true;
-
-		// Find important terms and add them to the ontology.
-		build.findTerms(nouns, adj, verbs, alpha, beta);
-
-		// Get the stats. 
-		int[] stats = build.getStats();
-		System.out.println("Number accepted: " + stats[0]);
-		System.out.println("Number rejected: " + stats[1]);
-		System.out.println("Ratio accepted: " + (double) stats[0] / ( (double) stats[0] + (double) stats[1] ));
-
-		// Save the built ontology.
-		build.save("FinalOntologyRestaurantAutomatic.owl");
-	}
-	
-*/
-
-//}

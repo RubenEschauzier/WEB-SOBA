@@ -14,11 +14,44 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Enjoy">
+    <lex>recommend</lex>
+    <lex>enjoyed</lex>
+    <lex>preferred</lex>
+    <lex>thought</lex>
+    <lex>disliked</lex>
+    <lex>enjoy</lex>
+    <lex>scrumptious</lex>
+    <lex>raved</lex>
+    <lex>satisfying</lex>
+    <lex>flavourful</lex>
+    <lex>flavorful</lex>
+    <lex>indulge</lex>
+    <lex>filling</lex>
+    <lex>consume</lex>
+    <lex>decadent</lex>
+    <lex>delicous</lex>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#GenericPositiveAction"/>
     </rdfs:subClassOf>
+    <lex>tasteful</lex>
+    <lex>adored</lex>
+    <lex>tastey</lex>
+    <lex>appreciated</lex>
+    <lex>sampled</lex>
+    <lex>ruin</lex>
+    <lex>loved</lex>
+    <lex>get</lex>
+    <lex>accompany</lex>
+    <lex>catch</lex>
     <sense>enjoy#verb#1</sense>
-    <lex>enjoy</lex>
+    <lex>eat</lex>
+    <lex>enjoys</lex>
+    <lex>savor</lex>
+    <lex>prefered</lex>
+    <lex>enjoying</lex>
+    <lex>partake</lex>
+    <lex>loves</lex>
+    <lex>delectable</lex>
   </owl:Class>
   <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#LocationMention">
     <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#EntityMention"/>
@@ -40,6 +73,11 @@
       <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Positive"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Tasty">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#FoodPositiveProperty"/>
+    <sense>tasty#adjective#1</sense>
+    <lex>tasty</lex>
+  </owl:Class>
   <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PricesPositiveEntity">
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Positive"/>
@@ -47,11 +85,26 @@
     <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PricesMention"/>
   </owl:Class>
   <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Hate">
+    <lex>mean</lex>
+    <lex>loath</lex>
+    <lex>hate</lex>
+    <lex>hates</lex>
+    <lex>love</lex>
+    <lex>loathe</lex>
+    <lex>hated</lex>
+    <lex>despise</lex>
+    <lex>prefer</lex>
+    <lex>appreciate</lex>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#GenericNegativeAction"/>
     </rdfs:subClassOf>
+    <lex>adore</lex>
+    <lex>dislike</lex>
     <sense>hate#verb#1</sense>
-    <lex>hate</lex>
+    <lex>suck</lex>
+    <lex>avoid</lex>
+    <lex>sucks</lex>
+    <lex>detest</lex>
   </owl:Class>
   <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#LocationPositiveAction">
     <rdfs:subClassOf>
@@ -67,11 +120,26 @@
       <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Sentiment"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Liked">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#GenericPositiveAction"/>
+    </rdfs:subClassOf>
+    <sense>enjoy#verb#1</sense>
+    <lex>liked</lex>
+  </owl:Class>
   <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Style&amp;optionsPositiveAction">
     <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Positive"/>
     <rdfs:subClassOf>
       <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Style&amp;optionsActionMention"/>
     </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Excellent">
+    <lex>impeccable</lex>
+    <lex>exquisite</lex>
+    <lex>unbelievable</lex>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#GenericPositiveProperty"/>
+    <sense>great#adjective#1</sense>
+    <lex>excellent</lex>
   </owl:Class>
   <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Negative">
     <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Sentiment"/>
@@ -155,6 +223,11 @@
       <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#QualityMention"/>
     </rdfs:subClassOf>
   </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Great">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#GenericPositiveProperty"/>
+    <sense>great#adjective#1</sense>
+    <lex>great</lex>
+  </owl:Class>
   <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#RestaurantMention">
     <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#EntityMention"/>
     <aspect>RESTAURANT#PRICES</aspect>
@@ -203,9 +276,21 @@
     </rdfs:subClassOf>
   </owl:Class>
   <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Bad">
-    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#GenericNegativeProperty"/>
+    <lex>awful</lex>
+    <lex>terrible</lex>
+    <lex>crappy</lex>
+    <lex>horrid</lex>
+    <lex>poor</lex>
+    <lex>disappointing</lex>
+    <lex>shitty</lex>
     <sense>bad#ajective#1</sense>
+    <lex>lackluster</lex>
+    <lex>horrible</lex>
     <lex>bad</lex>
+    <lex>subpar</lex>
+    <lex>horrendous</lex>
+    <lex>lousy</lex>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#GenericNegativeProperty"/>
   </owl:Class>
   <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#LocationPropertyMention">
     <rdfs:subClassOf>
@@ -320,6 +405,23 @@
     <aspect>RESTAURANT#MISCELLANEOUS</aspect>
     <sense>experience#noun#3</sense>
     <lex>experience</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Mediocre">
+    <lex>unimpressive</lex>
+    <lex>bland</lex>
+    <lex>average</lex>
+    <lex>substandard</lex>
+    <lex>passable</lex>
+    <sense>bad#ajective#1</sense>
+    <lex>forgettable</lex>
+    <lex>mediocre</lex>
+    <lex>mediocore</lex>
+    <lex>medicore</lex>
+    <lex>underwhelming</lex>
+    <lex>lacklustre</lex>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#GenericNegativeProperty"/>
+    <lex>soso</lex>
+    <lex>meh</lex>
   </owl:Class>
   <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#AmbienceNegativeEntity">
     <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Negative"/>
@@ -504,9 +606,32 @@
     <sense>ambience#noun#1</sense>
   </owl:Class>
   <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Good">
+    <lex>fantastic</lex>
+    <lex>delicious</lex>
+    <lex>excellent</lex>
+    <lex>alright</lex>
+    <lex>nice</lex>
+    <lex>decent</lex>
+    <lex>tasty</lex>
+    <lex>delish</lex>
+    <lex>great</lex>
+    <lex>stellar</lex>
+    <lex>fabulous</lex>
     <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#GenericPositiveProperty"/>
+    <lex>impressive</lex>
     <sense>good#adjective#1</sense>
+    <lex>solid</lex>
+    <lex>outstanding</lex>
+    <lex>yummy</lex>
+    <lex>terrific</lex>
+    <lex>incredible</lex>
+    <lex>exceptional</lex>
+    <lex>superb</lex>
+    <lex>wonderful</lex>
+    <lex>amazing</lex>
     <lex>good</lex>
+    <lex>awesome</lex>
+    <lex>phenomenal</lex>
   </owl:Class>
   <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PropertyMention">
     <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Mention"/>

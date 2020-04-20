@@ -20,6 +20,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Scanner;
 import java.util.TreeMap;
+import javafx. util. Pair;
 
 import org.apache.commons.lang3.ArrayUtils;
 import org.deeplearning4j.models.embeddings.loader.WordVectorSerializer;
@@ -104,7 +105,7 @@ public class clusteringAlgorithm{
 	 */
 	public void initialization() {
 		//Second step
-		File Model = new File(Framework.EXTERNALDATA_PATH+ "w2v_yelp.bin");// if error occurs here, change w2v_yelp.bin to filename of w2c model
+		File Model = new File(Framework.LARGEDATA_PATH+ "w2v_yelp.bin");// Make sure w2v_ryelp.bin is in the large data folder! if error occurs here, change w2v_yelp.bin to filename of w2c model
 		org.deeplearning4j.models.word2vec.Word2Vec word2vec = WordVectorSerializer.readWord2VecModel(Model);
 
 		for (Map.Entry<String, String> entry : MentionsWords.entrySet()) { // Per aspectmention, find the closest subcluster (not sure it is already stored)
@@ -554,8 +555,8 @@ public class clusteringAlgorithm{
 		return ranklist;
 	}
 	
-	public void getHierarchicalClusters() throws Exception {
-		String[] mentionclasses = {"restaurant","ambience","service","location","food","drinks","price","quality","style","options"};
+	public List<Pair<String,Map<String,List<String>>>> getHierarchicalClusters() throws Exception {
+		String[] mentionclasses = {"restaurant","ambience","service","location","food","drinks","price","quality","style","options","experience"};
 		int numberofclusters = mentionclasses.length;
 		int iterations = 100;
 		String name = "aspect_mentions";
@@ -566,9 +567,10 @@ public class clusteringAlgorithm{
 		
 		Map<String, String[]> Clusters = HC.getFinalClusters();
 		Map<String, double[]> aspectWordvector = HC.getAspectWordVectors();
+		List<Pair<String,Map<String,List<String>>>> pairList= new ArrayList<Pair<String,Map<String,List<String>>>>();
 		
 		for (Map.Entry<String, String[]> entry : Clusters.entrySet()) {
-			HierarichalClusterAlgorithm HCA = new HierarichalClusterAlgorithm(Framework.DATA_PATH + "yelp_wordvec",  Framework.OUTPUT_PATH + name, entry.getValue()); //if error occurs at this line, change pathfile to the wanted file (not sure which file needed)
+			HierarichalClusterAlgorithm HCA = new HierarichalClusterAlgorithm(Framework.LARGEDATA_PATH + "yelp_wordvec",  Framework.OUTPUT_PATH + name, entry.getValue()); //if error occurs at this line, change pathfile to the wanted file (not sure which file needed)
 			ClusteringAlgorithm clustering_algorithm = new DefaultClusteringAlgorithm();
 			
 			String[] terms = entry.getValue();
@@ -586,7 +588,10 @@ public class clusteringAlgorithm{
 			HCA.rename_subclusters(3, 0, cluster);
 			HCA.create_cluster_representation(cluster, 0, 3);
 			Map<String,List<String>> clusterRepresentation = HCA.getClusterRepresentation();
-			System.out.println(clusterRepresentation);
+			System.out.println(clusterRepresentation);	
+			
+			
+			pairList.add(new Pair<String,Map<String,List<String>>>(entry.getKey(), clusterRepresentation)); 
 			
 //			HCA.elbow_method(recursion, cluster );
 //			HCA.make_plot();
@@ -597,6 +602,7 @@ public class clusteringAlgorithm{
 			
 			// Missing how to add hierarchy to the skeleton/ontologybuilder
 		}
+		return pairList; 
 		
 	}
 

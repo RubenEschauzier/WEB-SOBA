@@ -1,0 +1,1508 @@
+<rdf:RDF
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:owl="http://www.w3.org/2002/07/owl#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+    xmlns="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema#">
+  <owl:Ontology rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase"/>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Impression">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#OutingMention"/>
+    <sense>noun</sense>
+    <lex>impression</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Enjoy">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#GenericPositiveAction"/>
+    </rdfs:subClassOf>
+    <sense>enjoy#verb#1</sense>
+    <lex>enjoy</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Plating">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#DecorMention"/>
+    <sense>noun</sense>
+    <lex>plating</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Ingredients">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#VarietiesMention"/>
+    <sense>noun</sense>
+    <lex>ingredients</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Shots">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>shots</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Styles">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#VarietiesMention"/>
+    <sense>noun</sense>
+    <lex>styles</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Positive">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Sentiment"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Brewery">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PropertyMention"/>
+    </rdfs:subClassOf>
+    <sense>noun</sense>
+    <lex>brewery</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Ambiance">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#AtmosphereMention"/>
+    <sense>noun</sense>
+    <lex>ambiance</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Choices">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#VarietiesMention"/>
+    <sense>noun</sense>
+    <lex>choices</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Spot">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PlaceMention"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#RestaurantMention"/>
+    </rdfs:subClassOf>
+    <sense>noun</sense>
+    <lex>spot</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Hospitality">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#StaffMention"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ServiceMention"/>
+    </rdfs:subClassOf>
+    <sense>noun</sense>
+    <lex>hospitality</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Architecture">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#DecorMention"/>
+    <sense>noun</sense>
+    <lex>architecture</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Soda">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>soda</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Style&amp;optionsActionMention">
+    <lex>style</lex>
+    <lex>options</lex>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ActionMention"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Style&amp;optionsMention"/>
+    </rdfs:subClassOf>
+    <lex>ambience</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Venue">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#RestaurantMention"/>
+    </rdfs:subClassOf>
+    <sense>noun</sense>
+    <lex>venue</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Style&amp;optionsMention">
+    <lex>style</lex>
+    <lex>options</lex>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#EntityMention"/>
+    <aspect>SUSTENANCE#STYLE&amp;OPTIONS</aspect>
+    <lex>style&amp;options</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#QualityPositiveEntity">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Positive"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#QualityMention"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Rate">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PriceMention"/>
+    <sense>noun</sense>
+    <lex>rate</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Buffets">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PlacesMention"/>
+    <sense>noun</sense>
+    <lex>buffets</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Mimosa">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>mimosa</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#GenericPositiveEntity">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Positive"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#EntityMention"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#QualityPositiveProperty">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Positive"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#QualityPropertyMention"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#SustenancePositiveAction">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Positive"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#SustenanceActionMention"/>
+    </rdfs:subClassOf>
+    <sense>sustenance#noun#1</sense>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Interiors">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#DecorMention"/>
+    <sense>noun</sense>
+    <lex>interiors</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#LocationPositiveEntity">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Positive"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#LocationMention"/>
+    </rdfs:subClassOf>
+    <sense>location#noun#1</sense>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Aesthetics">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#DecorMention"/>
+    <sense>noun</sense>
+    <lex>aesthetics</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Shakes">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>shakes</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#DrinksMention">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#SustenanceMention"/>
+    </rdfs:subClassOf>
+    <aspect>QUALITY</aspect>
+    <aspect>PRICES</aspect>
+    <aspect>STYLE&amp;OPTIONS</aspect>
+    <sense>drinks#noun#1</sense>
+    <lex>drinks</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Establishment">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#RestaurantMention"/>
+    </rdfs:subClassOf>
+    <sense>noun</sense>
+    <lex>establishment</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Lattes">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>lattes</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#SustenancePropertyMention">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PropertyMention"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#SustenanceMention"/>
+    </rdfs:subClassOf>
+    <sense>sustenance#noun#1</sense>
+    <lex>sustenance</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Style&amp;optionsPositiveEntity">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Positive"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Style&amp;optionsMention"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Components">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ElementsMention"/>
+    <sense>noun</sense>
+    <lex>components</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Staff">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#WaitstaffMention"/>
+    <sense>noun</sense>
+    <lex>staff</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#SustenanceNegativeEntity">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Negative"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#SustenanceMention"/>
+    </rdfs:subClassOf>
+    <sense>sustenance#noun#1</sense>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ExperiencePropertyMention">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PropertyMention"/>
+    </rdfs:subClassOf>
+    <aspect>RESTAURANT#MISCELLANEOUS</aspect>
+    <sense>experience#noun#3</sense>
+    <lex>experience</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Grub">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#FareMention"/>
+    <sense>noun</sense>
+    <lex>grub</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Branches">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#VarietiesMention"/>
+    <sense>noun</sense>
+    <lex>branches</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Fillings">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#VarietiesMention"/>
+    <sense>noun</sense>
+    <lex>fillings</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Plaza">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#MallMention"/>
+    <sense>noun</sense>
+    <lex>plaza</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Plates">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#GlassesMention"/>
+    <sense>noun</sense>
+    <lex>plates</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ServiceActionMention">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ActionMention"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ServiceMention"/>
+    </rdfs:subClassOf>
+    <sense>service#noun#1</sense>
+    <lex>service</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Items">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#DishesMention"/>
+    <sense>noun</sense>
+    <lex>items</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Attributes">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#VarietiesMention"/>
+    <sense>noun</sense>
+    <lex>attributes</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Store">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#LocationMention"/>
+    </rdfs:subClassOf>
+    <sense>noun</sense>
+    <lex>store</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Offerings">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#VarietiesMention"/>
+    <sense>noun</sense>
+    <lex>offerings</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#AmbiencePositiveProperty">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Positive"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#AmbiencePropertyMention"/>
+    </rdfs:subClassOf>
+    <sense>ambience#noun#1</sense>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Desserts">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>desserts</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Kinds">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#VarietiesMention"/>
+    <sense>noun</sense>
+    <lex>kinds</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Delights">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#VarietiesMention"/>
+    <sense>noun</sense>
+    <lex>delights</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Drafts">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>drafts</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Place">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#SpotMention"/>
+    <sense>noun</sense>
+    <lex>place</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#SustenanceMention">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#EntityMention"/>
+    <aspect>SUSTENANCE#QUALITY</aspect>
+    <aspect>SUSTENANCE#PRICES</aspect>
+    <aspect>SUSTENANCE#STYLE&amp;OPTIONS</aspect>
+    <sense>sustenance#noun#1</sense>
+    <lex>sustenance</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PricesNegativeEntity">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Negative"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PricesMention"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Deserts">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>deserts</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Gimlets">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>gimlets</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#SustenanceActionMention">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ActionMention"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#SustenanceMention"/>
+    <sense>sustenance#noun#1</sense>
+    <lex>sustenance</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#AmbienceNegativeAction">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Negative"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#AmbienceActionMention"/>
+    </rdfs:subClassOf>
+    <sense>ambience#noun#1</sense>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Servers">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#WaitersMention"/>
+    <sense>noun</sense>
+    <lex>servers</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Additions">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#VarietiesMention"/>
+    <sense>noun</sense>
+    <lex>additions</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#SustenancePositiveEntity">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Positive"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#SustenanceMention"/>
+    <sense>sustenance#noun#1</sense>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Elements">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#OptionsMention"/>
+    <sense>noun</sense>
+    <lex>elements</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Mimosas">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>mimosas</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Espressos">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>espressos</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Quantity">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#QualityMention"/>
+    </rdfs:subClassOf>
+    <sense>noun</sense>
+    <lex>quantity</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#GenericNegativeProperty">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PropertyMention"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Negative"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Lemonades">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>lemonades</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Cost">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#RateMention"/>
+    <sense>noun</sense>
+    <lex>cost</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Rates">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PricesMention"/>
+    </rdfs:subClassOf>
+    <sense>noun</sense>
+    <lex>rates</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Hate">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#GenericNegativeAction"/>
+    </rdfs:subClassOf>
+    <sense>hate#verb#1</sense>
+    <lex>hate</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Tonic">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>tonic</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Style&amp;optionsPositiveAction">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Positive"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Style&amp;optionsActionMention"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Locale">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PropertyMention"/>
+    </rdfs:subClassOf>
+    <sense>noun</sense>
+    <lex>locale</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Booze">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>booze</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#LocationNegativeEntity">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Negative"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#LocationMention"/>
+    </rdfs:subClassOf>
+    <sense>location#noun#1</sense>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Martinis">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>martinis</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Decorum">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#DecorMention"/>
+    <sense>noun</sense>
+    <lex>decorum</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Style&amp;optionsPropertyMention">
+    <lex>style</lex>
+    <lex>options</lex>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PropertyMention"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Style&amp;optionsMention"/>
+    <lex>ambience</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Spots">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PlacesMention"/>
+    <sense>noun</sense>
+    <lex>spots</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Categories">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ElementsMention"/>
+    <sense>noun</sense>
+    <lex>categories</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#QualityNegativeEntity">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Negative"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#QualityMention"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ServicePositiveEntity">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Positive"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ServiceMention"/>
+    </rdfs:subClassOf>
+    <sense>service#noun#1</sense>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Mains">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>mains</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Apps">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>apps</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PricesPropertyMention">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PropertyMention"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PricesMention"/>
+    </rdfs:subClassOf>
+    <lex>ambience</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Bad">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#GenericNegativeProperty"/>
+    <sense>bad#ajective#1</sense>
+    <lex>bad</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Aspects">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ElementsMention"/>
+    <sense>noun</sense>
+    <lex>aspects</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#LocationPositiveProperty">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Positive"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#LocationPropertyMention"/>
+    </rdfs:subClassOf>
+    <sense>location#noun#1</sense>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Sundaes">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>sundaes</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Dishes">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#OptionsMention"/>
+    <sense>noun</sense>
+    <lex>dishes</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Beer">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#DrinksMention"/>
+    <sense>noun</sense>
+    <lex>beer</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Waitresses">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ServersMention"/>
+    <sense>noun</sense>
+    <lex>waitresses</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Environment">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#AtmosphereMention"/>
+    <sense>noun</sense>
+    <lex>environment</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#AmbiencePositiveAction">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Positive"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#AmbienceActionMention"/>
+    </rdfs:subClassOf>
+    <sense>ambience#noun#1</sense>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Goodies">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#VarietiesMention"/>
+    <sense>noun</sense>
+    <lex>goodies</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Facility">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PropertyMention"/>
+    </rdfs:subClassOf>
+    <sense>noun</sense>
+    <lex>facility</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#DrinksPropertyMention">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#SustenancePropertyMention"/>
+    <aspect>QUALITY</aspect>
+    <aspect>PRICES</aspect>
+    <aspect>STYLE&amp;OPTIONS</aspect>
+    <sense>drinks#noun#1</sense>
+    <lex>drinks</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Alcohol">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>alcohol</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#QualityPropertyMention">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PropertyMention"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#QualityMention"/>
+    </rdfs:subClassOf>
+    <lex>ambience</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ServiceNegativeProperty">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Negative"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ServicePropertyMention"/>
+    </rdfs:subClassOf>
+    <sense>service#noun#1</sense>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Furnishings">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#DecorMention"/>
+    <sense>noun</sense>
+    <lex>furnishings</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Property">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#LocationMention"/>
+    </rdfs:subClassOf>
+    <sense>noun</sense>
+    <lex>property</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Sprites">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>sprites</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Whiskeys">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>whiskeys</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PricesActionMention">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ActionMention"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PricesMention"/>
+    </rdfs:subClassOf>
+    <lex>ambience</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Views">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#AmbienceMention"/>
+    </rdfs:subClassOf>
+    <sense>noun</sense>
+    <lex>views</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Branch">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PropertyMention"/>
+    </rdfs:subClassOf>
+    <sense>noun</sense>
+    <lex>branch</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Cokes">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>cokes</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Environments">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#DecorMention"/>
+    <sense>noun</sense>
+    <lex>environments</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#FoodPropertyMention">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#SustenancePropertyMention"/>
+    <aspect>QUALITY</aspect>
+    <aspect>PRICES</aspect>
+    <aspect>STYLE&amp;OPTIONS</aspect>
+    <sense>food#noun#1</sense>
+    <lex>food</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Style&amp;optionsPositiveProperty">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Positive"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Style&amp;optionsPropertyMention"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ServicePositiveAction">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Positive"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ServiceActionMention"/>
+    <sense>service#noun#1</sense>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Eateries">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PlacesMention"/>
+    <sense>noun</sense>
+    <lex>eateries</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#DrinksActionMention">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#SustenanceActionMention"/>
+    <aspect>QUALITY</aspect>
+    <aspect>PRICES</aspect>
+    <aspect>STYLE&amp;OPTIONS</aspect>
+    <sense>drinks#noun#1</sense>
+    <lex>drinks</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Hotel">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PropertyMention"/>
+    </rdfs:subClassOf>
+    <sense>noun</sense>
+    <lex>hotel</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Preparation">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#QuantityMention"/>
+    <sense>noun</sense>
+    <lex>preparation</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Combos">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#VarietiesMention"/>
+    <sense>noun</sense>
+    <lex>combos</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Waitstaff">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#StaffMention"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ServiceMention"/>
+    </rdfs:subClassOf>
+    <sense>noun</sense>
+    <lex>waitstaff</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Smoothies">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>smoothies</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Facets">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#VarietiesMention"/>
+    <sense>noun</sense>
+    <lex>facets</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Decisions">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#OutingMention"/>
+    <sense>noun</sense>
+    <lex>decisions</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Pints">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>pints</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Waiters">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#DrinksMention"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ServersMention"/>
+    <sense>noun</sense>
+    <lex>waiters</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Starters">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>starters</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Setting">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#DecorMention"/>
+    <sense>noun</sense>
+    <lex>setting</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Encounter">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#OutingMention"/>
+    <sense>noun</sense>
+    <lex>encounter</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#SustenancePositiveProperty">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Positive"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#SustenancePropertyMention"/>
+    <sense>sustenance#noun#1</sense>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Delicacies">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#VarietiesMention"/>
+    <sense>noun</sense>
+    <lex>delicacies</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Smiths">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PropertyMention"/>
+    </rdfs:subClassOf>
+    <sense>noun</sense>
+    <lex>smiths</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Varieties">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#OptionsMention"/>
+    <sense>noun</sense>
+    <lex>varieties</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Toppings">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#VarietiesMention"/>
+    <sense>noun</sense>
+    <lex>toppings</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Concretes">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>concretes</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#AmbienceMention">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#EntityMention"/>
+    <aspect>AMBIENCE#GENERAL</aspect>
+    <sense>ambience#noun#1</sense>
+    <lex>ambience</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Joints">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PlacesMention"/>
+    <sense>noun</sense>
+    <lex>joints</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Outing">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ExperienceMention"/>
+    </rdfs:subClassOf>
+    <sense>noun</sense>
+    <lex>outing</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#GenericNegativeEntity">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Negative"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#EntityMention"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Decorations">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#DecorMention"/>
+    <sense>noun</sense>
+    <lex>decorations</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Mojitos">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>mojitos</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PricesPositiveProperty">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Positive"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PricesPropertyMention"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Areas">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ElementsMention"/>
+    <sense>noun</sense>
+    <lex>areas</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#GenericPositiveProperty">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PropertyMention"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Positive"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Joeys">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PropertyMention"/>
+    </rdfs:subClassOf>
+    <sense>noun</sense>
+    <lex>joeys</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Glasses">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#DrinksMention"/>
+    <sense>noun</sense>
+    <lex>glasses</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Interior">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#DecorMention"/>
+    <sense>noun</sense>
+    <lex>interior</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Waters">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#DrinksMention"/>
+    <sense>noun</sense>
+    <lex>waters</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Decors">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#DecorMention"/>
+    <sense>noun</sense>
+    <lex>decors</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Environs">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#DecorMention"/>
+    <sense>noun</sense>
+    <lex>environs</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Architectural">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#DecorMention"/>
+    <sense>noun</sense>
+    <lex>architectural</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Drink">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>drink</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Microbrewery">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PropertyMention"/>
+    </rdfs:subClassOf>
+    <sense>noun</sense>
+    <lex>microbrewery</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Negative">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Sentiment"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Topping">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#VarietiesMention"/>
+    <sense>noun</sense>
+    <lex>topping</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Neutral">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Sentiment"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#AmbienceActionMention">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ActionMention"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#AmbienceMention"/>
+    <sense>ambience#noun#1</sense>
+    <lex>ambience</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Beverage">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>beverage</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Fare">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#FoodMention"/>
+    </rdfs:subClassOf>
+    <sense>noun</sense>
+    <lex>fare</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#GenericNegativeAction">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Negative"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ActionMention"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Selections">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#VarietiesMention"/>
+    <sense>noun</sense>
+    <lex>selections</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#RestaurantMention">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#EntityMention"/>
+    <aspect>RESTAURANT#PRICES</aspect>
+    <aspect>RESTAURANT#GENERAL</aspect>
+    <sense>restaurant#noun#1</sense>
+    <lex>restaurant</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ServiceNegativeAction">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Negative"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ServiceActionMention"/>
+    <sense>service#noun#1</sense>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#LocationPropertyMention">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PropertyMention"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#LocationMention"/>
+    </rdfs:subClassOf>
+    <sense>location#noun#1</sense>
+    <lex>location</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Vibes">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#AtmosphereMention"/>
+    <sense>noun</sense>
+    <lex>vibes</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Target">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PropertyMention"/>
+    </rdfs:subClassOf>
+    <sense>noun</sense>
+    <lex>target</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#LocationNegativeProperty">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Negative"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#LocationPropertyMention"/>
+    <sense>location#noun#1</sense>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Decoration">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#DecorMention"/>
+    <sense>noun</sense>
+    <lex>decoration</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Water">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#WatersMention"/>
+    <sense>noun</sense>
+    <lex>water</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Pricing">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PricesMention"/>
+    </rdfs:subClassOf>
+    <sense>noun</sense>
+    <lex>pricing</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Atmospheres">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#DecorMention"/>
+    <sense>noun</sense>
+    <lex>atmospheres</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Cappuccinos">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>cappuccinos</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ServiceMention">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#EntityMention"/>
+    <aspect>SERVICE#GENERAL</aspect>
+    <sense>service#noun#1</sense>
+    <lex>service</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Preparations">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#VarietiesMention"/>
+    <sense>noun</sense>
+    <lex>preparations</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Pastries">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#VarietiesMention"/>
+    <sense>noun</sense>
+    <lex>pastries</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Milkshakes">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>milkshakes</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ServicePositiveProperty">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Positive"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ServicePropertyMention"/>
+    </rdfs:subClassOf>
+    <sense>service#noun#1</sense>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Style&amp;optionsNegativeProperty">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Negative"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Style&amp;optionsPropertyMention"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Mention"/>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Liqueurs">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>liqueurs</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Rums">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>rums</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Alternatives">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#VarietiesMention"/>
+    <sense>noun</sense>
+    <lex>alternatives</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#AmbienceNegativeEntity">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Negative"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#AmbienceMention"/>
+    <sense>ambience#noun#1</sense>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Concept">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#DecorMention"/>
+    <sense>noun</sense>
+    <lex>concept</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Atmosphere">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#AmbienceMention"/>
+    <sense>noun</sense>
+    <lex>atmosphere</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Sodas">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>sodas</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Variables">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#VarietiesMention"/>
+    <sense>noun</sense>
+    <lex>variables</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ServiceNegativeEntity">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Negative"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ServiceMention"/>
+    <sense>service#noun#1</sense>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#QualityMention">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#EntityMention"/>
+    <aspect>SUSTENANCE#QUALITY</aspect>
+    <lex>quality</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Restaurant">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PlaceMention"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#RestaurantMention"/>
+    <sense>noun</sense>
+    <lex>restaurant</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#FoodActionMention">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#SustenanceActionMention"/>
+    <aspect>QUALITY</aspect>
+    <aspect>PRICES</aspect>
+    <aspect>STYLE&amp;OPTIONS</aspect>
+    <sense>food#noun#1</sense>
+    <lex>food</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Juices">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#VarietiesMention"/>
+    <sense>noun</sense>
+    <lex>juices</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Style&amp;optionsNegativeAction">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Negative"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Style&amp;optionsActionMention"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Eatery">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#RestaurantMention"/>
+    <sense>noun</sense>
+    <lex>eatery</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#AmbiencePropertyMention">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PropertyMention"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#AmbienceMention"/>
+    <sense>ambience#noun#1</sense>
+    <lex>ambience</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Tonics">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>tonics</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Vodkas">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>vodkas</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Coffees">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>coffees</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Milestones">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PropertyMention"/>
+    </rdfs:subClassOf>
+    <sense>noun</sense>
+    <lex>milestones</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#AmbienceNegativeProperty">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Negative"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#AmbiencePropertyMention"/>
+    <sense>ambience#noun#1</sense>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ExperienceActionMention">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ActionMention"/>
+    </rdfs:subClassOf>
+    <aspect>RESTAURANT#MISCELLANEOUS</aspect>
+    <sense>experience#noun#3</sense>
+    <lex>experience</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Cocktails">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#DrinksMention"/>
+    <sense>noun</sense>
+    <lex>cocktails</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Shop">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#StoreMention"/>
+    <sense>noun</sense>
+    <lex>shop</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ServicePropertyMention">
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PropertyMention"/>
+    </rdfs:subClassOf>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ServiceMention"/>
+    <sense>service#noun#1</sense>
+    <lex>service</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#LocationNegativeAction">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Negative"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#LocationActionMention"/>
+    </rdfs:subClassOf>
+    <sense>location#noun#1</sense>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Excursion">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#OutingMention"/>
+    <sense>noun</sense>
+    <lex>excursion</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Beers">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#BeerMention"/>
+    <sense>noun</sense>
+    <lex>beers</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ExperienceMention">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#EntityMention"/>
+    <aspect>RESTAURANT#MISCELLANEOUS</aspect>
+    <sense>experience#noun#3</sense>
+    <lex>experience</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Combinations">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#VarietiesMention"/>
+    <sense>noun</sense>
+    <lex>combinations</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#FoodMention">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#SustenanceMention"/>
+    <aspect>QUALITY</aspect>
+    <aspect>PRICES</aspect>
+    <aspect>STYLE&amp;OPTIONS</aspect>
+    <sense>food#noun#1</sense>
+    <lex>food</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#AmbiencePositiveEntity">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Positive"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#AmbienceMention"/>
+    <sense>ambience#noun#1</sense>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PropertyMention">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Mention"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Vibe">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#AtmosphereMention"/>
+    <sense>noun</sense>
+    <lex>vibe</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#GenericPositiveAction">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Positive"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ActionMention"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#QualityNegativeAction">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Negative"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#QualityActionMention"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Setup">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#DecorMention"/>
+    <sense>noun</sense>
+    <lex>setup</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Prices">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PricingMention"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PriceMention"/>
+    <sense>noun</sense>
+    <lex>prices</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Visit">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#OutingMention"/>
+    <sense>noun</sense>
+    <lex>visit</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#LocationMention">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#EntityMention"/>
+    <aspect>LOCATION#GENERAL</aspect>
+    <sense>location#noun#1</sense>
+    <lex>location</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Libations">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>libations</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PricesMention">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#EntityMention"/>
+    <aspect>RESTAURANT#PRICES</aspect>
+    <aspect>SUSTENANCE#PRICES</aspect>
+    <lex>prices</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PricesPositiveEntity">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Positive"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PricesMention"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#LocationPositiveAction">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Positive"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#LocationActionMention"/>
+    </rdfs:subClassOf>
+    <sense>location#noun#1</sense>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Places">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#OptionsMention"/>
+    <sense>noun</sense>
+    <lex>places</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Marketplace">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PropertyMention"/>
+    <sense>noun</sense>
+    <lex>marketplace</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#SustenanceNegativeAction">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Negative"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#SustenanceActionMention"/>
+    <sense>sustenance#noun#1</sense>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Surroundings">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#DecorMention"/>
+    <sense>noun</sense>
+    <lex>surroundings</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Mall">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#LocationMention"/>
+    <sense>noun</sense>
+    <lex>mall</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Liters">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>liters</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ActionMention">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Mention"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Brewpub">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#VenueMention"/>
+    <sense>noun</sense>
+    <lex>brewpub</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Types">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#VarietiesMention"/>
+    <sense>noun</sense>
+    <lex>types</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#QualityNegativeProperty">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Negative"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#QualityPropertyMention"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Airport">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PropertyMention"/>
+    <sense>noun</sense>
+    <lex>airport</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Attitudes">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#HospitalityMention"/>
+    <sense>noun</sense>
+    <lex>attitudes</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#QualityPositiveAction">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Positive"/>
+    <rdfs:subClassOf>
+      <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#QualityActionMention"/>
+    </rdfs:subClassOf>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Joint">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#RestaurantMention"/>
+    <sense>noun</sense>
+    <lex>joint</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Presentation">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#DecorMention"/>
+    <sense>noun</sense>
+    <lex>presentation</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Bevvies">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>bevvies</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Scenery">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#DecorMention"/>
+    <sense>noun</sense>
+    <lex>scenery</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PricesNegativeAction">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Negative"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PricesActionMention"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#LocationActionMention">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ActionMention"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#LocationMention"/>
+    <sense>location#noun#1</sense>
+    <lex>location</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Pitchers">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>pitchers</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#QualityActionMention">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ActionMention"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#QualityMention"/>
+    <lex>ambience</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Establishments">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PlacesMention"/>
+    <sense>noun</sense>
+    <lex>establishments</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Beverages">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>beverages</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Alcohols">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>alcohols</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Margaritas">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>margaritas</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Gins">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#VarietiesMention"/>
+    <sense>noun</sense>
+    <lex>gins</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Sections">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ElementsMention"/>
+    <sense>noun</sense>
+    <lex>sections</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Teas">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>teas</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Adventure">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#OutingMention"/>
+    <sense>noun</sense>
+    <lex>adventure</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Factors">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ElementsMention"/>
+    <sense>noun</sense>
+    <lex>factors</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Decor">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#AmbienceMention"/>
+    <sense>noun</sense>
+    <lex>decor</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Cannolis">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>cannolis</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#View">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#ViewsMention"/>
+    <sense>noun</sense>
+    <lex>view</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Layout">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#DecorMention"/>
+    <sense>noun</sense>
+    <lex>layout</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Style&amp;optionsNegativeEntity">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Negative"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Style&amp;optionsMention"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Sides">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#VarietiesMention"/>
+    <sense>noun</sense>
+    <lex>sides</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Appetizers">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>appetizers</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Good">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#GenericPositiveProperty"/>
+    <sense>good#adjective#1</sense>
+    <lex>good</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Size">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PricingMention"/>
+    <sense>noun</sense>
+    <lex>size</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Mixers">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#CocktailsMention"/>
+    <sense>noun</sense>
+    <lex>mixers</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Flavors">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#VarietiesMention"/>
+    <sense>noun</sense>
+    <lex>flavors</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PricesNegativeProperty">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Negative"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PricesPropertyMention"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PricesPositiveAction">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Positive"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#PricesActionMention"/>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Decision">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#OutingMention"/>
+    <sense>noun</sense>
+    <lex>decision</lex>
+  </owl:Class>
+  <owl:Class rdf:about="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#SustenanceNegativeProperty">
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#Negative"/>
+    <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/bsc.seminar/ontologies/2020/5/RestaurantOntologyBase#SustenancePropertyMention"/>
+    <sense>sustenance#noun#1</sense>
+  </owl:Class>
+</rdf:RDF>
