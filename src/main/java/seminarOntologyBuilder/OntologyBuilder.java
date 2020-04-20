@@ -156,25 +156,36 @@ public class OntologyBuilder {
 		Generic Negative verbs: Disappoint, lack, limit, rush, skip, spill
 		Generic negative adjectives: Hideous, Horrible, inexpertly, mediocre, overhyped, overrated,
 			poor, uncomfortable, awful, bad, bland, difficult
-
-		goal: to Select a few (like 4) words for each category, and use word embeddings to find the x closest words. 
-		these words will also be added to the ontology as separate classes, and then for each of those we can suggest synonyms?? Or 
-		use wordnet to determine which of them are synonyms and which should be added as separate classes
 		 */
 
 		TermSelectionAlgo synonym_select = new TermSelectionAlgo(Framework.LARGEDATA_PATH +"yelp_wordvec", Framework.OUTPUT_PATH+"Output_stanford_hashmap");//initialise synonyms
 
-		String negativePropertyURI1 = base.addClass("bad#ajective#1", "Bad", true, "bad", new HashSet<String>(), base.URI_GenericNegativeProperty);
+		String negativePropertyURI1 = base.addClass("bad#adjective#1", "Bad", true, "bad", new HashSet<String>(), base.URI_GenericNegativeProperty);
 		allAcceptedTerms = this.getSynonymsWithEmbeddings(allAcceptedTerms,"bad",15, synonym_select, negativePropertyURI1);
 
+		String negativePropertyURI2 = base.addClass("bad#adjective#1", "Mediocre", true, "mediocre", new HashSet<String>(), base.URI_GenericNegativeProperty);
+		allAcceptedTerms = this.getSynonymsWithEmbeddings(allAcceptedTerms,"mediocre",15, synonym_select, negativePropertyURI2);
+
+		String negativePropertyURI3 = base.addClass("expensive#adjective#1", "Expensive", true, "expensive", new HashSet<String>(), base.URI_GenericNegativeProperty);
+		allAcceptedTerms = this.getSynonymsWithEmbeddings(allAcceptedTerms,"expensive",15, synonym_select, negativePropertyURI3);
+		
 		String negativeActionURI2 = base.addClass("hate#verb#1", "Hate", true, "hate", new HashSet<String>(), base.URI_GenericNegativeAction);
 		allAcceptedTerms = this.getSynonymsWithEmbeddings(allAcceptedTerms,"hate",15, synonym_select,negativeActionURI2);
 
 		String positivePropertyURI1 = base.addClass("good#adjective#1", "Good", true, "good", new HashSet<String>(), base.URI_GenericPositiveProperty);
 		allAcceptedTerms = this.getSynonymsWithEmbeddings(allAcceptedTerms,"good", 15 , synonym_select, positivePropertyURI1);
 
+		String positivePropertyURI2 = base.addClass("great#adjective#1", "Great", true, "great", new HashSet<String>(), base.URI_GenericPositiveProperty);
+		allAcceptedTerms = this.getSynonymsWithEmbeddings(allAcceptedTerms,"great", 15 , synonym_select, positivePropertyURI2);
+		
+		String positivePropertyURI3 = base.addClass("excellent#adjective#1", "Excellent", true, "excellent", new HashSet<String>(), base.URI_GenericPositiveProperty);
+		allAcceptedTerms = this.getSynonymsWithEmbeddings(allAcceptedTerms,"excellent", 15 , synonym_select, positivePropertyURI3);
+		
 		String positiveActionURI1 = base.addClass("enjoy#verb#1", "Enjoy", true, "enjoy", new HashSet<String>(), base.URI_GenericPositiveAction);
 		allAcceptedTerms = this.getSynonymsWithEmbeddings(allAcceptedTerms,"enjoy",15, synonym_select,  positiveActionURI1);
+
+		String positiveActionURI2 = base.addClass("enjoy#verb#1", "Liked", true, "liked", new HashSet<String>(), base.URI_GenericPositiveAction);
+		allAcceptedTerms = this.getSynonymsWithEmbeddings(allAcceptedTerms,"liked",15, synonym_select,  positiveActionURI2);
 
 
 		/* Loop over the aspect category entities. */
@@ -267,11 +278,7 @@ public class OntologyBuilder {
 		String FoodMentionClassURI = base.addClass("food#noun#1", "FoodMention",true, "food", aspectCat.get("sustenance"), base.NS + "#SustenanceMention");
 		String FoodMentionActionClassURI = base.addClass("food#noun#1", "FoodActionMention",true, "food", aspectCat.get("sustenance"), base.NS + "#SustenanceActionMention");
 		String FoodMentionPropertyClassURI = base.addClass("food#noun#1",  "FoodPropertyMention", true, "food", aspectCat.get("sustenance"), base.NS + "#SustenancePropertyMention");
-		
-		//add a few food adjectives
-		String positiveFoodURI1 = base.addClass("tasty#adjective#1", "Tasty", true, "tasty", new HashSet<String>(), NS + "#FoodPositiveProperty");
-		allAcceptedTerms = this.getSynonymsWithEmbeddings(allAcceptedTerms, "tasty",15, synonym_select,  positiveActionURI1);
-		// could also add some extra verbs and stuff for everything, still
+
 		
 		String DrinksMentionClassURI = base.addClass("drinks#noun#1", "DrinksMention", true, "drinks", aspectCat.get("sustenance"), base.NS + "#SustenanceMention");
 		String DrinksMentionActionClassURI = base.addClass("drinks#noun#1", "DrinksActionMention", true, "drinks", aspectCat.get("sustenance"), base.NS + "#SustenanceActionMention");
@@ -286,21 +293,13 @@ public class OntologyBuilder {
 		String ExperienceMentionPropertyClassURI = base.addClass("experience#noun#3", "Experience" + "PropertyMention", true, "experience", experienceAspects, base.URI_PropertyMention);
 		//this.suggestSynonyms("experience", ExperienceMentionClassURI, ExperienceMentionActionClassURI, ExperienceMentionPropertyClassURI);
 
-		/**
-		//PersonMention
-		HashSet<String> personAspects = new HashSet<String>();
-		String PersonMentionClassURI = base.addClass("person#noun#1", "Person" + "Mention", true, "person", personAspects, base.URI_EntityMention);
-		String PersonMentionActionClassURI = base.addClass("person#noun#1", "Person" + "ActionMention", true, "person", personAspects, base.URI_ActionMention);
-		String PersonMentionPropertyClassURI = base.addClass("person#noun#1", "Person" + "PropertyMention", true, "person", personAspects, base.URI_PropertyMention);
-		//this.suggestSynonyms("person", PersonMentionClassURI, PersonMentionActionClassURI, PersonMentionPropertyClassURI);
-
-		//TimeMention
-		HashSet<String> timeAspects = new HashSet<String>();
-		String TimeMentionClassURI = base.addClass("time#noun#2", "Time" + "Mention", true, "time", timeAspects, base.URI_EntityMention);
-		String TimeMentionActionClassURI = base.addClass("time#noun#2", "Time" + "ActionMention", true, "time", timeAspects, base.URI_ActionMention);
-		String TimeMentionPropertyClassURI = base.addClass("time#noun#2", "Time" + "PropertyMention", true, "time", timeAspects, base.URI_PropertyMention);
-		//this.suggestSynonyms("time", TimeMentionClassURI, TimeMentionActionClassURI, TimeMentionPropertyClassURI);
-		 */
+		//Lastly, add some specific adjectives to put in
+		
+		//food adjectives
+				String positiveFoodURI1 = base.addClass("tasty#adjective#1", "Tasty", true, "tasty", new HashSet<String>(), NS + "#FoodPositiveProperty");
+				allAcceptedTerms = this.getSynonymsWithEmbeddings(allAcceptedTerms, "tasty",15, synonym_select,  positiveFoodURI1);
+		
+	    
 	}
 
 
