@@ -160,6 +160,9 @@ public class OntologyBuilder {
 
 		TermSelectionAlgo synonym_select = new TermSelectionAlgo(Framework.LARGEDATA_PATH +"yelp_wordvec", Framework.OUTPUT_PATH+"Output_stanford_hashmap");//initialise synonyms
 
+		String positivePropertyURI1 = base.addClass("good#adjective#1", "Good", true, "good", new HashSet<String>(), base.URI_GenericPositiveProperty);
+		allAcceptedTerms = this.getSynonymsWithEmbeddings(allAcceptedTerms,"good", 15 , synonym_select, positivePropertyURI1);
+		
 		String negativePropertyURI1 = base.addClass("bad#adjective#1", "Bad", true, "bad", new HashSet<String>(), base.URI_GenericNegativeProperty);
 		allAcceptedTerms = this.getSynonymsWithEmbeddings(allAcceptedTerms,"bad",15, synonym_select, negativePropertyURI1);
 
@@ -171,9 +174,6 @@ public class OntologyBuilder {
 		
 		String negativeActionURI2 = base.addClass("hate#verb#1", "Hate", true, "hate", new HashSet<String>(), base.URI_GenericNegativeAction);
 		allAcceptedTerms = this.getSynonymsWithEmbeddings(allAcceptedTerms,"hate",15, synonym_select,negativeActionURI2);
-
-		String positivePropertyURI1 = base.addClass("good#adjective#1", "Good", true, "good", new HashSet<String>(), base.URI_GenericPositiveProperty);
-		allAcceptedTerms = this.getSynonymsWithEmbeddings(allAcceptedTerms,"good", 15 , synonym_select, positivePropertyURI1);
 
 		String positivePropertyURI2 = base.addClass("great#adjective#1", "Great", true, "great", new HashSet<String>(), base.URI_GenericPositiveProperty);
 		allAcceptedTerms = this.getSynonymsWithEmbeddings(allAcceptedTerms,"great", 15 , synonym_select, positivePropertyURI2);

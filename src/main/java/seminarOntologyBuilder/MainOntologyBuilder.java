@@ -58,7 +58,6 @@ public class MainOntologyBuilder {
 		/* Set the domain. */
 		String domain = "restaurant";
 
-
 		/* Initialise the semi-automatic ontology builder. *///
 		OntologyBuilder build = new OntologyBuilder(base, aspectCategories, domain, true);
 
@@ -73,7 +72,7 @@ public class MainOntologyBuilder {
 		
 		//Next is to add the hierarchy
 		build.getHierarchicalClusters();
-		build.save("finalOntoWithClusters.owl");
+		build.save("finalOntology.owl");
 		 
 		}
 	
