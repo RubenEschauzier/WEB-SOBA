@@ -68,8 +68,6 @@ import com.apporiented.algorithm.clustering.ElbowPlotter;
 import com.apporiented.algorithm.clustering.visualization.DendrogramFrame;
 import com.apporiented.algorithm.clustering.visualization.DendrogramPanel;
 
-// import edu.cmu.lti.ws4j.*;
-
 /**
  * A method that builds an ontology semi-automatically.
  * 
@@ -84,52 +82,28 @@ public class OntologyBuilder {
 	private SkeletalOntology base;
 	private HashMap<String, HashSet<String>> aspectCategories;
 	private String domain;
-	private Dataset reviewData;
-	private Dataset reviewData1;
-	private JSONObject wordFrequencyReview;
-	private JSONObject wordFrequencyDocument;
-	private HashMap<String, HashMap<String, Integer>> contrastData;
-	private int numRejectTerms;   //only words
-	private int numAcceptTerms;
 	private int numRejectOverall;  //words + parent-relations
 	private int numAcceptOverall;
-	private int numRev;
 	private HashSet<String> remove;
-	private double threshold;
-	private double invThreshold;
-	private double[] fraction;
-	private HashMap<String, HashSet<String>> relatedNouns;
-	private boolean relations;
-	private HashMap<String, HashSet<String>> nounsWithSynset;
 	private HashSet<String> synonymsAccepted;
 	public HashSet<String> allAcceptedTerms; 
 	public HashSet<String> acceptedSoFar; 
 	public HashMap<String,String> allTermsWithPOS;
-
-	private boolean synonymsInitialised;
-	private TermSelectionAlgo synonym_select;
 
 	/**
 	 * A constructor for the OntologyBuilder class.
 	 * @param baseOnt, the base ontology from which the final ontology is further constructed
 	 * @param aspectCat, the aspect categories of the domain
 	 * @param dom, the domain name
-	 * @param thres, the threshold to use for the subsumption method
-	 * @param invThres, the second threshold for the subsumption method
-	 * @param frac, the top fraction of terms to suggest
 	 */
-	public OntologyBuilder(SkeletalOntology baseOnt, HashMap<String, HashSet<String>> aspectCat, String dom, boolean r) throws Exception {
+	public OntologyBuilder(SkeletalOntology baseOnt, HashMap<String, HashSet<String>> aspectCat, String dom) throws Exception {
 
 		/* Initialise the base ontology, aspect categories, and domain name. */
 		base = baseOnt;
 		aspectCategories = aspectCat;
 		domain = dom;
-		numRejectTerms = 0;
-		numAcceptTerms = 0;
 		numRejectOverall = 0;
 		numAcceptOverall = 0;
-		relations = r;
-		synonymsInitialised = false;
 
 		remove = new HashSet<String>();
 		remove.add("http://www.w3.org/2000/01/rdf-schema#Resource");
@@ -143,26 +117,16 @@ public class OntologyBuilder {
 		synonymsAccepted = new HashSet<String>();
 
 		HashSet<String> doneAspects = new HashSet<String>();
-		//HashSet<String> 
 		allAcceptedTerms = new HashSet<String>();
 
-		/**
-		We want to add synonyms of particular words to the Generic Positive and Negative classes:
-		Generic Positive verbs in Kim's ontology: love, enjoy, respect, recommend
-		Generic positive adjectives: decent, enjoyable, excellent, exceptional, 
-		   	fabulous, fantastic, favourite, fine, fun, good, great, happy,
-		   	impressive, interesting, nice, unique, wonderful, pleasant, 
-		   	Authentic, Awesome, Beautiful, Best, Charming, Creative
-		Generic Negative verbs: Disappoint, lack, limit, rush, skip, spill
-		Generic negative adjectives: Hideous, Horrible, inexpertly, mediocre, overhyped, overrated,
-			poor, uncomfortable, awful, bad, bland, difficult
-		 */
+		//We want to start by adding synonyms of particular words to the Generic Positive and Negative classes, to make sure
+		//they are included in the ontology
 
 		TermSelectionAlgo synonym_select = new TermSelectionAlgo(Framework.LARGEDATA_PATH +"yelp_wordvec", Framework.OUTPUT_PATH+"Output_stanford_hashmap");//initialise synonyms
 
 		String positivePropertyURI1 = base.addClass("good#adjective#1", "Good", true, "good", new HashSet<String>(), base.URI_GenericPositiveProperty);
 		allAcceptedTerms = this.getSynonymsWithEmbeddings(allAcceptedTerms,"good", 15 , synonym_select, positivePropertyURI1);
-		
+
 		String negativePropertyURI1 = base.addClass("bad#adjective#1", "Bad", true, "bad", new HashSet<String>(), base.URI_GenericNegativeProperty);
 		allAcceptedTerms = this.getSynonymsWithEmbeddings(allAcceptedTerms,"bad",15, synonym_select, negativePropertyURI1);
 
@@ -171,16 +135,16 @@ public class OntologyBuilder {
 
 		String negativePropertyURI3 = base.addClass("expensive#adjective#1", "Expensive", true, "expensive", new HashSet<String>(), base.URI_GenericNegativeProperty);
 		allAcceptedTerms = this.getSynonymsWithEmbeddings(allAcceptedTerms,"expensive",15, synonym_select, negativePropertyURI3);
-		
-		String negativeActionURI2 = base.addClass("hate#verb#1", "Hate", true, "hate", new HashSet<String>(), base.URI_GenericNegativeAction);
-		allAcceptedTerms = this.getSynonymsWithEmbeddings(allAcceptedTerms,"hate",15, synonym_select,negativeActionURI2);
+
+		String negativeActionURI1 = base.addClass("hate#verb#1", "Hate", true, "hate", new HashSet<String>(), base.URI_GenericNegativeAction);
+		allAcceptedTerms = this.getSynonymsWithEmbeddings(allAcceptedTerms,"hate",15, synonym_select,negativeActionURI1);
 
 		String positivePropertyURI2 = base.addClass("great#adjective#1", "Great", true, "great", new HashSet<String>(), base.URI_GenericPositiveProperty);
 		allAcceptedTerms = this.getSynonymsWithEmbeddings(allAcceptedTerms,"great", 15 , synonym_select, positivePropertyURI2);
-		
+
 		String positivePropertyURI3 = base.addClass("excellent#adjective#1", "Excellent", true, "excellent", new HashSet<String>(), base.URI_GenericPositiveProperty);
 		allAcceptedTerms = this.getSynonymsWithEmbeddings(allAcceptedTerms,"excellent", 15 , synonym_select, positivePropertyURI3);
-		
+
 		String positiveActionURI1 = base.addClass("enjoy#verb#1", "Enjoy", true, "enjoy", new HashSet<String>(), base.URI_GenericPositiveAction);
 		allAcceptedTerms = this.getSynonymsWithEmbeddings(allAcceptedTerms,"enjoy",15, synonym_select,  positiveActionURI1);
 
@@ -225,7 +189,7 @@ public class OntologyBuilder {
 				String negativeActionClassURI = base.addClass(synset, entity.substring(0, 1).toUpperCase() + entity.substring(1).toLowerCase() + "NegativeAction", false, entity.toLowerCase(), new HashSet<String>(), aspectActionClassURI, base.URI_Negative);
 				String positiveEntityClassURI = base.addClass(synset, entity.substring(0, 1).toUpperCase() + entity.substring(1).toLowerCase() + "PositiveEntity", false, entity.toLowerCase(), new HashSet<String>(), newClassURI, base.URI_Positive);
 				String negativeEntityClassURI = base.addClass(synset, entity.substring(0, 1).toUpperCase() + entity.substring(1).toLowerCase() + "NegativeEntity", false, entity.toLowerCase(), new HashSet<String>(), newClassURI, base.URI_Negative);
-	
+
 			} 
 
 			/* Create AspectMention and SentimentMention subclasses for all aspects except for general and miscellaneous. */
@@ -279,27 +243,27 @@ public class OntologyBuilder {
 		String FoodMentionActionClassURI = base.addClass("food#noun#1", "FoodActionMention",true, "food", aspectCat.get("sustenance"), base.NS + "#SustenanceActionMention");
 		String FoodMentionPropertyClassURI = base.addClass("food#noun#1",  "FoodPropertyMention", true, "food", aspectCat.get("sustenance"), base.NS + "#SustenancePropertyMention");
 
-		
+
 		String DrinksMentionClassURI = base.addClass("drinks#noun#1", "DrinksMention", true, "drinks", aspectCat.get("sustenance"), base.NS + "#SustenanceMention");
 		String DrinksMentionActionClassURI = base.addClass("drinks#noun#1", "DrinksActionMention", true, "drinks", aspectCat.get("sustenance"), base.NS + "#SustenanceActionMention");
 		String DrinksMentionPropertyClassURI = base.addClass("drinks#noun#1", "DrinksPropertyMention", true, "drinks", aspectCat.get("sustenance"), base.NS + "#SustenancePropertyMention");
 
 		//add a few extra EntityMention classes
+
 		//ExperienceMention
 		HashSet<String> experienceAspects = new HashSet<String>();
 		experienceAspects.add("RESTAURANT#MISCELLANEOUS");
 		String ExperienceMentionClassURI = base.addClass("experience#noun#3", "Experience" + "Mention", true, "experience", experienceAspects, base.URI_EntityMention);
 		String ExperienceMentionActionClassURI = base.addClass("experience#noun#3", "Experience" + "ActionMention", true, "experience", experienceAspects, base.URI_ActionMention);
 		String ExperienceMentionPropertyClassURI = base.addClass("experience#noun#3", "Experience" + "PropertyMention", true, "experience", experienceAspects, base.URI_PropertyMention);
-		//this.suggestSynonyms("experience", ExperienceMentionClassURI, ExperienceMentionActionClassURI, ExperienceMentionPropertyClassURI);
+
 
 		//Lastly, add some specific adjectives to put in
-		
-		//food adjectives
-				String positiveFoodURI1 = base.addClass("tasty#adjective#1", "Tasty", true, "tasty", new HashSet<String>(), NS + "#FoodPositiveProperty");
-				allAcceptedTerms = this.getSynonymsWithEmbeddings(allAcceptedTerms, "tasty",15, synonym_select,  positiveFoodURI1);
-		
-	    
+
+		//Food adjectives
+		String positiveFoodURI1 = base.addClass("tasty#adjective#1", "Tasty", true, "tasty", new HashSet<String>(), NS + "#FoodPositiveProperty");
+		allAcceptedTerms = this.getSynonymsWithEmbeddings(allAcceptedTerms, "tasty",15, synonym_select,  positiveFoodURI1);
+
 	}
 
 
@@ -310,13 +274,13 @@ public class OntologyBuilder {
 	{
 		TermSelectionAlgo term_select = new TermSelectionAlgo(Framework.LARGEDATA_PATH+"google_wordvec", Framework.LARGEDATA_PATH +"yelp_wordvec", Framework.OUTPUT_PATH+"Output_stanford_hashmap");
 		term_select.create_word_term_score();
-		System.out.println("doing thresholds");
+		
+		//System.out.println("doing thresholds");
 		//double threshold_noun = term_select.create_threshold(100, "NN");
 		//double threshold_verb = term_select.create_threshold(15, "VB");
 		//double threshold_adj = term_select.create_threshold(80, "JJ");
 		//term_select.create_term_list(0.84, threshold_verb, threshold_adj, 100, 80, 80);
 
-		// Eigenlijk zouden we het zo moeten maken dat de thresholds als input voor de constructor gemaakt worden
 		allAcceptedTerms =  term_select.create_term_list(allAcceptedTerms, 0.84, 0.8, 0.915, 100, 20, 80); 
 		term_select.save_outputs(term_select);
 	}
@@ -330,7 +294,7 @@ public class OntologyBuilder {
 	public void addSentimentWords() throws IOException, ClassNotFoundException
 	{
 
-		//First, we get the hashMap that will give us whether we have a noun or a verb (from termSelectionALgo method)
+		//First, we get the hashMap that will give us whether we have a noun or a verb 
 		File toRead_terms=new File(Framework.OUTPUT_PATH+ "Output_stanford_hashmap");
 		FileInputStream fis_terms=new FileInputStream(toRead_terms);
 		ObjectInputStream ois_terms =new ObjectInputStream(fis_terms);
@@ -389,8 +353,6 @@ public class OntologyBuilder {
 					HashSet<String> temp = base.getSubclasses(base.URI_Sentiment);
 					set.removeAll(temp);
 				}
-
-				//HashSet<String> parent = base.getLexicalizations(parentURI);
 
 				String parentClassURI = "";
 
@@ -460,27 +422,17 @@ public class OntologyBuilder {
 
 				}
 
-				//Now we add the new parent URI thingy to the ontology
+				//Now we add the new parent URI to the ontology
 				String newConcept = base.addClass(pos, sentWord.substring(0, 1).toUpperCase() + sentWord.substring(1).toLowerCase(), true, sentWord, new HashSet<String>(), parentClassURI);
 			} 
-
 		}
-
 	}
 
 	/**
-	 * 
+	 * Method to create the hierarchies within the aspect mentions and add them to the ontology
 	 * @throws Exception
 	 */
 	public void getHierarchicalClusters() throws Exception {
-
-		//First get POS data
-		File toRead_terms=new File(Framework.OUTPUT_PATH+ "Output_stanford_hashmap");
-		FileInputStream fis_terms=new FileInputStream(toRead_terms);
-		ObjectInputStream ois_terms =new ObjectInputStream(fis_terms);
-		allTermsWithPOS =(HashMap<String,String>)ois_terms.readObject();
-		ois_terms.close();
-		fis_terms.close();	
 
 		//Now start the method
 		Scanner scanner = new Scanner(System.in);
@@ -507,93 +459,62 @@ public class OntologyBuilder {
 				List<String> children = entry2.getValue();
 
 				if (!children.isEmpty()) {
+					
 					// Now we add the parent-child relation to the skeletal ontology
 					for (String child : children) {
-						
+
 						String checkChild ="";
 						String checkParent ="";
-						
+
+						// Some of the clusters are labeled as just clstr#--, this needs to be fixed.
+						// For now however, we just check if the parent or child cluster do not have 
+						// clstr# in their name
 						if(child.length()>5)
 						{
 							checkChild = child.substring(0,5);
 						}
 						else
 						{
-							checkChild = "it's fine!"; // if it is shorter, then it can't be clstr# something
-								
+							checkChild = "it's fine!"; // if it is shorter, then it can't be clstr#
+
 						}
-						
+
 						if(parent.length()>5)
 						{
 							checkParent = parent.substring(0,5);
 						}
 						else
 						{
-							checkParent = "it's fine!"; // if it is shorter, then it can't be clstr# something
-								
+							checkParent = "it's fine!"; // if it is shorter, then it can't be clstr# 
+
 						}
-						
+
 						String parentClassURI="";
-						
-						if(!(checkChild.equals("clstr")) && !(checkParent.equals("clstr")))
+
+						if(!(checkChild.equals("clstr")) && !(checkParent.equals("clstr"))) // no clstr# in the name
 						{
 							System.out.println("Parent: "+parent+" and child: "+child+ " in the MentionClass: "+mentClass);
+
+							String pos = "noun"; 
+							// We treat all the cluster names as nouns, as this is the most likely (only alternative is verb,
+							// adjectives are sentiment mentions) and it does not work otherwise
 							
-							//First we get the parts of speech
-							String pos ="";
-							//String test = allTermsWithPOS.get(child); 
-
-							pos = "noun"; // testing if it works like this 
-							/*
-							if (allTermsWithPOS.get(child).contains("NN"))
-							{
-								pos = "noun";
+							if (parent.equals(child)) { // in this case, we are talking about a direct subclass of mentionClass
+								parentClassURI = NS + "#"+ mentClass.substring(0, 1).toUpperCase() + mentClass.substring(1).toLowerCase()+ "Mention";
 							}
-							else if (allTermsWithPOS.get(child).contains("VB"))
-							{
-								pos = "verb"; 
-							}	
-							else
-							{
-								pos = "adjective"; 	
-							}
-							*/
-
-							if (pos.equals("noun"))
-							{
-								if (parent.equals(child)) { // in this case, we are talking about a direct subclass of mentionClass
-									parentClassURI = NS + "#"+ mentClass.substring(0, 1).toUpperCase() + mentClass.substring(1).toLowerCase()+ "Mention";
-								}
-								else {
-									parentClassURI = NS + "#"+ parent.substring(0, 1).toUpperCase() + parent.substring(1).toLowerCase()+ "Mention";
-								}
-							}
-							else if (pos.equals("verb"))
-							{			
-								if (parent.equals(child)) { // in this case, we are talking about a direct subclass of mentionClass
-									parentClassURI = NS + "#"+ mentClass.substring(0, 1).toUpperCase() + mentClass.substring(1).toLowerCase()+ "ActionMention";
-								}
-								else {
-									parentClassURI = NS + "#"+ parent.substring(0, 1).toUpperCase() + parent.substring(1).toLowerCase()+ "ActionMention";
-								}
-							}	
-							else if (pos.equals("adjective"))
-							{
-								if (parent.equals(child)) { // in this case, we are talking about a direct subclass of mentionClass
-									parentClassURI = NS + "#"+ mentClass.substring(0, 1).toUpperCase() + mentClass.substring(1).toLowerCase()+ "PropertyMention";
-								}
-								else {
-									parentClassURI = NS + "#"+ parent.substring(0, 1).toUpperCase() + parent.substring(1).toLowerCase()+ "PropertyMention";
-								}
+							else {
+								parentClassURI = NS + "#"+ parent.substring(0, 1).toUpperCase() + parent.substring(1).toLowerCase()+ "Mention";
 							}
 
 							String newConcept = base.addClass(pos, child.substring(0, 1).toUpperCase() + child.substring(1).toLowerCase(), true, child, new HashSet<String>(), parentClassURI);
 						}
-						
+
+						// if the parent name is just "clstr#-- we do not know how to handle this yet,
+						// so we just add the child as a direct subclass
 						if((checkParent.equals("clstr"))) 
-						{ //just add the child as a direct subclass
-							String pos = "noun"; // to test
-							
+						{ 
+							String pos = "noun"; // we treat it as a noun
+
 							parentClassURI = NS + "#"+ mentClass.substring(0, 1).toUpperCase() + mentClass.substring(1).toLowerCase()+ "Mention";
 							String newConcept = base.addClass(pos, child.substring(0, 1).toUpperCase() + child.substring(1).toLowerCase(), true, child, new HashSet<String>(), parentClassURI);
 						}
@@ -613,9 +534,7 @@ public class OntologyBuilder {
 
 		HashSet<String> accepted = new HashSet<String>();
 		HashSet<String> rejected = new HashSet<String>();
-		HashSet<String> acceptSoFar = acceptedSoFar;
-		//accepted.add("test");
-		//rejected.add("test"); 
+		HashSet<String> acceptSoFar = acceptedSoFar; 
 		acceptSoFar.add(word);
 
 		Integer numAccepted = 0; 
@@ -624,12 +543,6 @@ public class OntologyBuilder {
 		TermSelectionAlgo synonym_select = synsel;
 
 		// Add the word that we want synonyms of to the accepted terms list as well
-
-		//TermSelectionAlgo constructor initialiseren
-		//if (!synonymsInitialised) {
-		//TermSelectionAlgo synonym_select = new TermSelectionAlgo(Framework.LARGEDATA_PATH +"yelp_wordvec", Framework.OUTPUT_PATH+"Output_stanford_hashmap");
-		// synonymsInitialised = True;
-		//}
 
 		Collection<String> similar_words_list = synonym_select.getNearestWords(word,SYNONYM_NUM); 
 
@@ -679,11 +592,14 @@ public class OntologyBuilder {
 	 * @param classURI, the concepts to which to add the lexicalizations
 	 * @param word, the word of which to find synonyms
 	 */
-	public void suggestSynonyms(String word, String... classURI) {
+	
+	/**
+	public suggestSynonyms(String word, String... classURI) {
 		HashSet<String> accepted = new HashSet<String>();
 		HashSet<String> rejected = new HashSet<String>();
 		Integer numAccepted = 0; 
 		Synonyms syn = new Synonyms(word);
+		
 
 		// Add the word that we want synonyms of to the accepted terms list as well
 		allAcceptedTerms.add(word);
@@ -727,6 +643,7 @@ public class OntologyBuilder {
 			base.addLexicalizations(URI, accepted);
 		}
 	}
+    */
 
 
 	/**

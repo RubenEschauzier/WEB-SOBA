@@ -59,7 +59,7 @@ public class MainOntologyBuilder {
 		String domain = "restaurant";
 
 		/* Initialise the semi-automatic ontology builder. *///
-		OntologyBuilder build = new OntologyBuilder(base, aspectCategories, domain, true);
+		OntologyBuilder build = new OntologyBuilder(base, aspectCategories, domain);
 
 		build.save("TestSkeletalOntology2020.owl");
 		
