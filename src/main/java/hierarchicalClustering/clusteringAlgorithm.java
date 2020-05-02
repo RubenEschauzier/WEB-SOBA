@@ -1,11 +1,3 @@
-/**
-/*
- * Programmed by Shephalika Shekhar
- * Modified by Joanne Tjan
- * Class for Kmeans Clustering implementation
- * 
- **/
-
 package hierarchicalClustering;
 
 import java.io.File;
@@ -32,6 +24,14 @@ import com.apporiented.algorithm.clustering.DefaultClusteringAlgorithm;
 
 import edu.eur.absa.Framework;
 
+
+/**
+/*
+ * Programmed by Shephalika Shekhar
+ * Modified by Joanne Tjan, Ruben Eschauzier and Fenna ten Haaf
+ * Class for Kmeans Clustering implementation
+ * 
+ **/
 public class clusteringAlgorithm{
 	private Map<String, String> MentionsWords = new HashMap<String, String>();
 	private Map<String, double[]> term_wordvector = new HashMap<>(); //map word with corresponding wordvector
@@ -663,7 +663,6 @@ public class clusteringAlgorithm{
 			//			f1.setLocation(100, 200);
 			//			HCA.make_plot();
 
-			// Missing how to add hierarchy to the skeleton/ontologybuilder
 
 		}
 		// K means implementation test 
