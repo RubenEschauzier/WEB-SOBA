@@ -7,7 +7,7 @@ WEB-SOBA is a method for word embeddings-based semi-automatic ontology Building.
 This software first requires you to train word2vec vectors on a domain and then use this new word embedding model in the ontology builder. However if you want to use WEB_SOBA for the restaurant domain, you can download the required large files using the follow google drive: https://drive.google.com/open?id=19kkxN64GVWqnPKVcCy6a5JseRRb26usu. Add these files to a new folder called "largeData" in src/main/resources. The next step consists of semi-automatically building an ontology from the generated word embeddings. A small bit of user input is required in this ontology building step.
 
 ### Evaluating the ontology
-The ontology obtained from WEB-SOBA can be in aspect-based sentiment classification(ABSA). We recommend the following frameworks for evaluation: [Heracles](https://github.com/KSchouten/Heracles) and [HAABSA](https://github.com/ofwallaart/HAABSA) 
+The ontology obtained from WEB-SOBA can be used in aspect-based sentiment classification (ABSA). We recommend the following frameworks for evaluation: [Heracles](https://github.com/KSchouten/Heracles) and [HAABSA](https://github.com/ofwallaart/HAABSA) 
 
 ## Related Work: ##
 Our method WEB-SOBA is related to the following papers:
