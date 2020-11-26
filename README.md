@@ -14,9 +14,9 @@ Our method compares positvely to other methods for producing an ontology. An ove
 
 | Ontology + ML method| Out-of-sample  | In-sample  | Cross-validation |
 | :------------------- |:-------------:| :---------:| :-----------------: | 
-| Manual + LCR-Rot-hop   | 86.65% | 87.957% | 82.76% |
-| SASOBUS + LCR-Rot-hop  | 84.76% | 83.378% | 80.20% |
-| SOBA + LCR-Rot-hop  | 86.23% | 85.929% | 80.15% |
+| Manual + LCR-Rot-hop   | 86.65% | 87.96% | 82.76% |
+| SASOBUS + LCR-Rot-hop  | 84.76% | 83.38% | 80.20% |
+| SOBA + LCR-Rot-hop  | 86.23% | 85.93% | 80.15% |
 | WEB-SOBA + LCR-Rot-hop  | 87.16% | 88.87% | 84.72% |
 
 ## Related Work: ##
